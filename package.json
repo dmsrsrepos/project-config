@@ -1,0 +1,53 @@
+{
+  "publisher": "cnjimbo",
+  "name": "vscode-project-config-updater",
+  "displayName": "vscode project config updater",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.cjs",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-project-config-updater.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "configuration": {
+      "title": "vscode project config updater",
+      "properties": {
+        "vscode-project-config-updater.message": {
+          "type": "string",
+          "default": "Hello World",
+          "description": "The message to show in the notification"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup --env.NODE_ENV production --treeshake",
+    "dev": "tsup --watch ./src --env.NODE_ENV development",
+    "typecheck": "tsc --noEmit",
+    "vscode:prepublish": "pnpm run build",
+    "update": "npx vscode-ext-gen"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/vscode": "^1.89.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "radash": "^12.1.0",
+    "reactive-vscode": "^0.2.1"
+  }
+}
