@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022"],
+    "esModuleInterop": true,
+    "lib": [
+      "ES2022"
+    ],
     "module": "Preserve",
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "strict": true,
     "strictNullChecks": true,
-    "esModuleInterop": true
-  }
+    "target": "ES2022"
+  },
+  "include": [
+    "extension/**/*.ts"
+  ]
 }

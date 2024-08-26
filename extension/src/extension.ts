@@ -3,7 +3,7 @@ import { window } from 'vscode'
 import { message } from './configs'
 import { logger } from './utils'
 
-export = defineExtension(() => {
+const { activate, deactivate } = defineExtension(() => {
   logger.info('Extension Activated')
 
   useCommand('vscode-project-config-updater.helloWorld', () => {
@@ -15,3 +15,5 @@ export = defineExtension(() => {
     logger.info('Is Dark Theme:', isDark.value)
   })
 })
+
+export { activate, deactivate }

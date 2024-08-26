@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "✨ c:\\AppData\\code-vsextension\\vscode-project-config-updater",
+			"path": ".."
+		},
+		{
+			"name": "file-nesting",
+			"path": "."
+		}
+	],
+	"settings": {
+		"explorer.excludeGitIgnore": true
+	}
+}

@@ -1,0 +1,63 @@
+{
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "category": "Project Config Updater",
+        "command": "antfu.project-config.manualUpdate",
+        "title": "Update config now"
+      }
+    ],
+    "configuration": {
+      "properties": {
+        "fileNestingUpdater.autoUpdate": {
+          "default": true,
+          "description": "Fetch and update the latest config automatically",
+          "type": "boolean"
+        },
+        "fileNestingUpdater.autoUpdateInterval": {
+          "default": 4320,
+          "description": "The minimal interval for auto update, in minutes",
+          "type": "number"
+        },
+        "fileNestingUpdater.promptOnAutoUpdate": {
+          "default": true,
+          "description": "Should show up the prompt before doing auto update",
+          "type": "boolean"
+        },
+        "fileNestingUpdater.upstreamBranch": {
+          "default": "main",
+          "description": "The branch name of upstream repo",
+          "type": "string"
+        },
+        "fileNestingUpdater.upstreamRepo": {
+          "default": "antfu/vscode-project-config-config",
+          "description": "The upstream repo you want to update from",
+          "type": "string"
+        }
+      },
+      "title": "Project Config Updater",
+      "type": "object"
+    }
+  },
+  "description": "Auto updating for Anthony's file nesting config",
+  "displayName": "Project Config Updater",
+  "icon": "res/logo.png",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "name": "project-config",
+  "preview": true,
+  "private": true,
+  "publisher": "cnjimbo",
+  "repository": {
+    "directory": "extension",
+    "type": "git",
+    "url": "https://github.com/open-dmsrs/vscode-project-config-updater"
+  },
+  "version": "1.1.2"
+}

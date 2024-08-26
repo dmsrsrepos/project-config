@@ -1,12 +1,73 @@
 {
-    "explorer.excludeGitIgnore": true,
-    "emeraldwalk.runonsave": {
-        "commands": [
-            {
-                "match": "package.json",
-                "isAsync": true,
-                "cmd": "pnpm run update"
-            }
-        ]
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "never"
+  },
+  "editor.formatOnSave": false,
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "cmd": "npm run update",
+        "isAsync": true,
+        "match": "package.json"
+      }
+    ]
+  },
+  // Enable the ESlint flat config support
+  "eslint.experimental.useFlatConfig": true,
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    {
+      "rule": "style/*",
+      "severity": "off"
+    },
+    {
+      "rule": "*-indent",
+      "severity": "off"
+    },
+    {
+      "rule": "*-spacing",
+      "severity": "off"
+    },
+    {
+      "rule": "*-spaces",
+      "severity": "off"
+    },
+    {
+      "rule": "*-order",
+      "severity": "off"
+    },
+    {
+      "rule": "*-dangle",
+      "severity": "off"
+    },
+    {
+      "rule": "*-newline",
+      "severity": "off"
+    },
+    {
+      "rule": "*quotes",
+      "severity": "off"
+    },
+    {
+      "rule": "*semi",
+      "severity": "off"
     }
+  ],
+  // Enable eslint for all supported languages
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "markdown",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "yaml"
+  ],
+  // Disable the default formatter, use eslint instead
+  "prettier.enable": false
 }
