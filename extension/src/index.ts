@@ -1,10 +1,13 @@
-import { defineExtension, useCommand, useIsDarkTheme, watchEffect } from 'reactive-vscode'
+import {
+  defineExtension, extensionContext, useCommand, useIsDarkTheme, useVscodeContext,
+  watchEffect
+} from 'reactive-vscode'
 import { getConfig } from './config'
 import { fetchAndUpdate } from './fetch'
 import { commands } from './generated-meta'
 
 // export async function activate(ctx: ExtensionContext) {
-//   commands.registerCommand('antfu.project-config.manualUpdate', () => fetchAndUpdate(ctx, false))
+//   commands.registerCommand('cnjimbo.project-config.manualUpdate', () => fetchAndUpdate(ctx, false))
 
 //   const lastUpdate = ctx.globalState.get('lastUpdate', 0)
 //   const initialized = ctx.globalState.get('init', false)
@@ -24,10 +27,10 @@ import { commands } from './generated-meta'
 // export function deactivate() { }
 
 const { activate, deactivate } = defineExtension(() => {
-  useCommand(commands.antfuProjectConfigManualUpdate, (...args) => {
-
+  useCommand(commands.cnjimboProjectConfigManualUpdate, (..._args) => {
+    const ctx = extensionContext.value!
+    fetchAndUpdate(ctx, false)
   })
-  commands.registerCommand('antfu.project-config.manualUpdate', () => fetchAndUpdate(ctx, false))
 
   const lastUpdate = ctx.globalState.get('lastUpdate', 0)
   const initialized = ctx.globalState.get('init', false)

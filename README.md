@@ -124,7 +124,7 @@ Open your VS Code, bring up your `settings.json`, copy-n-paste the snippet below
 
 | Command                           | Title                                   |
 | --------------------------------- | --------------------------------------- |
-| `antfu.project-config.manualUpdate` | Project Config Updater: Update config now |
+| `cnjimbo.project-config.manualUpdate` | Project Config Updater: Update config now |
 
 <!-- commands -->
 

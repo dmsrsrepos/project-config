@@ -12,7 +12,7 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 </p>
 
 <p align="center">
-<a href="https://marketplace.visualstudio.com/items?itemName=antfu.project-config" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/antfu.project-config.svg?color=blue&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=cnjimbo.project-config" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/cnjimbo.project-config.svg?color=blue&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
 </p>
 
 ![](https://user-images.githubusercontent.com/11247099/157142238-b00deecb-8d56-424f-9b20-ef6a6f5ddf99.png)
@@ -31,9 +31,9 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 
 <!-- commands -->
 
-| Command                             | Title                                     |
-| ----------------------------------- | ----------------------------------------- |
-| `antfu.project-config.manualUpdate` | Project Config Updater: Update config now |
+| Command                               | Title                                     |
+| ------------------------------------- | ----------------------------------------- |
+| `cnjimbo.project-config.manualUpdate` | Project Config Updater: Update config now |
 
 <!-- commands -->
 

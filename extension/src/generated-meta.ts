@@ -13,7 +13,7 @@ export const extensionId = `${publisher}.${name}`
  * Type union of all commands
  */
 export type CommandKey = 
-  | "antfu.project-config.manualUpdate"
+  | "cnjimbo.project-config.manualUpdate"
 
 /**
  * Commands map registed by `cnjimbo.project-config`
@@ -21,9 +21,9 @@ export type CommandKey =
 export const commands = {
   /**
    * Update config now
-   * @value `antfu.project-config.manualUpdate`
+   * @value `cnjimbo.project-config.manualUpdate`
    */
-  antfuProjectConfigManualUpdate: "antfu.project-config.manualUpdate",
+  cnjimboProjectConfigManualUpdate: "cnjimbo.project-config.manualUpdate",
 } satisfies Record<string, CommandKey>
 
 /**

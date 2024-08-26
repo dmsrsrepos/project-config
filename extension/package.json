@@ -9,7 +9,7 @@
     "commands": [
       {
         "category": "Project Config Updater",
-        "command": "antfu.project-config.manualUpdate",
+        "command": "cnjimbo.project-config.manualUpdate",
         "title": "Update config now"
       }
     ],

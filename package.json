@@ -23,7 +23,7 @@
     "ext:pack": "nr ext:build && cd extension && vsce package --no-dependencies",
     "ext:publish": "nr ext:build && cd extension && vsce publish --no-dependencies",
     "lint": "eslint .",
-    "update": "npx vscode-ext-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated-meta.ts"
+    "update": "pnpx vscode-ext-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated-meta.ts"
   },
   "type": "module",
   "workspaces": [
