@@ -26,7 +26,7 @@
     "ext:publish": "nr ext:build && cd extension && vsce publish --no-dependencies",
     "lint": "eslint .",
     "prepare": "pnpm run update",
-    "update": "vscode-ext-gen ./extension/package.json --readme ./extension/README.md --output extension/src/meta.ts"
+    "update": "vscode-ext-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated/meta.ts"
   },
   "type": "module",
   "workspaces": [

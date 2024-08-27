@@ -1,10 +1,10 @@
 import {
-  defineExtension, extensionContext, useCommand, useIsDarkTheme, useVscodeContext,
-  watchEffect
+  defineExtension, extensionContext as ctxRef, useCommand, useIsDarkTheme, useVscodeContext,
+  watchEffect,
 } from 'reactive-vscode'
-import { getConfig } from './config'
+import { config } from './configs'
 import { fetchAndUpdate } from './fetch'
-import { commands } from './generated-meta'
+import { commands } from './generated/meta'
 
 // export async function activate(ctx: ExtensionContext) {
 //   commands.registerCommand('cnjimbo.project-config.manualUpdate', () => fetchAndUpdate(ctx, false))
@@ -27,14 +27,15 @@ import { commands } from './generated-meta'
 // export function deactivate() { }
 
 const { activate, deactivate } = defineExtension(() => {
-  useCommand(commands.cnjimboProjectConfigManualUpdate, (..._args) => {
-    const ctx = extensionContext.value!
+  const ctx = ctxRef.value!
+  useCommand(commands.manualUpdate, (..._args) => {
+
     fetchAndUpdate(ctx, false)
   })
 
   const lastUpdate = ctx.globalState.get('lastUpdate', 0)
   const initialized = ctx.globalState.get('init', false)
-  const autoUpdateInterval = getConfig<number>('fileNestingUpdater.autoUpdateInterval')!
+  const autoUpdateInterval = config.autoUpdateInterval
 
   if (!initialized) {
     ctx.globalState.update('init', true)
