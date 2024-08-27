@@ -9,35 +9,40 @@
     "commands": [
       {
         "category": "Project Config Updater",
-        "command": "cnjimbo.project-config.manualUpdate",
+        "command": "project-config.manualUpdate",
         "title": "Update config now"
       }
     ],
     "configuration": {
       "properties": {
-        "fileNestingUpdater.autoUpdate": {
+  
+        "project-config.autoUpdate": {
           "default": true,
           "description": "Fetch and update the latest config automatically",
           "type": "boolean"
         },
-        "fileNestingUpdater.autoUpdateInterval": {
+        "project-config.annotations": {
+          "default": true,
+          "description": "Enabled project-config inline annotations",
+          "type": "boolean"
+        },
+        "project-config.autoUpdateInterval": {
           "default": 4320,
           "description": "The minimal interval for auto update, in minutes",
           "type": "number"
         },
-        "fileNestingUpdater.promptOnAutoUpdate": {
-          "default": true,
-          "description": "Should show up the prompt before doing auto update",
-          "type": "boolean"
-        },
-        "fileNestingUpdater.upstreamBranch": {
-          "default": "main",
-          "description": "The branch name of upstream repo",
+        "project-config.color": {
+          "default": "auto",
+          "description": "Icon color hex for inline displaying",
           "type": "string"
         },
-        "fileNestingUpdater.upstreamRepo": {
-          "default": "antfu/vscode-project-config-config",
-          "description": "The upstream repo you want to update from",
+        "project-config.position": {
+          "default": "before",
+          "description": "Position the icon before or after the icon name",
+          "enum": [
+            "after",
+            "before"
+          ],
           "type": "string"
         }
       },
@@ -45,7 +50,7 @@
       "type": "object"
     }
   },
-  "description": "Auto updating for Anthony's file nesting config",
+  "description": "Export current settings to workspace config file ",
   "displayName": "Project Config Updater",
   "icon": "res/logo.png",
   "license": "MIT",

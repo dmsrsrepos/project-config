@@ -39,6 +39,9 @@ importers:
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
+      vscode-ext-gen:
+        specifier: ^0.4.2
+        version: 0.4.2
 
   extension: {}
 
@@ -1671,6 +1674,9 @@ packages:
     resolution: {integrity: sha512-3A6sD0WYP7+QrjbfNA2FN3FsOaGGFoekCVgTyypy53gPxhbkCIjtO6YWgdrfM+n/8sI8JeXZOIxsHjMTNxQ4nQ==}
     engines: {node: ^14.0.0 || >=16.0.0}
 
+  scule@1.3.0:
+    resolution: {integrity: sha512-6FtHJEvt+pVMIB9IBY+IcCJ6Z5f1iQnytgyfKMhDKgmzYG+TeH/wx1y3l27rshSbLiSanrR9ffZDrEsmjlQF2g==}
+
   semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
     hasBin: true
@@ -1892,6 +1898,10 @@ packages:
 
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
+
+  vscode-ext-gen@0.4.2:
+    resolution: {integrity: sha512-5yPd8BinOIYD5OAZ6UwPvU5Auyis/b9dt+gGpBycJLEpQxsbsk/ooC4zfQQlm4tuXhkeLbJrsY9RnrB+jvfTww==}
+    hasBin: true
 
   vue-eslint-parser@9.4.3:
     resolution: {integrity: sha512-2rYRLWlIpaiN8xbPiDyXZXRgLGOtWxERV7ND5fFAv5qo1D2N9Fu9MNajBNc6o13lZ+24DAWCkQCvj4klgmcITg==}
@@ -3612,6 +3622,8 @@ snapshots:
       refa: 0.12.1
       regexp-ast-analysis: 0.7.1
 
+  scule@1.3.0: {}
+
   semver@5.7.2: {}
 
   semver@7.6.3: {}
@@ -3815,6 +3827,12 @@ snapshots:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
+
+  vscode-ext-gen@0.4.2:
+    dependencies:
+      cac: 6.7.14
+      scule: 1.3.0
+      yargs: 17.7.2
 
   vue-eslint-parser@9.4.3(eslint@9.9.1):
     dependencies:

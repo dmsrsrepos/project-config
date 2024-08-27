@@ -1,11 +1,8 @@
-import { defineConfigs } from 'reactive-vscode'
-import { configs } from './generated-meta'
+import { defineConfigObject, defineConfigs } from 'reactive-vscode'
+import * as Meta from './meta'
 
-export const { message } = defineConfigs('vscode-project-config-updater', {
-  message: 'string',
-})
-
-export const { patterns } = defineConfigs('explorer.fileNesting.patterns', {
-  scope: 'user',
-  patterns: 'object',
-})
+// 'vscode-project-config-updater'
+export const config = defineConfigObject<Meta.ScopedConfigKeyTypeMap>(
+  Meta.scopedConfigs.scope,
+  Meta.scopedConfigs.defaults,
+)

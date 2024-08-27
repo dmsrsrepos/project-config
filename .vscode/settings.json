@@ -1,9 +1,6 @@
 {
   // Auto fix
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "never"
-  },
+ 
   "editor.formatOnSave": false,
   "emeraldwalk.runonsave": {
     "commands": [
