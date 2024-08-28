@@ -15,28 +15,17 @@
     ],
     "configuration": {
       "properties": {
-  
-        "project-config.autoUpdate": {
-          "default": true,
-          "description": "Fetch and update the latest config automatically",
-          "type": "boolean"
-        },
-        "project-config.annotations": {
+        "project-config.test.annotations": {
           "default": true,
           "description": "Enabled project-config inline annotations",
           "type": "boolean"
         },
-        "project-config.autoUpdateInterval": {
-          "default": 4320,
-          "description": "The minimal interval for auto update, in minutes",
-          "type": "number"
-        },
-        "project-config.color": {
+        "project-config.test.color": {
           "default": "auto",
           "description": "Icon color hex for inline displaying",
           "type": "string"
         },
-        "project-config.position": {
+        "project-config.test.position": {
           "default": "before",
           "description": "Position the icon before or after the icon name",
           "enum": [
@@ -44,6 +33,33 @@
             "before"
           ],
           "type": "string"
+        },
+        
+
+        "project-config.fileNestingUpdater.autoUpdate": {
+          "type": "boolean",
+          "description": "Fetch and update the latest config automatically",
+          "default": true
+        },
+        "project-config.fileNestingUpdater.promptOnAutoUpdate": {
+          "type": "boolean",
+          "description": "Should show up the prompt before doing auto update",
+          "default": true
+        },
+        "project-config.fileNestingUpdater.autoUpdateInterval": {
+          "type": "number",
+          "description": "The minimal interval for auto update, in minutes",
+          "default": 4320
+        },
+        "project-config.fileNestingUpdater.upstreamRepo": {
+          "type": "string",
+          "description": "The upstream repo you want to update from",
+          "default": "antfu/vscode-file-nesting-config"
+        },
+        "project-config.fileNestingUpdater.upstreamBranch": {
+          "type": "string",
+          "description": "The branch name of upstream repo",
+          "default": "main"
         }
       },
       "title": "Project Config Updater",

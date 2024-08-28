@@ -39,13 +39,16 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 
 <!-- configs -->
 
-| Key                                 | Description                                      | Type      | Default    |
-| ----------------------------------- | ------------------------------------------------ | --------- | ---------- |
-| `project-config.autoUpdate`         | Fetch and update the latest config automatically | `boolean` | `true`     |
-| `project-config.annotations`        | Enabled project-config inline annotations        | `boolean` | `true`     |
-| `project-config.autoUpdateInterval` | The minimal interval for auto update, in minutes | `number`  | `4320`     |
-| `project-config.color`              | Icon color hex for inline displaying             | `string`  | `"auto"`   |
-| `project-config.position`           | Position the icon before or after the icon name  | `string`  | `"before"` |
+| Key                                                    | Description                                        | Type      | Default                              |
+| ------------------------------------------------------ | -------------------------------------------------- | --------- | ------------------------------------ |
+| `project-config.test.annotations`                      | Enabled project-config inline annotations          | `boolean` | `true`                               |
+| `project-config.test.color`                            | Icon color hex for inline displaying               | `string`  | `"auto"`                             |
+| `project-config.test.position`                         | Position the icon before or after the icon name    | `string`  | `"before"`                           |
+| `project-config.fileNestingUpdater.autoUpdate`         | Fetch and update the latest config automatically   | `boolean` | `true`                               |
+| `project-config.fileNestingUpdater.promptOnAutoUpdate` | Should show up the prompt before doing auto update | `boolean` | `true`                               |
+| `project-config.fileNestingUpdater.autoUpdateInterval` | The minimal interval for auto update, in minutes   | `number`  | `4320`                               |
+| `project-config.fileNestingUpdater.upstreamRepo`       | The upstream repo you want to update from          | `string`  | `"antfu/vscode-file-nesting-config"` |
+| `project-config.fileNestingUpdater.upstreamBranch`     | The branch name of upstream repo                   | `string`  | `"main"`                             |
 
 <!-- configs -->
 
