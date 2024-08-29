@@ -2,9 +2,9 @@ import type { FetchResponse } from 'ofetch'
 import { fetch } from 'ofetch'
 import type { ExtensionContext } from 'vscode'
 import { ConfigurationTarget, window, workspace } from 'vscode'
-import { FILE, MSG_PREFIX, URL_PREFIX } from './constants'
-import { configs, configsObject as config } from './configs'
-import { logger } from './utils'
+import { FILE, MSG_PREFIX, URL_PREFIX } from '../constants'
+import { configs, configsObject as config } from '../configs'
+import { logger } from '../utils'
 
 import { defineConfigs, defineConfigObject } from 'reactive-vscode'
 

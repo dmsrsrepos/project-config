@@ -1,5 +1,5 @@
 import { defineConfigObject, defineConfigs } from 'reactive-vscode'
-import * as Meta from './generated/meta'
+import * as Meta from './sys/generated/meta'
 
 // 'vscode-project-config-updater'
 export const configsObject = defineConfigObject<Meta.ScopedConfigKeyTypeMap>(
