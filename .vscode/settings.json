@@ -66,5 +66,6 @@
     "yaml"
   ],
   // Disable the default formatter, use eslint instead
-  "prettier.enable": false
+  "prettier.enable": false,
+  "explorer.excludeGitIgnore": false
 }

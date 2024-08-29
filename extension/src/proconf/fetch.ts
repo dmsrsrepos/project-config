@@ -40,16 +40,14 @@ export async function fetchAndUpdate(ctx: ExtensionContext, prompt = true): Prom
     "enabled": Boolean,
     "expand": Boolean
   })
-
-
   const mdPatterns = await fetchLatest()
   let shouldUpdate = true
 
-  const oringalPatterns = patterns.value
+  const oringalPatterns = mdPatterns
   if (oringalPatterns)
-    oringalPatterns['//'] = undefined
+    delete oringalPatterns['//'] 
   // no change
-  if (Object.keys(oringalPatterns).length > 0 && JSON.stringify(patterns) === JSON.stringify(oringalPatterns))
+  if (Object.keys(oringalPatterns).length > 0 && JSON.stringify(patterns.value) === JSON.stringify(oringalPatterns))
     return
 
   if (prompt) {
@@ -65,7 +63,10 @@ export async function fetchAndUpdate(ctx: ExtensionContext, prompt = true): Prom
 
 
 
+
   if (shouldUpdate) {
+  
+
     enabled.update(true, ConfigurationTarget.Global)
     expand.update(false, ConfigurationTarget.Global)
     patterns.update({

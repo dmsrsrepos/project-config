@@ -2,9 +2,9 @@ import {
   defineExtension, extensionContext as ctxRef, useCommand, useIsDarkTheme, useVscodeContext,
   watchEffect, useWindowState
 } from 'reactive-vscode'
-import { configsObject as config } from './configs'
-import { fetchAndUpdate } from './proconf/fetch'
-import { commands } from './generated/meta'
+import { configsObject as config } from '@configs'
+import { fetchAndUpdate } from '@proconf/fetch'
+import { commands } from '@generated/meta'
 
 
 const { activate, deactivate } = defineExtension(() => {
