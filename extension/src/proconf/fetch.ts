@@ -17,7 +17,8 @@ export async function fetchLatest(): Promise<Record<string, string>> {
   logger.info('remote url:', url)
 
   const md = await fetch(url).then((r: FetchResponse<string>) => r._data)
-
+  if (!md)
+    return {}
   const content: string = (md.match(/```jsonc([\s\S]*?)```/) || [])[1] || ''
 
   const json = `{${content
