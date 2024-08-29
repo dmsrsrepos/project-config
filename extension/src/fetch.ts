@@ -3,15 +3,15 @@ import { fetch } from 'ofetch'
 import type { ExtensionContext } from 'vscode'
 import { ConfigurationTarget, window, workspace } from 'vscode'
 import { FILE, MSG_PREFIX, URL_PREFIX } from './constants'
-import { configs, configsObject } from './configs'
-import * as meta from './generated/meta'
+import { configs, configsObject as config } from './configs'
+import { logger } from './utils'
 
-import { defineConfigs, defineConfigObject, extensionContext, useLogger } from 'reactive-vscode'
+import { defineConfigs, defineConfigObject } from 'reactive-vscode'
 
 export async function fetchLatest(): Promise<Record<string, string>> {
-  let logger = useLogger(meta.name)
-  const repo = configs['fileNestingUpdater.upstreamRepo']
-  const branch = configs['fileNestingUpdater.upstreamBranch']
+
+  const repo = config['fileNestingUpdater.upstreamRepo']
+  const branch = config['fileNestingUpdater.upstreamBranch']
 
   const url = `${URL_PREFIX}/${repo}@${branch}/${FILE}`
   logger.info('remote url:', url)
@@ -28,23 +28,23 @@ export async function fetchLatest(): Promise<Record<string, string>> {
     .slice(0, -1)
     }}`
 
-  const config = JSON.parse(json) || {}
-  return config['explorer.fileNesting.patterns']
+  const mdConfig = JSON.parse(json) || {}
+  return mdConfig['explorer.fileNesting.patterns']
 }
 
 export async function fetchAndUpdate(ctx: ExtensionContext, prompt = true): Promise<void> {
 
-  const config = defineConfigObject(undefined, {
-    "explorer.fileNesting.patterns": Object,
-    "explorer.fileNesting.enabled": Boolean,
-    "explorer.fileNesting.expand": Boolean
+  const { patterns, enabled, expand } = defineConfigs('explorer.fileNesting', {
+    "patterns": Object,
+    "enabled": Boolean,
+    "expand": Boolean
   })
 
 
-  const patterns = await fetchLatest()
+  const mdPatterns = await fetchLatest()
   let shouldUpdate = true
 
-  const oringalPatterns = config['explorer.fileNesting.patterns']
+  const oringalPatterns = patterns.value
   if (oringalPatterns)
     oringalPatterns['//'] = undefined
   // no change
@@ -65,12 +65,18 @@ export async function fetchAndUpdate(ctx: ExtensionContext, prompt = true): Prom
 
 
   if (shouldUpdate) {
-    config.$update("explorer.fileNesting.enabled", true, ConfigurationTarget.Global, true)
-    config.$update('explorer.fileNesting.expand', false, ConfigurationTarget.Global)
-    config.$update('explorer.fileNesting.patterns', {
+    enabled.update(true, ConfigurationTarget.Global)
+    expand.update(false, ConfigurationTarget.Global)
+    patterns.update({
       '//': `Last update at ${new Date().toLocaleString()}`,
       ...patterns,
     }, ConfigurationTarget.Global)
+    // config.$update("explorer.fileNesting.enabled", true, ConfigurationTarget.Global, true)
+    // config.$update('explorer.fileNesting.expand', false, ConfigurationTarget.Global)
+    // config.$update('explorer.fileNesting.patterns', {
+    //   '//': `Last update at ${new Date().toLocaleString()}`,
+    //   ...patterns,
+    // }, ConfigurationTarget.Global)
 
     ctx.globalState.update('lastUpdate', Date.now())
 

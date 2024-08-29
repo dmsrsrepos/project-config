@@ -2,19 +2,13 @@ import {
   defineExtension, extensionContext as ctxRef, useCommand, useIsDarkTheme, useVscodeContext,
   watchEffect, useWindowState
 } from 'reactive-vscode'
-import { scopedConfigs as config } from './configs'
+import { configsObject as config } from './configs'
 import { fetchAndUpdate } from './fetch'
 import { commands } from './generated/meta'
 
 
 const { activate, deactivate } = defineExtension(() => {
-
-  var name = useVscodeContext("name", true)
-
-  
-
-  // newctx.value?.asAbsolutePath()
-
+ 
   const ctx = ctxRef.value
   if (ctx) {
     useCommand(commands.manualUpdate, (..._args) => {

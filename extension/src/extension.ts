@@ -2,7 +2,7 @@ import { defineExtension, useCommand, useIsDarkTheme, watchEffect } from 'reacti
 import { window } from 'vscode'
 import { logger } from './utils'
 import { commands } from './generated/meta'
-import { scopedConfigs as config } from './configs'
+import { configsObject as config } from './configs'
 
 const { activate, deactivate } = defineExtension(() => {
   logger.info('Extension Activated')

@@ -1,3 +1,3 @@
 import { defineLogger } from 'reactive-vscode'
-
-export const logger = defineLogger('vscode project config updater')
+import * as meta from './generated/meta'
+export const logger = defineLogger(meta.name)
