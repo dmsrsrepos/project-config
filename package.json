@@ -12,7 +12,7 @@
     "reactive-vscode": "^0.2.2",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
-    "vscode-ext-gen": "^0.4.2"
+    "vscode-ext-gen": "file:G:/code-vsextension/vscode-ext-gen"
   },
   "funding": "https://github.com/sponsors/cnjimbo",
   "license": "MIT",

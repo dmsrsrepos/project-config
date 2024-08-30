@@ -4,7 +4,7 @@ import {
 } from 'reactive-vscode'
 import { configsObject as config } from '@configs'
 import { fetchAndUpdate } from '@proconf/fetch'
-import { commands } from '@generated/meta'
+import { commands } from '@sys/generated/meta'
 
 
 const { activate, deactivate } = defineExtension(() => {

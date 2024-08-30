@@ -6,4 +6,3 @@ dist
 *.log
 *.vsix
 .idea
-**/generated
