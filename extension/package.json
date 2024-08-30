@@ -25,6 +25,17 @@
           "description": "Icon color hex for inline displaying",
           "type": "string"
         },
+        "project-config.test.partten": {
+          "default": [
+            "src /**/*",
+            "docs /**/*"
+          ],
+          "description": "Icon color hex for inline displaying",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "project-config.test.position": {
           "default": "before",
           "description": "Position the icon before or after the icon name",
@@ -34,8 +45,6 @@
           ],
           "type": "string"
         },
-        
-
         "project-config.fileNestingUpdater.autoUpdate": {
           "type": "boolean",
           "description": "Fetch and update the latest config automatically",

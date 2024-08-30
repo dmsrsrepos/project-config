@@ -43,6 +43,7 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 | ------------------------------------------------------ | -------------------------------------------------- | --------- | ------------------------------------ |
 | `project-config.test.annotations`                      | Enabled project-config inline annotations          | `boolean` | `true`                               |
 | `project-config.test.color`                            | Icon color hex for inline displaying               | `string`  | `"auto"`                             |
+| `project-config.test.partten`                          | Icon color hex for inline displaying               | `array`   | `["src /**/*","docs /**/*"]`         |
 | `project-config.test.position`                         | Position the icon before or after the icon name    | `string`  | `"before"`                           |
 | `project-config.fileNestingUpdater.autoUpdate`         | Fetch and update the latest config automatically   | `boolean` | `true`                               |
 | `project-config.fileNestingUpdater.promptOnAutoUpdate` | Should show up the prompt before doing auto update | `boolean` | `true`                               |

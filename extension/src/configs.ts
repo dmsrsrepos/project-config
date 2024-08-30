@@ -1,17 +1,15 @@
 import { defineConfigObject, defineConfigs } from 'reactive-vscode'
-import * as meta from './sys/generated/meta'
-import exp from 'constants'
-
+import * as meta from './sys/generated/meta' 
 // 'vscode-project-config-updater'
-export const configsObject = defineConfigObject<meta.ScopedConfigKeyTypeMap>(
+export const configsObject = defineConfigObject(
   meta.scopedConfigs.scope,
   meta.scopedConfigs.defaults,
 )
 
 
-export const configs = defineConfigs<meta.ScopedConfigKeyTypeMap>(
+export const configs = defineConfigs(
   meta.scopedConfigs.scope,
   meta.scopedConfigs.defaults,
 )
 
-export const shorten = defineConfigObject<meta.ConfigShorthandMap>(undefined, meta.configs)
+export const projectConfigTest = defineConfigs(meta.scopedprojectConfigTestConfigs.scope, meta.scopedprojectConfigTestConfigs.defaults)

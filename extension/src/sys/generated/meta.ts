@@ -32,6 +32,7 @@ export const commands = {
 export type ConfigKey = 
   | "project-config.test.annotations"
   | "project-config.test.color"
+  | "project-config.test.partten"
   | "project-config.test.position"
   | "project-config.fileNestingUpdater.autoUpdate"
   | "project-config.fileNestingUpdater.promptOnAutoUpdate"
@@ -42,6 +43,7 @@ export type ConfigKey =
 export interface ConfigKeyTypeMap {
   "project-config.test.annotations": boolean,
   "project-config.test.color": string,
+  "project-config.test.partten": string[],
   "project-config.test.position": ("after" | "before"),
   "project-config.fileNestingUpdater.autoUpdate": boolean,
   "project-config.fileNestingUpdater.promptOnAutoUpdate": boolean,
@@ -53,6 +55,7 @@ export interface ConfigKeyTypeMap {
 export interface ConfigShorthandMap {
   testAnnotations: "project-config.test.annotations",
   testColor: "project-config.test.color",
+  testPartten: "project-config.test.partten",
   testPosition: "project-config.test.position",
   fileNestingUpdaterAutoUpdate: "project-config.fileNestingUpdater.autoUpdate",
   fileNestingUpdaterPromptOnAutoUpdate: "project-config.fileNestingUpdater.promptOnAutoUpdate",
@@ -91,6 +94,16 @@ export const configs = {
     key: "project-config.test.color",
     default: "auto",
   } as ConfigItem<"project-config.test.color">,
+  /**
+   * Icon color hex for inline displaying
+   * @key `project-config.test.partten`
+   * @default `["src /**\/*","docs /**\/*"]`
+   * @type `array`
+   */
+  testPartten: {
+    key: "project-config.test.partten",
+    default: ["src /**/*","docs /**/*"],
+  } as ConfigItem<"project-config.test.partten">,
   /**
    * Position the icon before or after the icon name
    * @key `project-config.test.position`
@@ -156,6 +169,7 @@ export const configs = {
 export interface ScopedConfigKeyTypeMap {
   "test.annotations": boolean,
   "test.color": string,
+  "test.partten": string[],
   "test.position": ("after" | "before"),
   "fileNestingUpdater.autoUpdate": boolean,
   "fileNestingUpdater.promptOnAutoUpdate": boolean,
@@ -169,6 +183,7 @@ export const scopedConfigs = {
   defaults: {
     "test.annotations": true,
     "test.color": "auto",
+    "test.partten": ["src /**/*","docs /**/*"],
     "test.position": "before",
     "fileNestingUpdater.autoUpdate": true,
     "fileNestingUpdater.promptOnAutoUpdate": true,
@@ -182,6 +197,7 @@ export const scopedConfigs = {
 export interface ScopedprojectConfigConfigKeyTypeMap {
   "test.annotations": boolean,
   "test.color": string,
+  "test.partten": string[],
   "test.position": ("after" | "before"),
   "fileNestingUpdater.autoUpdate": boolean,
   "fileNestingUpdater.promptOnAutoUpdate": boolean,
@@ -195,6 +211,7 @@ export const scopedprojectConfigConfigs = {
   defaults: {
     "test.annotations": true,
     "test.color": "auto",
+    "test.partten": ["src /**/*","docs /**/*"],
     "test.position": "before",
     "fileNestingUpdater.autoUpdate": true,
     "fileNestingUpdater.promptOnAutoUpdate": true,
@@ -208,6 +225,7 @@ export const scopedprojectConfigConfigs = {
 export interface ScopedprojectConfigTestConfigKeyTypeMap {
   "annotations": boolean,
   "color": string,
+  "partten": string[],
   "position": ("after" | "before"),
 }
 
@@ -216,6 +234,7 @@ export const scopedprojectConfigTestConfigs = {
   defaults: {
     "annotations": true,
     "color": "auto",
+    "partten": ["src /**/*","docs /**/*"],
     "position": "before",
   } satisfies ScopedprojectConfigTestConfigKeyTypeMap,
 }
