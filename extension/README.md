@@ -31,9 +31,11 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 
 <!-- commands -->
 
-| Command                       | Title                                     |
-| ----------------------------- | ----------------------------------------- |
-| `project-config.manualUpdate` | Project Config Updater: Update config now |
+| Command                           | Title                                     |
+| --------------------------------- | ----------------------------------------- |
+| `project-config.manualUpdate`     | Project Config Updater: Update config now |
+| `project-config.remove-watch-dir` | Project Config Updater: remove watch dir  |
+| `project-config.add-watch-dir`    | Project Config Updater: add watch dir     |
 
 <!-- commands -->
 

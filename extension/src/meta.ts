@@ -14,6 +14,8 @@ export const extensionId = `${publisher}.${name}`
  */
 export type CommandKey = 
   | "project-config.manualUpdate"
+  | "project-config.remove-watch-dir"
+  | "project-config.add-watch-dir"
 
 /**
  * Commands map registed by `cnjimbo.project-config`
@@ -24,6 +26,16 @@ export const commands = {
    * @value `project-config.manualUpdate`
    */
   manualUpdate: "project-config.manualUpdate",
+  /**
+   * remove watch dir
+   * @value `project-config.remove-watch-dir`
+   */
+  removeWatchDir: "project-config.remove-watch-dir",
+  /**
+   * add watch dir
+   * @value `project-config.add-watch-dir`
+   */
+  addWatchDir: "project-config.add-watch-dir",
 } satisfies Record<string, CommandKey>
 
 /**

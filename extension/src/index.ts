@@ -1,6 +1,7 @@
-import { defineExtension, reactive, useCommands, useFsWatcher } from 'reactive-vscode'
+import { defineExtension, reactive, useCommand, useCommands, useFsWatcher } from 'reactive-vscode'
 import { window } from 'vscode'
 import { projectConfigTest } from '@configs'
+import { commands } from './meta'
 
 const { activate, deactivate } = defineExtension(() => {
     const globs = projectConfigTest.partten
@@ -9,12 +10,12 @@ const { activate, deactivate } = defineExtension(() => {
     watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
 
     useCommands({
-        'demo.add-watch-dir': async () => {
+        [commands.addWatchDir]: async () => {
             const value = await window.showInputBox({ prompt: 'Enter a glob' })
             if (value)
                 globs.value.push(value)
         },
-        'demo.remove-watch-dir': async () => {
+        [commands.removeWatchDir]: async () => {
             const value = await window.showInputBox({ prompt: 'Enter a glob' })
             if (value)
                 globs.value = globs.value.filter(v => v !== value)
