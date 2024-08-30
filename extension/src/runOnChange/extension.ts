@@ -1,14 +1,16 @@
-import * as vscode from 'vscode';
-import * as path from 'path';
-import { exec } from 'child_process';
+
+import path from 'node:path';
+import { exec } from 'node:child_process';
+import process from 'node:process'
+import vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext): void {
 
-	var extension = new RunOnSaveExtension(context);
+	const extension = new RunOnSaveExtension(context);
 	extension.showOutputMessage();
 
 	vscode.workspace.onDidChangeConfiguration(() => {
-		let disposeStatus = extension.showStatusMessage('Run On Save: Reloading config.');
+		const disposeStatus = extension.showStatusMessage('Run On Save: Reloading config.');
 		extension.loadConfig();
 		disposeStatus.dispose();
 	});
@@ -47,7 +49,7 @@ class RunOnSaveExtension {
 	constructor(context: vscode.ExtensionContext) {
 		this._context = context;
 		this._outputChannel = vscode.window.createOutputChannel('Run On Save');
-		this.loadConfig();
+		this._config = <IConfig><any>vscode.workspace.getConfiguration('emeraldwalk.runonsave');
 	}
 
 	/** Recursive call to run commands. */
@@ -56,26 +58,26 @@ class RunOnSaveExtension {
 		document: vscode.TextDocument
 	): void {
 		if (commands.length) {
-			var cfg = commands.shift();
+			const cfg = commands.shift();
+			if (cfg !== undefined) {
+				this.showOutputMessage(`*** cmd start: ${cfg.cmd}`);
+				const child = exec(cfg.cmd, this._getExecOption(document));
+				child.stdout?.on('data', data => this._outputChannel.append(data));
+				child.stderr?.on('data', data => this._outputChannel.append(data));
+				child.on('error', (e) => {
+					this.showOutputMessage(e.message);
+				});
+				child.on('exit', (_e) => {
+					// if sync
+					if (!cfg.isAsync) {
+						this._runCommands(commands, document);
+					}
+				});
 
-			this.showOutputMessage(`*** cmd start: ${cfg.cmd}`);
-
-			var child = exec(cfg.cmd, this._getExecOption(document));
-			child.stdout.on('data', data => this._outputChannel.append(data));
-			child.stderr.on('data', data => this._outputChannel.append(data));
-			child.on('error', (e) => {
-				this.showOutputMessage(e.message);
-			});
-			child.on('exit', (e) => {
-				// if sync
-				if (!cfg.isAsync) {
+				// if async, go ahead and run next command
+				if (cfg.isAsync) {
 					this._runCommands(commands, document);
 				}
-			});
-
-			// if async, go ahead and run next command
-			if (cfg.isAsync) {
-				this._runCommands(commands, document);
 			}
 		}
 		else {
@@ -87,16 +89,14 @@ class RunOnSaveExtension {
 
 	private _getExecOption(
 		document: vscode.TextDocument
-	): { shell: string, cwd: string } {
+	): { shell: string, cwd?: string } {
 		return {
 			shell: this.shell,
 			cwd: this._getWorkspaceFolderPath(document.uri),
 		};
 	}
 
-	private _getWorkspaceFolderPath(
-		uri: vscode.Uri
-	) {
+	private _getWorkspaceFolderPath(uri: vscode.Uri): string | undefined {
 		const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri);
 
 		// NOTE: rootPath seems to be deprecated but seems like the best fallback so that
@@ -157,18 +157,18 @@ class RunOnSaveExtension {
 			return;
 		}
 
-		var match = (pattern: string) => pattern && pattern.length > 0 && new RegExp(pattern).test(document.fileName);
+		const match = (pattern: string): boolean => !!pattern && pattern.length > 0 && new RegExp(pattern).test(document.fileName);
 
-		var commandConfigs = this.commands
+		const commandConfigs = this.commands
 			.filter(cfg => {
-				var matchPattern = cfg.match || '';
-				var negatePattern = cfg.notMatch || '';
+				const matchPattern = cfg.match || '';
+				const negatePattern = cfg.notMatch || '';
 
 				// if no match pattern was provided, or if match pattern succeeds
-				var isMatch = matchPattern.length === 0 || match(matchPattern);
+				const isMatch = matchPattern.length === 0 || match(matchPattern);
 
 				// negation has to be explicitly provided
-				var isNegate = negatePattern.length > 0 && match(negatePattern);
+				const isNegate = negatePattern.length > 0 && match(negatePattern);
 
 				// negation wins over match
 				return !isNegate && isMatch;
@@ -187,28 +187,29 @@ class RunOnSaveExtension {
 
 			const extName = path.extname(document.fileName);
 			const workspaceFolderPath = this._getWorkspaceFolderPath(document.uri);
-			const relativeFile = path.relative(
-				workspaceFolderPath,
-				document.uri.fsPath
-			);
+			if (!workspaceFolderPath) {
+				continue
+			}
+			const relativeFile = path.relative(workspaceFolderPath, document.uri.fsPath);
 
-			cmdStr = cmdStr.replace(/\${file}/g, `${document.fileName}`);
+			cmdStr = cmdStr.replace(/\$\{file\}/g, `${document.fileName}`);
 
 			// DEPRECATED: workspaceFolder is more inline with vscode variables,
 			// but leaving old version in place for any users already using it.
-			cmdStr = cmdStr.replace(/\${workspaceRoot}/g, workspaceFolderPath);
+			cmdStr = cmdStr.replace(/\$\{workspaceRoot\}/g, workspaceFolderPath);
 
-			cmdStr = cmdStr.replace(/\${workspaceFolder}/g, workspaceFolderPath);
-			cmdStr = cmdStr.replace(/\${fileBasename}/g, path.basename(document.fileName));
-			cmdStr = cmdStr.replace(/\${fileDirname}/g, path.dirname(document.fileName));
-			cmdStr = cmdStr.replace(/\${fileExtname}/g, extName);
-			cmdStr = cmdStr.replace(/\${fileBasenameNoExt}/g, path.basename(document.fileName, extName));
-			cmdStr = cmdStr.replace(/\${relativeFile}/g, relativeFile);
-			cmdStr = cmdStr.replace(/\${cwd}/g, process.cwd());
+			cmdStr = cmdStr.replace(/\$\{workspaceFolder\}/g, workspaceFolderPath);
+			cmdStr = cmdStr.replace(/\$\{fileBasename\}/g, path.basename(document.fileName));
+			cmdStr = cmdStr.replace(/\$\{fileDirname\}/g, path.dirname(document.fileName));
+			cmdStr = cmdStr.replace(/\$\{fileExtname\}/g, extName);
+			cmdStr = cmdStr.replace(/\$\{fileBasenameNoExt\}/g, path.basename(document.fileName, extName));
+			cmdStr = cmdStr.replace(/\$\{relativeFile\}/g, relativeFile);
+			cmdStr = cmdStr.replace(/\$\{cwd\}/g, process.cwd());
 
 			// replace environment variables ${env.Name}
-			cmdStr = cmdStr.replace(/\${env\.([^}]+)}/g, (sub: string, envName: string) => {
-				return process.env[envName];
+			cmdStr = cmdStr.replace(/\$\{env\.([^}]+)\}/g, (sub: string, envName: string) => {
+				const a = process.env[envName] as string
+				return a
 			});
 
 			commands.push({

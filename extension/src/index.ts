@@ -2,9 +2,9 @@ import { defineExtension, reactive, useCommands, useFsWatcher } from 'reactive-v
 import { window } from 'vscode'
 import { projectConfigTest } from '@configs'
 
-export = defineExtension(() => { 
+const { activate, deactivate } = defineExtension(() => {
     const globs = projectConfigTest.partten
-    
+
     const watcher = useFsWatcher(globs.value)
     watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
 
@@ -21,3 +21,5 @@ export = defineExtension(() => {
         },
     })
 })
+
+export { activate, deactivate }
