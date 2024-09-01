@@ -15,26 +15,12 @@
           "base": "$tsc",
           "background": {
             "activeOnStart": true,
-            "beginsPattern": "Build start",
-            "endsPattern": "Build success"
+            "beginsPattern": "start",
+            "endsPattern": "success"
           }
         }
       ],
       "group": "build"
-    },
-    {
-      "label": "npm: build",
-      "type": "shell",
-      "command": "npm",
-      "args": [
-        "run",
-        "build"
-      ],
-      "problemMatcher": "$tsc",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
     }
   ]
 }

@@ -1,9 +1,10 @@
-import { defineExtension, reactive, useCommand, useCommands, useFsWatcher } from 'reactive-vscode'
+import { defineExtension, useCommands, useFsWatcher } from 'reactive-vscode'
 import { window } from 'vscode'
 import { projectConfigTest } from '@configs'
 import { commands } from './meta'
 
 const { activate, deactivate } = defineExtension(() => {
+    console.log('activate')
     const globs = projectConfigTest.partten
 
     const watcher = useFsWatcher(globs.value)

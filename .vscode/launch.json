@@ -2,17 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Extension",
       "type": "extensionHost",
-      "request": "launch",
+      "request":"launch",
+      "name": "Launch Extension",
       "runtimeExecutable": "${execPath}",
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}/extension"
       ],
       "outFiles": [
-        "${workspaceFolder}/extension/dist/**/*.js"
+        "${workspaceFolder}/extension/*.js"
       ],
-      "preLaunchTask": "npm: ext:dev"
+      "preLaunchTask": "npm: ext:dev",
     }
   ]
 }

@@ -25,5 +25,10 @@ export default antfu(
     ignores: [
       '**/fixtures', 'src/*.ts', '**/eslint.config.js'
     ],
+  },
+  {
+    "rules": {
+      "no-console": "off"
+    }
   }
 )
