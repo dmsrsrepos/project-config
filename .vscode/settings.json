@@ -70,5 +70,8 @@
   "explorer.excludeGitIgnore": false,
   "extension-test-runner.debugOptions": {},
   "markdown-image.github.branch": "main",
+  "git.defaultBranchName": "",
+  "github.branchProtection": true,
+  "git-graph.repository.showRemoteBranches": false,
 
 }

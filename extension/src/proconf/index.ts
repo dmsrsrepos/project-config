@@ -1,10 +1,13 @@
 import {
-  defineExtension, extensionContext as ctxRef, useCommand, useIsDarkTheme, useVscodeContext,
-  watchEffect, useWindowState
+  extensionContext as ctxRef,
+  defineExtension,
+  useCommand, useIsDarkTheme, useVscodeContext,
+  useWindowState,
+  watchEffect
 } from 'reactive-vscode'
-import { configsObject as config } from '@configs'
-import { fetchAndUpdate } from '@proconf/fetch'
-import { commands } from '@sys/generated/meta'
+import { configsObject as config } from './../configs'
+import { commands } from "./../meta"
+import { fetchAndUpdate } from './fetch'
 
 
 const { activate, deactivate } = defineExtension(() => {
@@ -31,3 +34,4 @@ const { activate, deactivate } = defineExtension(() => {
 })
 
 export { activate, deactivate }
+

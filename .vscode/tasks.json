@@ -15,8 +15,8 @@
           "base": "$tsc",
           "background": {
             "activeOnStart": true,
-            "beginsPattern": "start",
-            "endsPattern": "success"
+            "beginsPattern": "Build start",
+            "endsPattern": "Build success"
           }
         }
       ],

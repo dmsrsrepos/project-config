@@ -1,7 +1,10 @@
 {
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
+  "engines": {
+    "vscode": "^1.67.0"
+  },
   "categories": [
     "Other"
   ],
@@ -16,8 +19,7 @@
         "category": "Project Config Updater",
         "command": "project-config.remove-watch-dir",
         "title": "remove watch dir"
-      }
-      ,
+      },
       {
         "category": "Project Config Updater",
         "command": "project-config.add-watch-dir",
@@ -90,7 +92,7 @@
   "displayName": "Project Config Updater",
   "icon": "res/logo.png",
   "license": "MIT",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "name": "project-config",
   "preview": true,
   "private": true,
@@ -100,5 +102,6 @@
     "type": "git",
     "url": "https://github.com/open-dmsrs/vscode-project-config-updater"
   },
-  "version": "1.1.2"
+  "version": "1.1.2",
+  "type": "module"
 }

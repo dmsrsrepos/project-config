@@ -18,6 +18,7 @@
   "license": "MIT",
   "name": "xxxx-config",
   "private": true,
+  
   "scripts": {
     "ext:build": "cd extension && tsup src/index.ts --external vscode",
     "ext:dev": "nr ext:build --watch src",
