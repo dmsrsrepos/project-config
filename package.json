@@ -11,7 +11,9 @@
     "ofetch": "catalog:",
     "reactive-vscode": "catalog:",
     "tsup": "catalog:",
-    "typescript": "catalog:"
+    "type-fest": "^4.26.0",
+    "typescript": "catalog:",
+    "vscode-ext-gen": "^0.4.3"
   },
   "funding": "https://github.com/sponsors/cnjimbo",
   "license": "MIT",
@@ -29,8 +31,5 @@
   "type": "module",
   "workspaces": [
     "extension"
-  ],
-  "dependencies": {
-    "vscode-ext-gen": "file:C:/AppData/code-vsextension/vscode-ext-gen"
-  }
+  ]
 }

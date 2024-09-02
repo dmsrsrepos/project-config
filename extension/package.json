@@ -26,67 +26,80 @@
         "title": "add watch dir"
       }
     ],
-    "configuration": {
-      "properties": {
-        "project-config.test.annotations": {
-          "default": true,
-          "description": "Enabled project-config inline annotations",
-          "type": "boolean"
-        },
-        "project-config.test.color": {
-          "default": "auto",
-          "description": "Icon color hex for inline displaying",
-          "type": "string"
-        },
-        "project-config.test.partten": {
-          "default": [
-            "src /**/*",
-            "docs /**/*"
-          ],
-          "description": "Icon color hex for inline displaying",
-          "type": "array",
-          "items": {
+    "configuration": [
+      {
+        "properties": {
+          "project-config.test.annotations": {
+            "default": true,
+            "description": "Enabled project-config inline annotations",
+            "type": "boolean"
+          },
+          "project-config.test.color": {
+            "default": "auto",
+            "description": "Icon color hex for inline displaying",
             "type": "string"
+          },
+          "project-config.test.partten": {
+            "default": [
+              "src /**/*",
+              "docs /**/*"
+            ],
+            "description": "Icon color hex for inline displaying",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "project-config.test.position": {
+            "default": "before",
+            "description": "Position the icon before or after the icon name",
+            "enum": [
+              "after",
+              "before"
+            ],
+            "type": "string"
+          },
+          "project-config.fileNestingUpdater.autoUpdate": {
+            "type": "boolean",
+            "description": "Fetch and update the latest config automatically",
+            "default": true
+          },
+          "project-config.fileNestingUpdater.promptOnAutoUpdate": {
+            "type": "boolean",
+            "description": "Should show up the prompt before doing auto update",
+            "default": true
+          },
+          "project-config.fileNestingUpdater.autoUpdateInterval": {
+            "type": "number",
+            "description": "The minimal interval for auto update, in minutes",
+            "default": 4320
+          },
+          "project-config.fileNestingUpdater.upstreamRepo": {
+            "type": "string",
+            "description": "The upstream repo you want to update from",
+            "default": "antfu/vscode-file-nesting-config"
+          },
+          "project-config.fileNestingUpdater.upstreamBranch": {
+            "type": "string",
+            "description": "The branch name of upstream repo",
+            "default": "main"
           }
         },
-        "project-config.test.position": {
-          "default": "before",
-          "description": "Position the icon before or after the icon name",
-          "enum": [
-            "after",
-            "before"
-          ],
-          "type": "string"
-        },
-        "project-config.fileNestingUpdater.autoUpdate": {
-          "type": "boolean",
-          "description": "Fetch and update the latest config automatically",
-          "default": true
-        },
-        "project-config.fileNestingUpdater.promptOnAutoUpdate": {
-          "type": "boolean",
-          "description": "Should show up the prompt before doing auto update",
-          "default": true
-        },
-        "project-config.fileNestingUpdater.autoUpdateInterval": {
-          "type": "number",
-          "description": "The minimal interval for auto update, in minutes",
-          "default": 4320
-        },
-        "project-config.fileNestingUpdater.upstreamRepo": {
-          "type": "string",
-          "description": "The upstream repo you want to update from",
-          "default": "antfu/vscode-file-nesting-config"
-        },
-        "project-config.fileNestingUpdater.upstreamBranch": {
-          "type": "string",
-          "description": "The branch name of upstream repo",
-          "default": "main"
-        }
+        "title": "Config 1",
+        "type": "object"
       },
-      "title": "Project Config Updater",
-      "type": "object"
-    }
+      {
+        "properties": {
+          "project-config.test.annotations": {
+            "default": true,
+            "description": "Enabled project-config inline annotations",
+            "type": "boolean"
+          }
+        },
+        "title": "Config 2",
+        "type": "object"
+      }
+    ]
   },
   "description": "Export current settings to workspace config file ",
   "displayName": "Project Config Updater",

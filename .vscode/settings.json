@@ -73,5 +73,6 @@
   "git.defaultBranchName": "",
   "github.branchProtection": true,
   "git-graph.repository.showRemoteBranches": false,
+  "pnpmCatalogLens.enabled": true,
 
 }

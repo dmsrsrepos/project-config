@@ -40,13 +40,11 @@ catalogs:
       specifier: ^5.5.4
       version: 5.5.4
 
+pnpmfileChecksum: 5zbnkj6garjuqrciwql3lwqmm4
+
 importers:
 
   .:
-    dependencies:
-      vscode-ext-gen:
-        specifier: file:C:/AppData/code-vsextension/vscode-ext-gen
-        version: file:../vscode-ext-gen
     devDependencies:
       '@antfu/eslint-config':
         specifier: 'catalog:'
@@ -78,9 +76,15 @@ importers:
       tsup:
         specifier: 'catalog:'
         version: 8.2.4(postcss@8.4.41)(typescript@5.5.4)(yaml@2.5.0)
+      type-fest:
+        specifier: ^4.26.0
+        version: 4.26.0
       typescript:
         specifier: 'catalog:'
         version: 5.5.4
+      vscode-ext-gen:
+        specifier: file:C:\AppData\code-vsextension\vscode-ext-gen
+        version: file:../vscode-ext-gen
 
   extension: {}
 
