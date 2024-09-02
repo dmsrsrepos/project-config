@@ -206,6 +206,9 @@ export const scopedConfigs = {
 }
 
 
+/**
+ * Types of `project-config` registed by `cnjimbo`
+ */
 export interface ProjectConfigConfigs {
   /**
    * Enabled project-config inline annotations
@@ -272,8 +275,17 @@ export interface ProjectConfigConfigs {
   "fileNestingUpdater.upstreamBranch": string,
 }
 
+/**
+ * defaults/scope of `project-config` registed by `cnjimbo`
+ */
 export const projectConfigConfigs = {
+/**
+ * scope: `project-config`
+ */
   scope: "project-config",
+/**
+ * default values under `project-config`
+ */
   defaults: {
     "test.annotations": true,
     "test.color": "auto",
@@ -288,6 +300,9 @@ export const projectConfigConfigs = {
 }
 
 
+/**
+ * Types of `project-config.test` registed by `cnjimbo`
+ */
 export interface TestConfigs {
   /**
    * Enabled project-config inline annotations
@@ -319,8 +334,17 @@ export interface TestConfigs {
   "position": ("after" | "before"),
 }
 
+/**
+ * defaults/scope of `project-config.test` registed by `cnjimbo`
+ */
 export const testConfigs = {
+/**
+ * scope: `project-config.test`
+ */
   scope: "project-config.test",
+/**
+ * default values under `project-config.test`
+ */
   defaults: {
     "annotations": true,
     "color": "auto",
@@ -330,6 +354,9 @@ export const testConfigs = {
 }
 
 
+/**
+ * Types of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ */
 export interface FileNestingUpdaterConfigs {
   /**
    * Fetch and update the latest config automatically
@@ -368,8 +395,17 @@ export interface FileNestingUpdaterConfigs {
   "upstreamBranch": string,
 }
 
+/**
+ * defaults/scope of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ */
 export const fileNestingUpdaterConfigs = {
+/**
+ * scope: `project-config.fileNestingUpdater`
+ */
   scope: "project-config.fileNestingUpdater",
+/**
+ * default values under `project-config.fileNestingUpdater`
+ */
   defaults: {
     "autoUpdate": true,
     "promptOnAutoUpdate": true,
