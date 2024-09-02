@@ -1,8 +1,8 @@
 import { defineExtension, useCommand, useIsDarkTheme, watchEffect } from 'reactive-vscode'
 import { window } from 'vscode'
-import { logger } from '@/utils'
-import { commands } from '@/meta'
-import { configsObject } from '@/configs'
+import { logger } from '../utils'
+import { commands } from '../meta'
+import { configsObject } from '../configs'
 
 const { activate, deactivate } = defineExtension(() => {
   logger.info('Extension Activated')
