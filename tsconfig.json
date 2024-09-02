@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "esModuleInterop": true,
+        "lib": [
+            "ES2022"
+        ],
+        "module": "Preserve",
+        "moduleResolution": "Bundler",
+        "resolveJsonModule": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "target": "ES2022",
+        "paths": { // 指定模块的路径，和baseUrl有关联，和webpack中resolve.alias配置一样
+            "@/*": [
+                "extension/src/*"
+            ]
+        },
+    },
+    "include": [
+        "**/*.ts"
+    ]
+}

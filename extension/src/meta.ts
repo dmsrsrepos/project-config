@@ -206,19 +206,73 @@ export const scopedConfigs = {
 }
 
 
-export interface ScopedprojectConfigConfigKeyTypeMap {
+export interface ProjectConfigConfigs {
+  /**
+   * Enabled project-config inline annotations
+   * @key `project-config.test.annotations`
+   * @default `true`
+   * @type `boolean`
+   */
   "test.annotations": boolean,
+  /**
+   * Icon color hex for inline displaying
+   * @key `project-config.test.color`
+   * @default `"auto"`
+   * @type `string`
+   */
   "test.color": string,
+  /**
+   * Icon color hex for inline displaying
+   * @key `project-config.test.partten`
+   * @default `["src /**\/*","docs /**\/*"]`
+   * @type `array`
+   */
   "test.partten": string[],
+  /**
+   * Position the icon before or after the icon name
+   * @key `project-config.test.position`
+   * @default `"before"`
+   * @type `string`
+   */
   "test.position": ("after" | "before"),
+  /**
+   * Fetch and update the latest config automatically
+   * @key `project-config.fileNestingUpdater.autoUpdate`
+   * @default `true`
+   * @type `boolean`
+   */
   "fileNestingUpdater.autoUpdate": boolean,
+  /**
+   * Should show up the prompt before doing auto update
+   * @key `project-config.fileNestingUpdater.promptOnAutoUpdate`
+   * @default `true`
+   * @type `boolean`
+   */
   "fileNestingUpdater.promptOnAutoUpdate": boolean,
+  /**
+   * The minimal interval for auto update, in minutes
+   * @key `project-config.fileNestingUpdater.autoUpdateInterval`
+   * @default `4320`
+   * @type `number`
+   */
   "fileNestingUpdater.autoUpdateInterval": number,
+  /**
+   * The upstream repo you want to update from
+   * @key `project-config.fileNestingUpdater.upstreamRepo`
+   * @default `"antfu/vscode-file-nesting-config"`
+   * @type `string`
+   */
   "fileNestingUpdater.upstreamRepo": string,
+  /**
+   * The branch name of upstream repo
+   * @key `project-config.fileNestingUpdater.upstreamBranch`
+   * @default `"main"`
+   * @type `string`
+   */
   "fileNestingUpdater.upstreamBranch": string,
 }
 
-export const scopedprojectConfigConfigs = {
+export const projectConfigConfigs = {
   scope: "project-config",
   defaults: {
     "test.annotations": true,
@@ -230,37 +284,91 @@ export const scopedprojectConfigConfigs = {
     "fileNestingUpdater.autoUpdateInterval": 4320,
     "fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
     "fileNestingUpdater.upstreamBranch": "main",
-  } satisfies ScopedprojectConfigConfigKeyTypeMap,
+  } satisfies ProjectConfigConfigs,
 }
 
 
-export interface ScopedprojectConfigTestConfigKeyTypeMap {
+export interface TestConfigs {
+  /**
+   * Enabled project-config inline annotations
+   * @key `project-config.test.annotations`
+   * @default `true`
+   * @type `boolean`
+   */
   "annotations": boolean,
+  /**
+   * Icon color hex for inline displaying
+   * @key `project-config.test.color`
+   * @default `"auto"`
+   * @type `string`
+   */
   "color": string,
+  /**
+   * Icon color hex for inline displaying
+   * @key `project-config.test.partten`
+   * @default `["src /**\/*","docs /**\/*"]`
+   * @type `array`
+   */
   "partten": string[],
+  /**
+   * Position the icon before or after the icon name
+   * @key `project-config.test.position`
+   * @default `"before"`
+   * @type `string`
+   */
   "position": ("after" | "before"),
 }
 
-export const scopedprojectConfigTestConfigs = {
+export const testConfigs = {
   scope: "project-config.test",
   defaults: {
     "annotations": true,
     "color": "auto",
     "partten": ["src /**/*","docs /**/*"],
     "position": "before",
-  } satisfies ScopedprojectConfigTestConfigKeyTypeMap,
+  } satisfies TestConfigs,
 }
 
 
-export interface ScopedprojectConfigFileNestingUpdaterConfigKeyTypeMap {
+export interface FileNestingUpdaterConfigs {
+  /**
+   * Fetch and update the latest config automatically
+   * @key `project-config.fileNestingUpdater.autoUpdate`
+   * @default `true`
+   * @type `boolean`
+   */
   "autoUpdate": boolean,
+  /**
+   * Should show up the prompt before doing auto update
+   * @key `project-config.fileNestingUpdater.promptOnAutoUpdate`
+   * @default `true`
+   * @type `boolean`
+   */
   "promptOnAutoUpdate": boolean,
+  /**
+   * The minimal interval for auto update, in minutes
+   * @key `project-config.fileNestingUpdater.autoUpdateInterval`
+   * @default `4320`
+   * @type `number`
+   */
   "autoUpdateInterval": number,
+  /**
+   * The upstream repo you want to update from
+   * @key `project-config.fileNestingUpdater.upstreamRepo`
+   * @default `"antfu/vscode-file-nesting-config"`
+   * @type `string`
+   */
   "upstreamRepo": string,
+  /**
+   * The branch name of upstream repo
+   * @key `project-config.fileNestingUpdater.upstreamBranch`
+   * @default `"main"`
+   * @type `string`
+   */
   "upstreamBranch": string,
 }
 
-export const scopedprojectConfigFileNestingUpdaterConfigs = {
+export const fileNestingUpdaterConfigs = {
   scope: "project-config.fileNestingUpdater",
   defaults: {
     "autoUpdate": true,
@@ -268,6 +376,6 @@ export const scopedprojectConfigFileNestingUpdaterConfigs = {
     "autoUpdateInterval": 4320,
     "upstreamRepo": "antfu/vscode-file-nesting-config",
     "upstreamBranch": "main",
-  } satisfies ScopedprojectConfigFileNestingUpdaterConfigKeyTypeMap,
+  } satisfies FileNestingUpdaterConfigs,
 }
 
