@@ -1,7 +1,6 @@
 import { window } from 'vscode'
-import { fileNestingUpdaterConfigs } from "@/configs"
 import { useCommand } from 'reactive-vscode'
-import { commands } from '@/meta'
+import { commands, fileNestingUpdaterConfigObject } from '@/meta'
 export async function activate(): Promise<void> {
 
 
@@ -9,8 +8,8 @@ export async function activate(): Promise<void> {
 
     useCommand(commands.manualUpdate, async () => {
 
-        window.showInformationMessage(`config value: ${fileNestingUpdaterConfigs.autoUpdate}`)
-        fileNestingUpdaterConfigs.$update('autoUpdate', !fileNestingUpdaterConfigs.autoUpdate)
+        window.showInformationMessage(`config value: ${fileNestingUpdaterConfigObject.autoUpdate}`)
+        fileNestingUpdaterConfigObject.$update('autoUpdate', !fileNestingUpdaterConfigObject.autoUpdate)
     })
     // const value = await window.showInputBox({ prompt: 'Enter a glob' })
 

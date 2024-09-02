@@ -2,16 +2,15 @@ import type { FetchResponse } from 'ofetch'
 import { fetch } from 'ofetch'
 import type { ExtensionContext } from 'vscode'
 import { ConfigurationTarget, window, workspace } from 'vscode'
-import { FILE, MSG_PREFIX, URL_PREFIX } from '../constants'
-import { configs, configsObject as config } from '../configs'
-import { logger } from '../utils'
-
-import { defineConfigs, defineConfigObject } from 'reactive-vscode'
+import { FILE, MSG_PREFIX, URL_PREFIX } from '@/constants'
+import { fileNestingUpdaterConfigObject as config } from '@/meta'
+import { logger } from '@/utils'
+import { defineConfigs } from 'reactive-vscode'
 
 export async function fetchLatest(): Promise<Record<string, string>> {
 
-  const repo = config['fileNestingUpdater.upstreamRepo']
-  const branch = config['fileNestingUpdater.upstreamBranch']
+  const repo = config.upstreamRepo
+  const branch = config.upstreamBranch
 
   const url = `${URL_PREFIX}/${repo}@${branch}/${FILE}`
   logger.info('remote url:', url)
@@ -45,7 +44,7 @@ export async function fetchAndUpdate(ctx: ExtensionContext, prompt = true): Prom
 
   const oringalPatterns = mdPatterns
   if (oringalPatterns)
-    delete oringalPatterns['//'] 
+    delete oringalPatterns['//']
   // no change
   if (Object.keys(oringalPatterns).length > 0 && JSON.stringify(patterns.value) === JSON.stringify(oringalPatterns))
     return
@@ -65,7 +64,7 @@ export async function fetchAndUpdate(ctx: ExtensionContext, prompt = true): Prom
 
 
   if (shouldUpdate) {
-  
+
 
     enabled.update(true, ConfigurationTarget.Global)
     expand.update(false, ConfigurationTarget.Global)

@@ -5,13 +5,12 @@ import {
   useWindowState,
   watchEffect
 } from 'reactive-vscode'
-import { configsObject as config } from './../configs'
-import { commands } from "./../meta"
+import { commands, projectConfigConfigObject as config } from "@/meta"
 import { fetchAndUpdate } from './fetch'
 
 
 const { activate, deactivate } = defineExtension(() => {
- 
+
   const ctx = ctxRef.value
   if (ctx) {
     useCommand(commands.manualUpdate, (..._args) => {

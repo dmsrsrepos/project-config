@@ -29,6 +29,12 @@
     "configuration": [
       {
         "properties": {
+      
+          "xxx": {
+            "default": true,
+            "description": "Enabled project-config inline annotations",
+            "type": "boolean"
+          },
           "project-config.test.annotations": {
             "default": true,
             "description": "Enabled project-config inline annotations",
@@ -90,7 +96,7 @@
       },
       {
         "properties": {
-          "project-config.test.annotations": {
+          "project-config2.test.annotations": {
             "default": true,
             "description": "Enabled project-config inline annotations",
             "type": "boolean"

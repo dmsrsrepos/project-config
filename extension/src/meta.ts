@@ -2,6 +2,9 @@
 // @see https://github.com/antfu/vscode-ext-gen
 
 // Meta info
+
+import { defineConfigObject, defineConfigs } from 'reactive-vscode'
+
 export const publisher = "cnjimbo"
 export const name = "project-config"
 export const version = "1.1.2"
@@ -42,6 +45,7 @@ export const commands = {
  * Type union of all configs
  */
 export type ConfigKey = 
+  | "xxx"
   | "project-config.test.annotations"
   | "project-config.test.color"
   | "project-config.test.partten"
@@ -51,165 +55,59 @@ export type ConfigKey =
   | "project-config.fileNestingUpdater.autoUpdateInterval"
   | "project-config.fileNestingUpdater.upstreamRepo"
   | "project-config.fileNestingUpdater.upstreamBranch"
+  | "project-config2.test.annotations"
 
-export interface ConfigKeyTypeMap {
-  "project-config.test.annotations": boolean,
-  "project-config.test.color": string,
-  "project-config.test.partten": string[],
-  "project-config.test.position": ("after" | "before"),
-  "project-config.fileNestingUpdater.autoUpdate": boolean,
-  "project-config.fileNestingUpdater.promptOnAutoUpdate": boolean,
-  "project-config.fileNestingUpdater.autoUpdateInterval": number,
-  "project-config.fileNestingUpdater.upstreamRepo": string,
-  "project-config.fileNestingUpdater.upstreamBranch": string,
+/**
+ * Types of `root of configuration` registed by `cnjimbo`
+ */
+export interface Root {
+  /**
+   * Enabled project-config inline annotations
+   * @key `xxx`
+   * @default `true`
+   * @type `boolean`
+   */
+  "xxx": boolean,
 }
 
-export interface ConfigShorthandMap {
-  testAnnotations: "project-config.test.annotations",
-  testColor: "project-config.test.color",
-  testPartten: "project-config.test.partten",
-  testPosition: "project-config.test.position",
-  fileNestingUpdaterAutoUpdate: "project-config.fileNestingUpdater.autoUpdate",
-  fileNestingUpdaterPromptOnAutoUpdate: "project-config.fileNestingUpdater.promptOnAutoUpdate",
-  fileNestingUpdaterAutoUpdateInterval: "project-config.fileNestingUpdater.autoUpdateInterval",
-  fileNestingUpdaterUpstreamRepo: "project-config.fileNestingUpdater.upstreamRepo",
-  fileNestingUpdaterUpstreamBranch: "project-config.fileNestingUpdater.upstreamBranch",
+/**
+ * defaults/scope of `root of configuration` registed by `cnjimbo`
+ */
+const _root = {
+/**
+ * scope: `root of configuration`
+ */
+  scope: "",
+/**
+ * default values under `root of configuration`
+ */
+  defaults: {
+    "xxx": true,
+  } satisfies Root,
 }
 
-export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
-  key: T,
-  default: ConfigKeyTypeMap[T],
-}
+/**
+ * config objects of `root of configuration` registed by `cnjimbo`
+ */
+export const rootConfigObject = defineConfigObject<Root>(
+  _root.scope,
+  _root.defaults
+)
 
 
 /**
- * Configs map registed by `cnjimbo.project-config`
+ * configs of `root of configuration` registed by `cnjimbo`
  */
-export const configs = {
-  /**
-   * Enabled project-config inline annotations
-   * @key `project-config.test.annotations`
-   * @default `true`
-   * @type `boolean`
-   */
-  testAnnotations: {
-    key: "project-config.test.annotations",
-    default: true,
-  } as ConfigItem<"project-config.test.annotations">,
-  /**
-   * Icon color hex for inline displaying
-   * @key `project-config.test.color`
-   * @default `"auto"`
-   * @type `string`
-   */
-  testColor: {
-    key: "project-config.test.color",
-    default: "auto",
-  } as ConfigItem<"project-config.test.color">,
-  /**
-   * Icon color hex for inline displaying
-   * @key `project-config.test.partten`
-   * @default `["src /**\/*","docs /**\/*"]`
-   * @type `array`
-   */
-  testPartten: {
-    key: "project-config.test.partten",
-    default: ["src /**/*","docs /**/*"],
-  } as ConfigItem<"project-config.test.partten">,
-  /**
-   * Position the icon before or after the icon name
-   * @key `project-config.test.position`
-   * @default `"before"`
-   * @type `string`
-   */
-  testPosition: {
-    key: "project-config.test.position",
-    default: "before",
-  } as ConfigItem<"project-config.test.position">,
-  /**
-   * Fetch and update the latest config automatically
-   * @key `project-config.fileNestingUpdater.autoUpdate`
-   * @default `true`
-   * @type `boolean`
-   */
-  fileNestingUpdaterAutoUpdate: {
-    key: "project-config.fileNestingUpdater.autoUpdate",
-    default: true,
-  } as ConfigItem<"project-config.fileNestingUpdater.autoUpdate">,
-  /**
-   * Should show up the prompt before doing auto update
-   * @key `project-config.fileNestingUpdater.promptOnAutoUpdate`
-   * @default `true`
-   * @type `boolean`
-   */
-  fileNestingUpdaterPromptOnAutoUpdate: {
-    key: "project-config.fileNestingUpdater.promptOnAutoUpdate",
-    default: true,
-  } as ConfigItem<"project-config.fileNestingUpdater.promptOnAutoUpdate">,
-  /**
-   * The minimal interval for auto update, in minutes
-   * @key `project-config.fileNestingUpdater.autoUpdateInterval`
-   * @default `4320`
-   * @type `number`
-   */
-  fileNestingUpdaterAutoUpdateInterval: {
-    key: "project-config.fileNestingUpdater.autoUpdateInterval",
-    default: 4320,
-  } as ConfigItem<"project-config.fileNestingUpdater.autoUpdateInterval">,
-  /**
-   * The upstream repo you want to update from
-   * @key `project-config.fileNestingUpdater.upstreamRepo`
-   * @default `"antfu/vscode-file-nesting-config"`
-   * @type `string`
-   */
-  fileNestingUpdaterUpstreamRepo: {
-    key: "project-config.fileNestingUpdater.upstreamRepo",
-    default: "antfu/vscode-file-nesting-config",
-  } as ConfigItem<"project-config.fileNestingUpdater.upstreamRepo">,
-  /**
-   * The branch name of upstream repo
-   * @key `project-config.fileNestingUpdater.upstreamBranch`
-   * @default `"main"`
-   * @type `string`
-   */
-  fileNestingUpdaterUpstreamBranch: {
-    key: "project-config.fileNestingUpdater.upstreamBranch",
-    default: "main",
-  } as ConfigItem<"project-config.fileNestingUpdater.upstreamBranch">,
-}
-
-export interface ScopedConfigKeyTypeMap {
-  "test.annotations": boolean,
-  "test.color": string,
-  "test.partten": string[],
-  "test.position": ("after" | "before"),
-  "fileNestingUpdater.autoUpdate": boolean,
-  "fileNestingUpdater.promptOnAutoUpdate": boolean,
-  "fileNestingUpdater.autoUpdateInterval": number,
-  "fileNestingUpdater.upstreamRepo": string,
-  "fileNestingUpdater.upstreamBranch": string,
-}
-
-export const scopedConfigs = {
-  scope: "project-config",
-  defaults: {
-    "test.annotations": true,
-    "test.color": "auto",
-    "test.partten": ["src /**/*","docs /**/*"],
-    "test.position": "before",
-    "fileNestingUpdater.autoUpdate": true,
-    "fileNestingUpdater.promptOnAutoUpdate": true,
-    "fileNestingUpdater.autoUpdateInterval": 4320,
-    "fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
-    "fileNestingUpdater.upstreamBranch": "main",
-  } satisfies ScopedConfigKeyTypeMap,
-}
+export const rootConfigs = defineConfigs<Root>(
+  _root.scope,
+  _root.defaults
+)
 
 
 /**
  * Types of `project-config` registed by `cnjimbo`
  */
-export interface ProjectConfigConfigs {
+export interface ProjectConfig {
   /**
    * Enabled project-config inline annotations
    * @key `project-config.test.annotations`
@@ -278,7 +176,7 @@ export interface ProjectConfigConfigs {
 /**
  * defaults/scope of `project-config` registed by `cnjimbo`
  */
-export const projectConfigConfigs = {
+const _projectConfig = {
 /**
  * scope: `project-config`
  */
@@ -296,14 +194,31 @@ export const projectConfigConfigs = {
     "fileNestingUpdater.autoUpdateInterval": 4320,
     "fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
     "fileNestingUpdater.upstreamBranch": "main",
-  } satisfies ProjectConfigConfigs,
+  } satisfies ProjectConfig,
 }
+
+/**
+ * config objects of `project-config` registed by `cnjimbo`
+ */
+export const projectConfigConfigObject = defineConfigObject<ProjectConfig>(
+  _projectConfig.scope,
+  _projectConfig.defaults
+)
+
+
+/**
+ * configs of `project-config` registed by `cnjimbo`
+ */
+export const projectConfigConfigs = defineConfigs<ProjectConfig>(
+  _projectConfig.scope,
+  _projectConfig.defaults
+)
 
 
 /**
  * Types of `project-config.test` registed by `cnjimbo`
  */
-export interface TestConfigs {
+export interface Test {
   /**
    * Enabled project-config inline annotations
    * @key `project-config.test.annotations`
@@ -337,7 +252,7 @@ export interface TestConfigs {
 /**
  * defaults/scope of `project-config.test` registed by `cnjimbo`
  */
-export const testConfigs = {
+const _test = {
 /**
  * scope: `project-config.test`
  */
@@ -350,14 +265,31 @@ export const testConfigs = {
     "color": "auto",
     "partten": ["src /**/*","docs /**/*"],
     "position": "before",
-  } satisfies TestConfigs,
+  } satisfies Test,
 }
+
+/**
+ * config objects of `project-config.test` registed by `cnjimbo`
+ */
+export const testConfigObject = defineConfigObject<Test>(
+  _test.scope,
+  _test.defaults
+)
+
+
+/**
+ * configs of `project-config.test` registed by `cnjimbo`
+ */
+export const testConfigs = defineConfigs<Test>(
+  _test.scope,
+  _test.defaults
+)
 
 
 /**
  * Types of `project-config.fileNestingUpdater` registed by `cnjimbo`
  */
-export interface FileNestingUpdaterConfigs {
+export interface FileNestingUpdater {
   /**
    * Fetch and update the latest config automatically
    * @key `project-config.fileNestingUpdater.autoUpdate`
@@ -398,7 +330,7 @@ export interface FileNestingUpdaterConfigs {
 /**
  * defaults/scope of `project-config.fileNestingUpdater` registed by `cnjimbo`
  */
-export const fileNestingUpdaterConfigs = {
+const _fileNestingUpdater = {
 /**
  * scope: `project-config.fileNestingUpdater`
  */
@@ -412,6 +344,117 @@ export const fileNestingUpdaterConfigs = {
     "autoUpdateInterval": 4320,
     "upstreamRepo": "antfu/vscode-file-nesting-config",
     "upstreamBranch": "main",
-  } satisfies FileNestingUpdaterConfigs,
+  } satisfies FileNestingUpdater,
 }
+
+/**
+ * config objects of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ */
+export const fileNestingUpdaterConfigObject = defineConfigObject<FileNestingUpdater>(
+  _fileNestingUpdater.scope,
+  _fileNestingUpdater.defaults
+)
+
+
+/**
+ * configs of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ */
+export const fileNestingUpdaterConfigs = defineConfigs<FileNestingUpdater>(
+  _fileNestingUpdater.scope,
+  _fileNestingUpdater.defaults
+)
+
+
+/**
+ * Types of `project-config2` registed by `cnjimbo`
+ */
+export interface ProjectConfig2 {
+  /**
+   * Enabled project-config inline annotations
+   * @key `project-config2.test.annotations`
+   * @default `true`
+   * @type `boolean`
+   */
+  "test.annotations": boolean,
+}
+
+/**
+ * defaults/scope of `project-config2` registed by `cnjimbo`
+ */
+const _projectConfig2 = {
+/**
+ * scope: `project-config2`
+ */
+  scope: "project-config2",
+/**
+ * default values under `project-config2`
+ */
+  defaults: {
+    "test.annotations": true,
+  } satisfies ProjectConfig2,
+}
+
+/**
+ * config objects of `project-config2` registed by `cnjimbo`
+ */
+export const projectConfig2ConfigObject = defineConfigObject<ProjectConfig2>(
+  _projectConfig2.scope,
+  _projectConfig2.defaults
+)
+
+
+/**
+ * configs of `project-config2` registed by `cnjimbo`
+ */
+export const projectConfig2Configs = defineConfigs<ProjectConfig2>(
+  _projectConfig2.scope,
+  _projectConfig2.defaults
+)
+
+
+/**
+ * Types of `project-config2.test` registed by `cnjimbo`
+ */
+export interface ProjectConfig2Test {
+  /**
+   * Enabled project-config inline annotations
+   * @key `project-config2.test.annotations`
+   * @default `true`
+   * @type `boolean`
+   */
+  "annotations": boolean,
+}
+
+/**
+ * defaults/scope of `project-config2.test` registed by `cnjimbo`
+ */
+const _projectConfig2Test = {
+/**
+ * scope: `project-config2.test`
+ */
+  scope: "project-config2.test",
+/**
+ * default values under `project-config2.test`
+ */
+  defaults: {
+    "annotations": true,
+  } satisfies ProjectConfig2Test,
+}
+
+/**
+ * config objects of `project-config2.test` registed by `cnjimbo`
+ */
+export const projectConfig2TestConfigObject = defineConfigObject<ProjectConfig2Test>(
+  _projectConfig2Test.scope,
+  _projectConfig2Test.defaults
+)
+
+
+/**
+ * configs of `project-config2.test` registed by `cnjimbo`
+ */
+export const projectConfig2TestConfigs = defineConfigs<ProjectConfig2Test>(
+  _projectConfig2Test.scope,
+  _projectConfig2Test.defaults
+)
 

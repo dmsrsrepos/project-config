@@ -43,6 +43,7 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 
 | Key                                                    | Description                                        | Type      | Default                              |
 | ------------------------------------------------------ | -------------------------------------------------- | --------- | ------------------------------------ |
+| `xxx`                                                  | Enabled project-config inline annotations          | `boolean` | `true`                               |
 | `project-config.test.annotations`                      | Enabled project-config inline annotations          | `boolean` | `true`                               |
 | `project-config.test.color`                            | Icon color hex for inline displaying               | `string`  | `"auto"`                             |
 | `project-config.test.partten`                          | Icon color hex for inline displaying               | `array`   | `["src /**/*","docs /**/*"]`         |
@@ -52,6 +53,7 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 | `project-config.fileNestingUpdater.autoUpdateInterval` | The minimal interval for auto update, in minutes   | `number`  | `4320`                               |
 | `project-config.fileNestingUpdater.upstreamRepo`       | The upstream repo you want to update from          | `string`  | `"antfu/vscode-file-nesting-config"` |
 | `project-config.fileNestingUpdater.upstreamBranch`     | The branch name of upstream repo                   | `string`  | `"main"`                             |
+| `project-config2.test.annotations`                     | Enabled project-config inline annotations          | `boolean` | `true`                               |
 
 <!-- configs -->
 

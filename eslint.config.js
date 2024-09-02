@@ -28,7 +28,9 @@ export default antfu(
   },
   {
     "rules": {
-      "no-console": "off"
+      "no-console": "off",
+      "import/order": "off",
+      "import/newline-after-import":"off"
     }
   }
 )
