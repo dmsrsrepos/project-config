@@ -1,7 +1,9 @@
 const fs = require('node:fs')
+
 const devPackagePaths = {
     "vscode-ext-gen": [
-        `C:\\AppData\\code-vsextension\\vscode-ext-gen`
+        `C:\\AppData\\code-vsextension\\vscode-ext-gen`,
+        `G:\\code-vsextension\\vscode-ext-gen`
     ]
 }
 module.exports = {
