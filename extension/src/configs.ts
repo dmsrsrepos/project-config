@@ -12,5 +12,8 @@ export const configs = defineConfigs<meta.ScopedConfigKeyTypeMap>(
   meta.scopedConfigs.defaults,
 )
 
-export const projectConfigTest = defineConfigs<meta.ScopedprojectConfigTestConfigKeyTypeMap>(meta.scopedprojectConfigTestConfigs.scope, meta.scopedprojectConfigTestConfigs.defaults)
+export const projectConfigTest = defineConfigs<meta.ScopedprojectConfigTestConfigKeyTypeMap>(
+  meta.scopedprojectConfigTestConfigs.scope,
+  meta.scopedprojectConfigTestConfigs.defaults
+)
 
