@@ -67,7 +67,7 @@
   ],
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
-  "explorer.excludeGitIgnore": false,
+  "explorer.excludeGitIgnore": true,
   "extension-test-runner.debugOptions": {},
   "markdown-image.github.branch": "main",
   "git.defaultBranchName": "",
