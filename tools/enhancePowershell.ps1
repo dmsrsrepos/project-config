@@ -1,38 +1,26 @@
 
 # 定义要添加到配置文件中的函数
 $functionCode = @'
-function Update-Title {
+Function global:Prompt {
     $currentPath = Get-Location
-    $title = Split-Path $currentPath -Leaf
-    $host.UI.RawUI.WindowTitle = $title
+    $folderName = Split-Path $currentPath -Leaf
+    $host.UI.RawUI.WindowTitle = $folderName
+    "PS $currentPath> "
 }
-
-function global:prompt {
-    Update-Title
-    "PS " + $(Get-Location) + "> "
-}
-
-Update-Title
 '@
-
-# 获取当前用户的 PowerShell 配置文件路径
+ 
 $profilePath = $PROFILE
-
-# 检查配置文件是否存在
-if (-not (Test-Path -Path $profilePath)) {
-    # 如果文件不存在，则创建之
+ 
+if (-not (Test-Path -Path $profilePath)) { 
     New-Item -ItemType File -Path $profilePath -Force
 }
 
-# 从配置文件中读取现有内容
-$existingContent = Get-Content $profilePath -Encoding UTF8
-
-# 检查函数是否已存在于配置文件中
-if ($existingContent -notcontains 'function MyFunction') {
-    # 如果函数尚未定义，则追加函数代码
-    Add-Content -Path $profilePath -Value $functionCode -Encoding UTF8
-    Write-Host "Function has been added to the profile: $profilePath"
+$functionName = "global:Prompt"
+ 
+if ((Get-Content $profilePath -ErrorAction SilentlyContinue) -join "`n" -match "^*function $functionName") {
+    Write-Host "Function already exists in the profile."
 }
 else {
-    Write-Host "Function already exists in the profile."
+    Add-Content -Path $profilePath -Value $functionCode -Encoding UTF8
+    Write-Host "Function has been added to the profile: $profilePath"
 }
