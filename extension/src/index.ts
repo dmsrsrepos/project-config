@@ -1,7 +1,7 @@
-import { defineExtension, useCommands, useFsWatcher } from 'reactive-vscode'
+import { defineExtension, useCommands, useFsWatcher, watchEffect, WatchEffect } from 'reactive-vscode'
 import { ConfigurationTarget, window } from 'vscode'
 import { commands } from './meta'
-import { testConfigObject, testConfigs } from '@/meta'
+import { testConfigs } from '@/meta'
 
 const { activate, deactivate } = defineExtension(() => {
 
@@ -11,10 +11,9 @@ const { activate, deactivate } = defineExtension(() => {
     testConfigs.annotations.update(!configValue, ConfigurationTarget.WorkspaceFolder, true)
 
 
-    const configValue1 = testConfigObject.annotations //get value 
-    testConfigObject.annotations = true // set value
-    //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
-    testConfigObject.$update("annotations", !configValue1, ConfigurationTarget.Workspace, true)
+    const stop = watchEffect(() => {
+        window.showInformationMessage(`testConfigs.annotations: ${testConfigs.annotations.value}`)
+    })
 
     console.log('activate')
     const globs = testConfigs.partten
@@ -24,9 +23,9 @@ const { activate, deactivate } = defineExtension(() => {
 
     useCommands({
         [commands.addWatchDir]: async () => {
-            const value = await window.showInputBox({ prompt: 'Enter a glob' })
-            if (value)
-                globs.value.push(value)
+            window.showInformationMessage(`handl name:${stop.toString()}`)
+            stop()
+            
         },
         [commands.removeWatchDir]: async () => {
             const value = await window.showInputBox({ prompt: 'Enter a glob' })

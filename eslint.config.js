@@ -30,7 +30,8 @@ export default antfu(
     "rules": {
       "no-console": "off",
       "import/order": "off",
-      "import/newline-after-import":"off"
+      "import/newline-after-import": "off",
+      "sort-imports": "off"
     }
   }
 )
