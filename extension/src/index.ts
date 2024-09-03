@@ -5,15 +5,11 @@ import { testConfigs } from '@/meta'
 
 const { activate, deactivate } = defineExtension(() => {
 
-    const configValue = testConfigs.annotations.value //get value 
-    testConfigs.annotations.value = true // set value
-    //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
-    testConfigs.annotations.update(!configValue, ConfigurationTarget.WorkspaceFolder, true)
-
-
+ 
     const stop = watchEffect(() => {
         window.showInformationMessage(`testConfigs.annotations: ${testConfigs.annotations.value}`)
     })
+    //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
 
     console.log('activate')
     const globs = testConfigs.partten
@@ -22,15 +18,13 @@ const { activate, deactivate } = defineExtension(() => {
     watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
 
     useCommands({
-        [commands.addWatchDir]: async () => {
+        [commands.stopWatch]: async () => {
             window.showInformationMessage(`handl name:${stop.toString()}`)
             stop()
             
         },
-        [commands.removeWatchDir]: async () => {
-            const value = await window.showInputBox({ prompt: 'Enter a glob' })
-            if (value)
-                globs.value = globs.value.filter(v => v !== value)
+        [commands.changeAnnnotations]: async () => {
+            testConfigs.annotations.update(!testConfigs.annotations.value, ConfigurationTarget.Workspace, true)
         },
     })
 })
