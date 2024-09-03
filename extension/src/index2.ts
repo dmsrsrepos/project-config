@@ -1,8 +1,21 @@
 import { defineExtension, useCommands, useFsWatcher } from 'reactive-vscode'
-import { window } from 'vscode' 
-import { commands, testConfigs  } from './meta'
+import { ConfigurationTarget, window } from 'vscode'
+import { commands } from './meta'
+import { testConfigs, testConfigObject } from '@/meta'
 
 const { activate, deactivate } = defineExtension(() => {
+
+    let configValue = testConfigs.annotations.value //get value 
+    testConfigs.annotations.value = true // set value
+    //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+    testConfigs.annotations.update(!configValue, ConfigurationTarget.WorkspaceFolder, true)
+
+
+    let configValue1 = testConfigObject.annotations //get value 
+    testConfigObject.annotations = true // set value
+    //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+    testConfigObject.$update("annotations", !configValue1, ConfigurationTarget.Workspace, true)
+
     console.log('activate')
     const globs = testConfigs.partten
 

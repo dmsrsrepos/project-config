@@ -20,7 +20,12 @@
           }
         }
       ],
-      "group": "build"
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "label": "npm: ext:dev",
+      "detail": "nr ext:build --watch src"
     }
   ]
 }

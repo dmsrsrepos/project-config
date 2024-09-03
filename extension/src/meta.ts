@@ -27,16 +27,28 @@ export const commands = {
   /**
    * Update config now
    * @value `project-config.manualUpdate`
+   * @example
+   * useCommand(commands.manualUpdate, async () => {
+   *   //do actions or update config 
+   * })
    */
   manualUpdate: "project-config.manualUpdate",
   /**
    * remove watch dir
    * @value `project-config.remove-watch-dir`
+   * @example
+   * useCommand(commands.removeWatchDir, async () => {
+   *   //do actions or update config 
+   * })
    */
   removeWatchDir: "project-config.remove-watch-dir",
   /**
    * add watch dir
    * @value `project-config.add-watch-dir`
+   * @example
+   * useCommand(commands.addWatchDir, async () => {
+   *   //do actions or update config 
+   * })
    */
   addWatchDir: "project-config.add-watch-dir",
 } satisfies Record<string, CommandKey>
@@ -44,21 +56,9 @@ export const commands = {
 /**
  * Type union of all configs
  */
-export type ConfigKey = 
-  | "xxx"
-  | "project-config.test.annotations"
-  | "project-config.test.color"
-  | "project-config.test.partten"
-  | "project-config.test.position"
-  | "project-config.fileNestingUpdater.autoUpdate"
-  | "project-config.fileNestingUpdater.promptOnAutoUpdate"
-  | "project-config.fileNestingUpdater.autoUpdateInterval"
-  | "project-config.fileNestingUpdater.upstreamRepo"
-  | "project-config.fileNestingUpdater.upstreamBranch"
-  | "project-config2.test.annotations"
 
 /**
- * Types of `root of configuration` registed by `cnjimbo`
+ * Config keys of `root of configuration`
  */
 export interface Root {
   /**
@@ -71,7 +71,7 @@ export interface Root {
 }
 
 /**
- * defaults/scope of `root of configuration` registed by `cnjimbo`
+ * Scoped defaults of `root of configuration`
  */
 const _root = {
 /**
@@ -79,7 +79,7 @@ const _root = {
  */
   scope: "",
 /**
- * default values under `root of configuration`
+ * Keys' defaults of `root of configuration`
  */
   defaults: {
     "xxx": true,
@@ -87,25 +87,31 @@ const _root = {
 }
 
 /**
- * config objects of `root of configuration` registed by `cnjimbo`
+ * Reactive ConfigObject of `root of configuration`
+ * @example
+ * let configValue = rootConfigObject.xxx //get value 
+ * rootConfigObject.xxx = true // set value
+ * rootConfigObject.$update("xxx", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const rootConfigObject = defineConfigObject<Root>(
   _root.scope,
   _root.defaults
 )
-
-
 /**
- * configs of `root of configuration` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `root of configuration`
+ * @example
+ * let configValue:boolean =rootConfigs.xxx.value //get value 
+ * rootConfigs.xxx.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * rootConfigs.xxx.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const rootConfigs = defineConfigs<Root>(
   _root.scope,
   _root.defaults
 )
 
-
 /**
- * Types of `project-config` registed by `cnjimbo`
+ * Config keys of `project-config`
  */
 export interface ProjectConfig {
   /**
@@ -174,7 +180,7 @@ export interface ProjectConfig {
 }
 
 /**
- * defaults/scope of `project-config` registed by `cnjimbo`
+ * Scoped defaults of `project-config`
  */
 const _projectConfig = {
 /**
@@ -182,7 +188,7 @@ const _projectConfig = {
  */
   scope: "project-config",
 /**
- * default values under `project-config`
+ * Keys' defaults of `project-config`
  */
   defaults: {
     "test.annotations": true,
@@ -198,25 +204,31 @@ const _projectConfig = {
 }
 
 /**
- * config objects of `project-config` registed by `cnjimbo`
+ * Reactive ConfigObject of `project-config`
+ * @example
+ * let configValue = projectConfigConfigObject.test.annotations //get value 
+ * projectConfigConfigObject.test.annotations = true // set value
+ * projectConfigConfigObject.$update("test.annotations", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const projectConfigConfigObject = defineConfigObject<ProjectConfig>(
   _projectConfig.scope,
   _projectConfig.defaults
 )
-
-
 /**
- * configs of `project-config` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `project-config`
+ * @example
+ * let configValue:boolean =projectConfigConfigs.test.annotations.value //get value 
+ * projectConfigConfigs.test.annotations.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * projectConfigConfigs.test.annotations.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const projectConfigConfigs = defineConfigs<ProjectConfig>(
   _projectConfig.scope,
   _projectConfig.defaults
 )
 
-
 /**
- * Types of `project-config.test` registed by `cnjimbo`
+ * Config keys of `project-config.test`
  */
 export interface Test {
   /**
@@ -250,7 +262,7 @@ export interface Test {
 }
 
 /**
- * defaults/scope of `project-config.test` registed by `cnjimbo`
+ * Scoped defaults of `project-config.test`
  */
 const _test = {
 /**
@@ -258,7 +270,7 @@ const _test = {
  */
   scope: "project-config.test",
 /**
- * default values under `project-config.test`
+ * Keys' defaults of `project-config.test`
  */
   defaults: {
     "annotations": true,
@@ -269,25 +281,31 @@ const _test = {
 }
 
 /**
- * config objects of `project-config.test` registed by `cnjimbo`
+ * Reactive ConfigObject of `project-config.test`
+ * @example
+ * let configValue = testConfigObject.annotations //get value 
+ * testConfigObject.annotations = true // set value
+ * testConfigObject.$update("annotations", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const testConfigObject = defineConfigObject<Test>(
   _test.scope,
   _test.defaults
 )
-
-
 /**
- * configs of `project-config.test` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `project-config.test`
+ * @example
+ * let configValue:boolean =testConfigs.annotations.value //get value 
+ * testConfigs.annotations.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * testConfigs.annotations.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const testConfigs = defineConfigs<Test>(
   _test.scope,
   _test.defaults
 )
 
-
 /**
- * Types of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ * Config keys of `project-config.fileNestingUpdater`
  */
 export interface FileNestingUpdater {
   /**
@@ -328,7 +346,7 @@ export interface FileNestingUpdater {
 }
 
 /**
- * defaults/scope of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ * Scoped defaults of `project-config.fileNestingUpdater`
  */
 const _fileNestingUpdater = {
 /**
@@ -336,7 +354,7 @@ const _fileNestingUpdater = {
  */
   scope: "project-config.fileNestingUpdater",
 /**
- * default values under `project-config.fileNestingUpdater`
+ * Keys' defaults of `project-config.fileNestingUpdater`
  */
   defaults: {
     "autoUpdate": true,
@@ -348,25 +366,31 @@ const _fileNestingUpdater = {
 }
 
 /**
- * config objects of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ * Reactive ConfigObject of `project-config.fileNestingUpdater`
+ * @example
+ * let configValue = fileNestingUpdaterConfigObject.autoUpdate //get value 
+ * fileNestingUpdaterConfigObject.autoUpdate = true // set value
+ * fileNestingUpdaterConfigObject.$update("autoUpdate", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const fileNestingUpdaterConfigObject = defineConfigObject<FileNestingUpdater>(
   _fileNestingUpdater.scope,
   _fileNestingUpdater.defaults
 )
-
-
 /**
- * configs of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `project-config.fileNestingUpdater`
+ * @example
+ * let configValue:boolean =fileNestingUpdaterConfigs.autoUpdate.value //get value 
+ * fileNestingUpdaterConfigs.autoUpdate.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * fileNestingUpdaterConfigs.autoUpdate.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const fileNestingUpdaterConfigs = defineConfigs<FileNestingUpdater>(
   _fileNestingUpdater.scope,
   _fileNestingUpdater.defaults
 )
 
-
 /**
- * Types of `project-config2` registed by `cnjimbo`
+ * Config keys of `project-config2`
  */
 export interface ProjectConfig2 {
   /**
@@ -379,7 +403,7 @@ export interface ProjectConfig2 {
 }
 
 /**
- * defaults/scope of `project-config2` registed by `cnjimbo`
+ * Scoped defaults of `project-config2`
  */
 const _projectConfig2 = {
 /**
@@ -387,7 +411,7 @@ const _projectConfig2 = {
  */
   scope: "project-config2",
 /**
- * default values under `project-config2`
+ * Keys' defaults of `project-config2`
  */
   defaults: {
     "test.annotations": true,
@@ -395,25 +419,31 @@ const _projectConfig2 = {
 }
 
 /**
- * config objects of `project-config2` registed by `cnjimbo`
+ * Reactive ConfigObject of `project-config2`
+ * @example
+ * let configValue = projectConfig2ConfigObject.test.annotations //get value 
+ * projectConfig2ConfigObject.test.annotations = true // set value
+ * projectConfig2ConfigObject.$update("test.annotations", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const projectConfig2ConfigObject = defineConfigObject<ProjectConfig2>(
   _projectConfig2.scope,
   _projectConfig2.defaults
 )
-
-
 /**
- * configs of `project-config2` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `project-config2`
+ * @example
+ * let configValue:boolean =projectConfig2Configs.test.annotations.value //get value 
+ * projectConfig2Configs.test.annotations.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * projectConfig2Configs.test.annotations.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const projectConfig2Configs = defineConfigs<ProjectConfig2>(
   _projectConfig2.scope,
   _projectConfig2.defaults
 )
 
-
 /**
- * Types of `project-config2.test` registed by `cnjimbo`
+ * Config keys of `project-config2.test`
  */
 export interface ProjectConfig2Test {
   /**
@@ -426,7 +456,7 @@ export interface ProjectConfig2Test {
 }
 
 /**
- * defaults/scope of `project-config2.test` registed by `cnjimbo`
+ * Scoped defaults of `project-config2.test`
  */
 const _projectConfig2Test = {
 /**
@@ -434,7 +464,7 @@ const _projectConfig2Test = {
  */
   scope: "project-config2.test",
 /**
- * default values under `project-config2.test`
+ * Keys' defaults of `project-config2.test`
  */
   defaults: {
     "annotations": true,
@@ -442,19 +472,25 @@ const _projectConfig2Test = {
 }
 
 /**
- * config objects of `project-config2.test` registed by `cnjimbo`
+ * Reactive ConfigObject of `project-config2.test`
+ * @example
+ * let configValue = projectConfig2TestConfigObject.annotations //get value 
+ * projectConfig2TestConfigObject.annotations = true // set value
+ * projectConfig2TestConfigObject.$update("annotations", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const projectConfig2TestConfigObject = defineConfigObject<ProjectConfig2Test>(
   _projectConfig2Test.scope,
   _projectConfig2Test.defaults
 )
-
-
 /**
- * configs of `project-config2.test` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `project-config2.test`
+ * @example
+ * let configValue:boolean =projectConfig2TestConfigs.annotations.value //get value 
+ * projectConfig2TestConfigs.annotations.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * projectConfig2TestConfigs.annotations.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const projectConfig2TestConfigs = defineConfigs<ProjectConfig2Test>(
   _projectConfig2Test.scope,
   _projectConfig2Test.defaults
 )
-
