@@ -1,18 +1,39 @@
-import { window } from 'vscode'
-import { useCommand } from 'reactive-vscode'
-import { commands, fileNestingUpdaterConfigObject } from '@/meta'
-export async function activate(): Promise<void> {
+import { defineExtension, useCommands, useFsWatcher } from 'reactive-vscode'
+import { ConfigurationTarget, window } from 'vscode'
+import { commands } from './meta'
+import { testConfigObject, testConfigs } from '@/meta'
 
+const { activate, deactivate } = defineExtension(() => {
+
+    const configValue = testConfigs.annotations.value //get value 
+    testConfigs.annotations.value = true // set value
+    //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+    testConfigs.annotations.update(!configValue, ConfigurationTarget.WorkspaceFolder, true)
+
+
+    const configValue1 = testConfigObject.annotations //get value 
+    testConfigObject.annotations = true // set value
+    //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+    testConfigObject.$update("annotations", !configValue1, ConfigurationTarget.Workspace, true)
 
     console.log('activate')
+    const globs = testConfigs.partten
 
-    useCommand(commands.manualUpdate, async () => {
+    const watcher = useFsWatcher(globs.value)
+    watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
 
-        window.showInformationMessage(`config value: ${fileNestingUpdaterConfigObject.autoUpdate}`)
-        fileNestingUpdaterConfigObject.$update('autoUpdate', !fileNestingUpdaterConfigObject.autoUpdate)
+    useCommands({
+        [commands.addWatchDir]: async () => {
+            const value = await window.showInputBox({ prompt: 'Enter a glob' })
+            if (value)
+                globs.value.push(value)
+        },
+        [commands.removeWatchDir]: async () => {
+            const value = await window.showInputBox({ prompt: 'Enter a glob' })
+            if (value)
+                globs.value = globs.value.filter(v => v !== value)
+        },
     })
-    // const value = await window.showInputBox({ prompt: 'Enter a glob' })
+})
 
-    // window.showInformationMessage(`You entered: ${value}`)
-}
-export function deactivate(): void { }
+export { activate, deactivate }
