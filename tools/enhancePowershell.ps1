@@ -1,11 +1,11 @@
 
 # 定义要添加到配置文件中的函数
 $functionCode = @'
-Function global:Prompt {
+Function Prompt {
     $currentPath = Get-Location
     $folderName = Split-Path $currentPath -Leaf
     $host.UI.RawUI.WindowTitle = $folderName
-    "PS $currentPath> "
+    return "PS $currentPath> "    
 }
 '@
  
@@ -15,7 +15,7 @@ if (-not (Test-Path -Path $profilePath)) {
     New-Item -ItemType File -Path $profilePath -Force
 }
 
-$functionName = "global:Prompt"
+$functionName = "Prompt"
  
 if ((Get-Content $profilePath -ErrorAction SilentlyContinue) -join "`n" -match "^*function $functionName") {
     Write-Host "Function already exists in the profile."
