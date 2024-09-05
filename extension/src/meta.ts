@@ -27,16 +27,28 @@ export const commands = {
   /**
    * Update config now
    * @value `project-config.manualUpdate`
+   * @example
+   * useCommand(commands.manualUpdate, async () => {
+   *   //do actions or update config 
+   * })
    */
   manualUpdate: "project-config.manualUpdate",
   /**
    * change annotations
    * @value `project-config.change-annnotations`
+   * @example
+   * useCommand(commands.changeAnnnotations, async () => {
+   *   //do actions or update config 
+   * })
    */
   changeAnnnotations: "project-config.change-annnotations",
   /**
    * stop watch
    * @value `project-config.stop-watch`
+   * @example
+   * useCommand(commands.stopWatch, async () => {
+   *   //do actions or update config 
+   * })
    */
   stopWatch: "project-config.stop-watch",
 } satisfies Record<string, CommandKey>
@@ -44,121 +56,9 @@ export const commands = {
 /**
  * Type union of all configs
  */
-export type ConfigKey = 
-  | "xxx"
-  | "project-config.test.annotations"
-  | "project-config.test.color"
-  | "project-config.test.partten"
-  | "project-config.test.position"
-  | "project-config.fileNestingUpdater.autoUpdate"
-  | "project-config.fileNestingUpdater.promptOnAutoUpdate"
-  | "project-config.fileNestingUpdater.autoUpdateInterval"
-  | "project-config.fileNestingUpdater.upstreamRepo"
-  | "project-config.fileNestingUpdater.upstreamBranch"
-  | "i18n-ally.disabled"
-  | "i18n-ally.autoDetection"
-  | "i18n-ally.localesPaths"
-  | "i18n-ally.encoding"
-  | "i18n-ally.sourceLanguage"
-  | "i18n-ally.displayLanguage"
-  | "i18n-ally.ignoredLocales"
-  | "i18n-ally.keystyle"
-  | "i18n-ally.dirStructure"
-  | "i18n-ally.annotations"
-  | "i18n-ally.annotationInPlace"
-  | "i18n-ally.annotationMaxLength"
-  | "i18n-ally.annotationDelimiter"
-  | "i18n-ally.includeSubfolders"
-  | "i18n-ally.fullReloadOnChanged"
-  | "i18n-ally.showFlags"
-  | "i18n-ally.enabledFrameworks"
-  | "i18n-ally.enabledParsers"
-  | "i18n-ally.keysInUse"
-  | "i18n-ally.sortKeys"
-  | "i18n-ally.sortCompare"
-  | "i18n-ally.sortLocale"
-  | "i18n-ally.preferredDelimiter"
-  | "i18n-ally.readonly"
-  | "i18n-ally.keepFulfilled"
-  | "i18n-ally.localeCountryMap"
-  | "i18n-ally.indent"
-  | "i18n-ally.disablePathParsing"
-  | "i18n-ally.tabStyle"
-  | "i18n-ally.namespace"
-  | "i18n-ally.pathMatcher"
-  | "i18n-ally.languageTagSystem"
-  | "i18n-ally.ignoreFiles"
-  | "i18n-ally.theme.annotation"
-  | "i18n-ally.theme.annotationMissing"
-  | "i18n-ally.theme.annotationBorder"
-  | "i18n-ally.theme.annotationMissingBorder"
-  | "i18n-ally.regex.key"
-  | "i18n-ally.regex.usageMatch"
-  | "i18n-ally.regex.usageMatchAppend"
-  | "i18n-ally.refactor.templates"
-  | "i18n-ally.translate.saveAsCandidates"
-  | "i18n-ally.translate.fallbackToKey"
-  | "i18n-ally.translate.engines"
-  | "i18n-ally.translate.parallels"
-  | "i18n-ally.translate.promptSource"
-  | "i18n-ally.translate.overrideExisting"
-  | "i18n-ally.translate.google.apiKey"
-  | "i18n-ally.translate.deepl.apiKey"
-  | "i18n-ally.translate.baidu.appid"
-  | "i18n-ally.translate.baidu.apiSecret"
-  | "i18n-ally.translate.deepl.enableLog"
-  | "i18n-ally.translate.deepl.useFreeApiEntry"
-  | "i18n-ally.translate.libre.apiRoot"
-  | "i18n-ally.translate.openai.apiKey"
-  | "i18n-ally.translate.openai.apiRoot"
-  | "i18n-ally.translate.openai.apiModel"
-  | "i18n-ally.usage.scanningIgnore"
-  | "i18n-ally.usage.derivedKeyRules"
-  | "i18n-ally.frameworks.ruby-rails.scopeRoot"
-  | "i18n-ally.parsers.typescript.tsNodePath"
-  | "i18n-ally.parsers.typescript.compilerOptions"
-  | "i18n-ally.parsers.extendFileExtensions"
-  | "i18n-ally.review.enabled"
-  | "i18n-ally.review.gutters"
-  | "i18n-ally.review.user.name"
-  | "i18n-ally.review.user.email"
-  | "i18n-ally.review.removeCommentOnResolved"
-  | "i18n-ally.editor.preferEditor"
-  | "i18n-ally.extract.keygenStrategy"
-  | "i18n-ally.extract.keygenStyle"
-  | "i18n-ally.extract.keyPrefix"
-  | "i18n-ally.extract.keyMaxLength"
-  | "i18n-ally.extract.targetPickingStrategy"
-  | "i18n-ally.extract.parsers.html"
-  | "i18n-ally.extract.parsers.babel"
-  | "i18n-ally.extract.autoDetect"
-  | "i18n-ally.extract.ignored"
-  | "i18n-ally.extract.ignoredByFiles"
-  | "i18n-ally.parserOptions"
-  | "i18n-ally.defaultNamespace"
-  | "i18n-ally.derivedKeyRules"
-  | "i18n-ally.filenameMatchRegex"
-  | "i18n-ally.fileNamespace"
-  | "i18n-ally.keyMatchRegex"
-  | "vue-i18n-ally.localesPaths"
-  | "vue-i18n-ally.encoding"
-  | "vue-i18n-ally.sourceLanguage"
-  | "vue-i18n-ally.displayLanguage"
-  | "vue-i18n-ally.ignoredLocales"
-  | "vue-i18n-ally.keystyle"
-  | "vue-i18n-ally.dirStructure"
-  | "vue-i18n-ally.annotations"
-  | "vue-i18n-ally.annotationMaxLength"
-  | "vue-i18n-ally.annotationDelimiter"
-  | "vue-i18n-ally.filenameMatchRegex"
-  | "vue-i18n-ally.includeSubfolders"
-  | "vue-i18n-ally.fullReloadOnChanged"
-  | "vue-i18n-ally.sortKeys"
-  | "vue-i18n-ally.preferredDelimiter"
-  | "vue-i18n-ally.readonly"
 
 /**
- * Types of `root of configuration` registed by `cnjimbo`
+ * Config keys of `root of configuration`
  */
 export interface Root {
   /**
@@ -171,7 +71,7 @@ export interface Root {
 }
 
 /**
- * defaults/scope of `root of configuration` registed by `cnjimbo`
+ * Scoped defaults of `root of configuration`
  */
 const _root = {
 /**
@@ -179,7 +79,7 @@ const _root = {
  */
   scope: "",
 /**
- * default values under `root of configuration`
+ * Keys' defaults of `root of configuration`
  */
   defaults: {
     "xxx": true,
@@ -187,25 +87,31 @@ const _root = {
 }
 
 /**
- * config objects of `root of configuration` registed by `cnjimbo`
+ * Reactive ConfigObject of `root of configuration`
+ * @example
+ * let configValue = rootConfigObject.xxx //get value 
+ * rootConfigObject.xxx = true // set value
+ * rootConfigObject.$update("xxx", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const rootConfigObject = defineConfigObject<Root>(
   _root.scope,
   _root.defaults
 )
-
-
 /**
- * configs of `root of configuration` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `root of configuration`
+ * @example
+ * let configValue:boolean =rootConfigs.xxx.value //get value 
+ * rootConfigs.xxx.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * rootConfigs.xxx.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const rootConfigs = defineConfigs<Root>(
   _root.scope,
   _root.defaults
 )
 
-
 /**
- * Types of `project-config` registed by `cnjimbo`
+ * Config keys of `project-config`
  */
 export interface ProjectConfig {
   /**
@@ -274,7 +180,7 @@ export interface ProjectConfig {
 }
 
 /**
- * defaults/scope of `project-config` registed by `cnjimbo`
+ * Scoped defaults of `project-config`
  */
 const _projectConfig = {
 /**
@@ -282,7 +188,7 @@ const _projectConfig = {
  */
   scope: "project-config",
 /**
- * default values under `project-config`
+ * Keys' defaults of `project-config`
  */
   defaults: {
     "test.annotations": true,
@@ -298,25 +204,31 @@ const _projectConfig = {
 }
 
 /**
- * config objects of `project-config` registed by `cnjimbo`
+ * Reactive ConfigObject of `project-config`
+ * @example
+ * let configValue = projectConfigConfigObject.test.annotations //get value 
+ * projectConfigConfigObject.test.annotations = true // set value
+ * projectConfigConfigObject.$update("test.annotations", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const projectConfigConfigObject = defineConfigObject<ProjectConfig>(
   _projectConfig.scope,
   _projectConfig.defaults
 )
-
-
 /**
- * configs of `project-config` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `project-config`
+ * @example
+ * let configValue:boolean =projectConfigConfigs.test.annotations.value //get value 
+ * projectConfigConfigs.test.annotations.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * projectConfigConfigs.test.annotations.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const projectConfigConfigs = defineConfigs<ProjectConfig>(
   _projectConfig.scope,
   _projectConfig.defaults
 )
 
-
 /**
- * Types of `project-config.test` registed by `cnjimbo`
+ * Config keys of `project-config.test`
  */
 export interface Test {
   /**
@@ -350,7 +262,7 @@ export interface Test {
 }
 
 /**
- * defaults/scope of `project-config.test` registed by `cnjimbo`
+ * Scoped defaults of `project-config.test`
  */
 const _test = {
 /**
@@ -358,7 +270,7 @@ const _test = {
  */
   scope: "project-config.test",
 /**
- * default values under `project-config.test`
+ * Keys' defaults of `project-config.test`
  */
   defaults: {
     "annotations": true,
@@ -369,25 +281,31 @@ const _test = {
 }
 
 /**
- * config objects of `project-config.test` registed by `cnjimbo`
+ * Reactive ConfigObject of `project-config.test`
+ * @example
+ * let configValue = testConfigObject.annotations //get value 
+ * testConfigObject.annotations = true // set value
+ * testConfigObject.$update("annotations", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const testConfigObject = defineConfigObject<Test>(
   _test.scope,
   _test.defaults
 )
-
-
 /**
- * configs of `project-config.test` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `project-config.test`
+ * @example
+ * let configValue:boolean =testConfigs.annotations.value //get value 
+ * testConfigs.annotations.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * testConfigs.annotations.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const testConfigs = defineConfigs<Test>(
   _test.scope,
   _test.defaults
 )
 
-
 /**
- * Types of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ * Config keys of `project-config.fileNestingUpdater`
  */
 export interface FileNestingUpdater {
   /**
@@ -428,7 +346,7 @@ export interface FileNestingUpdater {
 }
 
 /**
- * defaults/scope of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ * Scoped defaults of `project-config.fileNestingUpdater`
  */
 const _fileNestingUpdater = {
 /**
@@ -436,7 +354,7 @@ const _fileNestingUpdater = {
  */
   scope: "project-config.fileNestingUpdater",
 /**
- * default values under `project-config.fileNestingUpdater`
+ * Keys' defaults of `project-config.fileNestingUpdater`
  */
   defaults: {
     "autoUpdate": true,
@@ -448,25 +366,31 @@ const _fileNestingUpdater = {
 }
 
 /**
- * config objects of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ * Reactive ConfigObject of `project-config.fileNestingUpdater`
+ * @example
+ * let configValue = fileNestingUpdaterConfigObject.autoUpdate //get value 
+ * fileNestingUpdaterConfigObject.autoUpdate = true // set value
+ * fileNestingUpdaterConfigObject.$update("autoUpdate", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const fileNestingUpdaterConfigObject = defineConfigObject<FileNestingUpdater>(
   _fileNestingUpdater.scope,
   _fileNestingUpdater.defaults
 )
-
-
 /**
- * configs of `project-config.fileNestingUpdater` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `project-config.fileNestingUpdater`
+ * @example
+ * let configValue:boolean =fileNestingUpdaterConfigs.autoUpdate.value //get value 
+ * fileNestingUpdaterConfigs.autoUpdate.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * fileNestingUpdaterConfigs.autoUpdate.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const fileNestingUpdaterConfigs = defineConfigs<FileNestingUpdater>(
   _fileNestingUpdater.scope,
   _fileNestingUpdater.defaults
 )
 
-
 /**
- * Types of `i18n-ally` registed by `cnjimbo`
+ * Config keys of `i18n-ally`
  */
 export interface I18nAlly {
   /**
@@ -483,13 +407,6 @@ export interface I18nAlly {
    * @type `boolean`
    */
   "autoDetection": boolean,
-  /**
-   * %config.locales_paths%
-   * @key `i18n-ally.localesPaths`
-   * @default `undefined`
-   * @type `string,array`
-   */
-  "localesPaths": (string | string[] | undefined),
   /**
    * %config.encoding%
    * @key `i18n-ally.encoding`
@@ -1036,38 +953,10 @@ export interface I18nAlly {
    * @type `string`
    */
   "defaultNamespace": (string | undefined),
-  /**
-   * 
-   * @key `i18n-ally.derivedKeyRules`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "derivedKeyRules": (unknown | undefined),
-  /**
-   * 
-   * @key `i18n-ally.filenameMatchRegex`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "filenameMatchRegex": (unknown | undefined),
-  /**
-   * 
-   * @key `i18n-ally.fileNamespace`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "fileNamespace": (unknown | undefined),
-  /**
-   * 
-   * @key `i18n-ally.keyMatchRegex`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "keyMatchRegex": (unknown | undefined),
 }
 
 /**
- * defaults/scope of `i18n-ally` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally`
  */
 const _i18nAlly = {
 /**
@@ -1075,12 +964,11 @@ const _i18nAlly = {
  */
   scope: "i18n-ally",
 /**
- * default values under `i18n-ally`
+ * Keys' defaults of `i18n-ally`
  */
   defaults: {
     "disabled": false,
     "autoDetection": true,
-    "localesPaths": undefined,
     "encoding": "utf-8",
     "sourceLanguage": undefined,
     "displayLanguage": undefined,
@@ -1159,33 +1047,35 @@ const _i18nAlly = {
     "extract.ignoredByFiles": {},
     "parserOptions": {},
     "defaultNamespace": undefined,
-    "derivedKeyRules": undefined,
-    "filenameMatchRegex": undefined,
-    "fileNamespace": undefined,
-    "keyMatchRegex": undefined,
   } satisfies I18nAlly,
 }
 
 /**
- * config objects of `i18n-ally` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally`
+ * @example
+ * let configValue = i18nAllyConfigObject.disabled //get value 
+ * i18nAllyConfigObject.disabled = true // set value
+ * i18nAllyConfigObject.$update("disabled", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyConfigObject = defineConfigObject<I18nAlly>(
   _i18nAlly.scope,
   _i18nAlly.defaults
 )
-
-
 /**
- * configs of `i18n-ally` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally`
+ * @example
+ * let configValue:boolean =i18nAllyConfigs.disabled.value //get value 
+ * i18nAllyConfigs.disabled.value = false // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyConfigs.disabled.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyConfigs = defineConfigs<I18nAlly>(
   _i18nAlly.scope,
   _i18nAlly.defaults
 )
 
-
 /**
- * Types of `i18n-ally.theme` registed by `cnjimbo`
+ * Config keys of `i18n-ally.theme`
  */
 export interface I18nAllyTheme {
   /**
@@ -1219,7 +1109,7 @@ export interface I18nAllyTheme {
 }
 
 /**
- * defaults/scope of `i18n-ally.theme` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.theme`
  */
 const _i18nAllyTheme = {
 /**
@@ -1227,7 +1117,7 @@ const _i18nAllyTheme = {
  */
   scope: "i18n-ally.theme",
 /**
- * default values under `i18n-ally.theme`
+ * Keys' defaults of `i18n-ally.theme`
  */
   defaults: {
     "annotation": "rgba(153, 153, 153, .8)",
@@ -1238,25 +1128,31 @@ const _i18nAllyTheme = {
 }
 
 /**
- * config objects of `i18n-ally.theme` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.theme`
+ * @example
+ * let configValue = i18nAllyThemeConfigObject.annotation //get value 
+ * i18nAllyThemeConfigObject.annotation = true // set value
+ * i18nAllyThemeConfigObject.$update("annotation", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyThemeConfigObject = defineConfigObject<I18nAllyTheme>(
   _i18nAllyTheme.scope,
   _i18nAllyTheme.defaults
 )
-
-
 /**
- * configs of `i18n-ally.theme` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.theme`
+ * @example
+ * let configValue:string =i18nAllyThemeConfigs.annotation.value //get value 
+ * i18nAllyThemeConfigs.annotation.value = "rgba(153, 153, 153, .8)" // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyThemeConfigs.annotation.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyThemeConfigs = defineConfigs<I18nAllyTheme>(
   _i18nAllyTheme.scope,
   _i18nAllyTheme.defaults
 )
 
-
 /**
- * Types of `i18n-ally.regex` registed by `cnjimbo`
+ * Config keys of `i18n-ally.regex`
  */
 export interface I18nAllyRegex {
   /**
@@ -1283,7 +1179,7 @@ export interface I18nAllyRegex {
 }
 
 /**
- * defaults/scope of `i18n-ally.regex` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.regex`
  */
 const _i18nAllyRegex = {
 /**
@@ -1291,7 +1187,7 @@ const _i18nAllyRegex = {
  */
   scope: "i18n-ally.regex",
 /**
- * default values under `i18n-ally.regex`
+ * Keys' defaults of `i18n-ally.regex`
  */
   defaults: {
     "key": undefined,
@@ -1301,25 +1197,31 @@ const _i18nAllyRegex = {
 }
 
 /**
- * config objects of `i18n-ally.regex` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.regex`
+ * @example
+ * let configValue = i18nAllyRegexConfigObject.key //get value 
+ * i18nAllyRegexConfigObject.key = true // set value
+ * i18nAllyRegexConfigObject.$update("key", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyRegexConfigObject = defineConfigObject<I18nAllyRegex>(
   _i18nAllyRegex.scope,
   _i18nAllyRegex.defaults
 )
-
-
 /**
- * configs of `i18n-ally.regex` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.regex`
+ * @example
+ * let configValue:string =i18nAllyRegexConfigs.key.value //get value 
+ * i18nAllyRegexConfigs.key.value = undefined // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyRegexConfigs.key.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyRegexConfigs = defineConfigs<I18nAllyRegex>(
   _i18nAllyRegex.scope,
   _i18nAllyRegex.defaults
 )
 
-
 /**
- * Types of `i18n-ally.refactor` registed by `cnjimbo`
+ * Config keys of `i18n-ally.refactor`
  */
 export interface I18nAllyRefactor {
   /**
@@ -1332,7 +1234,7 @@ export interface I18nAllyRefactor {
 }
 
 /**
- * defaults/scope of `i18n-ally.refactor` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.refactor`
  */
 const _i18nAllyRefactor = {
 /**
@@ -1340,7 +1242,7 @@ const _i18nAllyRefactor = {
  */
   scope: "i18n-ally.refactor",
 /**
- * default values under `i18n-ally.refactor`
+ * Keys' defaults of `i18n-ally.refactor`
  */
   defaults: {
     "templates": undefined,
@@ -1348,25 +1250,31 @@ const _i18nAllyRefactor = {
 }
 
 /**
- * config objects of `i18n-ally.refactor` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.refactor`
+ * @example
+ * let configValue = i18nAllyRefactorConfigObject.templates //get value 
+ * i18nAllyRefactorConfigObject.templates = true // set value
+ * i18nAllyRefactorConfigObject.$update("templates", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyRefactorConfigObject = defineConfigObject<I18nAllyRefactor>(
   _i18nAllyRefactor.scope,
   _i18nAllyRefactor.defaults
 )
-
-
 /**
- * configs of `i18n-ally.refactor` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.refactor`
+ * @example
+ * let configValue:array =i18nAllyRefactorConfigs.templates.value //get value 
+ * i18nAllyRefactorConfigs.templates.value = undefined // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyRefactorConfigs.templates.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyRefactorConfigs = defineConfigs<I18nAllyRefactor>(
   _i18nAllyRefactor.scope,
   _i18nAllyRefactor.defaults
 )
 
-
 /**
- * Types of `i18n-ally.translate` registed by `cnjimbo`
+ * Config keys of `i18n-ally.translate`
  */
 export interface I18nAllyTranslate {
   /**
@@ -1484,7 +1392,7 @@ export interface I18nAllyTranslate {
 }
 
 /**
- * defaults/scope of `i18n-ally.translate` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.translate`
  */
 const _i18nAllyTranslate = {
 /**
@@ -1492,7 +1400,7 @@ const _i18nAllyTranslate = {
  */
   scope: "i18n-ally.translate",
 /**
- * default values under `i18n-ally.translate`
+ * Keys' defaults of `i18n-ally.translate`
  */
   defaults: {
     "saveAsCandidates": false,
@@ -1515,25 +1423,31 @@ const _i18nAllyTranslate = {
 }
 
 /**
- * config objects of `i18n-ally.translate` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.translate`
+ * @example
+ * let configValue = i18nAllyTranslateConfigObject.saveAsCandidates //get value 
+ * i18nAllyTranslateConfigObject.saveAsCandidates = true // set value
+ * i18nAllyTranslateConfigObject.$update("saveAsCandidates", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyTranslateConfigObject = defineConfigObject<I18nAllyTranslate>(
   _i18nAllyTranslate.scope,
   _i18nAllyTranslate.defaults
 )
-
-
 /**
- * configs of `i18n-ally.translate` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.translate`
+ * @example
+ * let configValue:boolean =i18nAllyTranslateConfigs.saveAsCandidates.value //get value 
+ * i18nAllyTranslateConfigs.saveAsCandidates.value = false // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyTranslateConfigs.saveAsCandidates.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyTranslateConfigs = defineConfigs<I18nAllyTranslate>(
   _i18nAllyTranslate.scope,
   _i18nAllyTranslate.defaults
 )
 
-
 /**
- * Types of `i18n-ally.translate.google` registed by `cnjimbo`
+ * Config keys of `i18n-ally.translate.google`
  */
 export interface I18nAllyTranslateGoogle {
   /**
@@ -1546,7 +1460,7 @@ export interface I18nAllyTranslateGoogle {
 }
 
 /**
- * defaults/scope of `i18n-ally.translate.google` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.translate.google`
  */
 const _i18nAllyTranslateGoogle = {
 /**
@@ -1554,7 +1468,7 @@ const _i18nAllyTranslateGoogle = {
  */
   scope: "i18n-ally.translate.google",
 /**
- * default values under `i18n-ally.translate.google`
+ * Keys' defaults of `i18n-ally.translate.google`
  */
   defaults: {
     "apiKey": null,
@@ -1562,25 +1476,31 @@ const _i18nAllyTranslateGoogle = {
 }
 
 /**
- * config objects of `i18n-ally.translate.google` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.translate.google`
+ * @example
+ * let configValue = i18nAllyTranslateGoogleConfigObject.apiKey //get value 
+ * i18nAllyTranslateGoogleConfigObject.apiKey = true // set value
+ * i18nAllyTranslateGoogleConfigObject.$update("apiKey", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyTranslateGoogleConfigObject = defineConfigObject<I18nAllyTranslateGoogle>(
   _i18nAllyTranslateGoogle.scope,
   _i18nAllyTranslateGoogle.defaults
 )
-
-
 /**
- * configs of `i18n-ally.translate.google` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.translate.google`
+ * @example
+ * let configValue:string =i18nAllyTranslateGoogleConfigs.apiKey.value //get value 
+ * i18nAllyTranslateGoogleConfigs.apiKey.value = null // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyTranslateGoogleConfigs.apiKey.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyTranslateGoogleConfigs = defineConfigs<I18nAllyTranslateGoogle>(
   _i18nAllyTranslateGoogle.scope,
   _i18nAllyTranslateGoogle.defaults
 )
 
-
 /**
- * Types of `i18n-ally.translate.deepl` registed by `cnjimbo`
+ * Config keys of `i18n-ally.translate.deepl`
  */
 export interface I18nAllyTranslateDeepl {
   /**
@@ -1607,7 +1527,7 @@ export interface I18nAllyTranslateDeepl {
 }
 
 /**
- * defaults/scope of `i18n-ally.translate.deepl` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.translate.deepl`
  */
 const _i18nAllyTranslateDeepl = {
 /**
@@ -1615,7 +1535,7 @@ const _i18nAllyTranslateDeepl = {
  */
   scope: "i18n-ally.translate.deepl",
 /**
- * default values under `i18n-ally.translate.deepl`
+ * Keys' defaults of `i18n-ally.translate.deepl`
  */
   defaults: {
     "apiKey": null,
@@ -1625,25 +1545,31 @@ const _i18nAllyTranslateDeepl = {
 }
 
 /**
- * config objects of `i18n-ally.translate.deepl` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.translate.deepl`
+ * @example
+ * let configValue = i18nAllyTranslateDeeplConfigObject.apiKey //get value 
+ * i18nAllyTranslateDeeplConfigObject.apiKey = true // set value
+ * i18nAllyTranslateDeeplConfigObject.$update("apiKey", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyTranslateDeeplConfigObject = defineConfigObject<I18nAllyTranslateDeepl>(
   _i18nAllyTranslateDeepl.scope,
   _i18nAllyTranslateDeepl.defaults
 )
-
-
 /**
- * configs of `i18n-ally.translate.deepl` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.translate.deepl`
+ * @example
+ * let configValue:string =i18nAllyTranslateDeeplConfigs.apiKey.value //get value 
+ * i18nAllyTranslateDeeplConfigs.apiKey.value = null // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyTranslateDeeplConfigs.apiKey.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyTranslateDeeplConfigs = defineConfigs<I18nAllyTranslateDeepl>(
   _i18nAllyTranslateDeepl.scope,
   _i18nAllyTranslateDeepl.defaults
 )
 
-
 /**
- * Types of `i18n-ally.translate.baidu` registed by `cnjimbo`
+ * Config keys of `i18n-ally.translate.baidu`
  */
 export interface I18nAllyTranslateBaidu {
   /**
@@ -1663,7 +1589,7 @@ export interface I18nAllyTranslateBaidu {
 }
 
 /**
- * defaults/scope of `i18n-ally.translate.baidu` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.translate.baidu`
  */
 const _i18nAllyTranslateBaidu = {
 /**
@@ -1671,7 +1597,7 @@ const _i18nAllyTranslateBaidu = {
  */
   scope: "i18n-ally.translate.baidu",
 /**
- * default values under `i18n-ally.translate.baidu`
+ * Keys' defaults of `i18n-ally.translate.baidu`
  */
   defaults: {
     "appid": null,
@@ -1680,25 +1606,31 @@ const _i18nAllyTranslateBaidu = {
 }
 
 /**
- * config objects of `i18n-ally.translate.baidu` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.translate.baidu`
+ * @example
+ * let configValue = i18nAllyTranslateBaiduConfigObject.appid //get value 
+ * i18nAllyTranslateBaiduConfigObject.appid = true // set value
+ * i18nAllyTranslateBaiduConfigObject.$update("appid", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyTranslateBaiduConfigObject = defineConfigObject<I18nAllyTranslateBaidu>(
   _i18nAllyTranslateBaidu.scope,
   _i18nAllyTranslateBaidu.defaults
 )
-
-
 /**
- * configs of `i18n-ally.translate.baidu` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.translate.baidu`
+ * @example
+ * let configValue:string =i18nAllyTranslateBaiduConfigs.appid.value //get value 
+ * i18nAllyTranslateBaiduConfigs.appid.value = null // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyTranslateBaiduConfigs.appid.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyTranslateBaiduConfigs = defineConfigs<I18nAllyTranslateBaidu>(
   _i18nAllyTranslateBaidu.scope,
   _i18nAllyTranslateBaidu.defaults
 )
 
-
 /**
- * Types of `i18n-ally.translate.libre` registed by `cnjimbo`
+ * Config keys of `i18n-ally.translate.libre`
  */
 export interface I18nAllyTranslateLibre {
   /**
@@ -1711,7 +1643,7 @@ export interface I18nAllyTranslateLibre {
 }
 
 /**
- * defaults/scope of `i18n-ally.translate.libre` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.translate.libre`
  */
 const _i18nAllyTranslateLibre = {
 /**
@@ -1719,7 +1651,7 @@ const _i18nAllyTranslateLibre = {
  */
   scope: "i18n-ally.translate.libre",
 /**
- * default values under `i18n-ally.translate.libre`
+ * Keys' defaults of `i18n-ally.translate.libre`
  */
   defaults: {
     "apiRoot": "http://localhost:5000",
@@ -1727,25 +1659,31 @@ const _i18nAllyTranslateLibre = {
 }
 
 /**
- * config objects of `i18n-ally.translate.libre` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.translate.libre`
+ * @example
+ * let configValue = i18nAllyTranslateLibreConfigObject.apiRoot //get value 
+ * i18nAllyTranslateLibreConfigObject.apiRoot = true // set value
+ * i18nAllyTranslateLibreConfigObject.$update("apiRoot", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyTranslateLibreConfigObject = defineConfigObject<I18nAllyTranslateLibre>(
   _i18nAllyTranslateLibre.scope,
   _i18nAllyTranslateLibre.defaults
 )
-
-
 /**
- * configs of `i18n-ally.translate.libre` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.translate.libre`
+ * @example
+ * let configValue:string =i18nAllyTranslateLibreConfigs.apiRoot.value //get value 
+ * i18nAllyTranslateLibreConfigs.apiRoot.value = "http://localhost:5000" // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyTranslateLibreConfigs.apiRoot.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyTranslateLibreConfigs = defineConfigs<I18nAllyTranslateLibre>(
   _i18nAllyTranslateLibre.scope,
   _i18nAllyTranslateLibre.defaults
 )
 
-
 /**
- * Types of `i18n-ally.translate.openai` registed by `cnjimbo`
+ * Config keys of `i18n-ally.translate.openai`
  */
 export interface I18nAllyTranslateOpenai {
   /**
@@ -1772,7 +1710,7 @@ export interface I18nAllyTranslateOpenai {
 }
 
 /**
- * defaults/scope of `i18n-ally.translate.openai` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.translate.openai`
  */
 const _i18nAllyTranslateOpenai = {
 /**
@@ -1780,7 +1718,7 @@ const _i18nAllyTranslateOpenai = {
  */
   scope: "i18n-ally.translate.openai",
 /**
- * default values under `i18n-ally.translate.openai`
+ * Keys' defaults of `i18n-ally.translate.openai`
  */
   defaults: {
     "apiKey": null,
@@ -1790,25 +1728,31 @@ const _i18nAllyTranslateOpenai = {
 }
 
 /**
- * config objects of `i18n-ally.translate.openai` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.translate.openai`
+ * @example
+ * let configValue = i18nAllyTranslateOpenaiConfigObject.apiKey //get value 
+ * i18nAllyTranslateOpenaiConfigObject.apiKey = true // set value
+ * i18nAllyTranslateOpenaiConfigObject.$update("apiKey", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyTranslateOpenaiConfigObject = defineConfigObject<I18nAllyTranslateOpenai>(
   _i18nAllyTranslateOpenai.scope,
   _i18nAllyTranslateOpenai.defaults
 )
-
-
 /**
- * configs of `i18n-ally.translate.openai` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.translate.openai`
+ * @example
+ * let configValue:string =i18nAllyTranslateOpenaiConfigs.apiKey.value //get value 
+ * i18nAllyTranslateOpenaiConfigs.apiKey.value = null // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyTranslateOpenaiConfigs.apiKey.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyTranslateOpenaiConfigs = defineConfigs<I18nAllyTranslateOpenai>(
   _i18nAllyTranslateOpenai.scope,
   _i18nAllyTranslateOpenai.defaults
 )
 
-
 /**
- * Types of `i18n-ally.usage` registed by `cnjimbo`
+ * Config keys of `i18n-ally.usage`
  */
 export interface I18nAllyUsage {
   /**
@@ -1828,7 +1772,7 @@ export interface I18nAllyUsage {
 }
 
 /**
- * defaults/scope of `i18n-ally.usage` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.usage`
  */
 const _i18nAllyUsage = {
 /**
@@ -1836,7 +1780,7 @@ const _i18nAllyUsage = {
  */
   scope: "i18n-ally.usage",
 /**
- * default values under `i18n-ally.usage`
+ * Keys' defaults of `i18n-ally.usage`
  */
   defaults: {
     "scanningIgnore": undefined,
@@ -1845,25 +1789,31 @@ const _i18nAllyUsage = {
 }
 
 /**
- * config objects of `i18n-ally.usage` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.usage`
+ * @example
+ * let configValue = i18nAllyUsageConfigObject.scanningIgnore //get value 
+ * i18nAllyUsageConfigObject.scanningIgnore = true // set value
+ * i18nAllyUsageConfigObject.$update("scanningIgnore", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyUsageConfigObject = defineConfigObject<I18nAllyUsage>(
   _i18nAllyUsage.scope,
   _i18nAllyUsage.defaults
 )
-
-
 /**
- * configs of `i18n-ally.usage` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.usage`
+ * @example
+ * let configValue:array =i18nAllyUsageConfigs.scanningIgnore.value //get value 
+ * i18nAllyUsageConfigs.scanningIgnore.value = undefined // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyUsageConfigs.scanningIgnore.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyUsageConfigs = defineConfigs<I18nAllyUsage>(
   _i18nAllyUsage.scope,
   _i18nAllyUsage.defaults
 )
 
-
 /**
- * Types of `i18n-ally.frameworks` registed by `cnjimbo`
+ * Config keys of `i18n-ally.frameworks`
  */
 export interface I18nAllyFrameworks {
   /**
@@ -1876,7 +1826,7 @@ export interface I18nAllyFrameworks {
 }
 
 /**
- * defaults/scope of `i18n-ally.frameworks` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.frameworks`
  */
 const _i18nAllyFrameworks = {
 /**
@@ -1884,7 +1834,7 @@ const _i18nAllyFrameworks = {
  */
   scope: "i18n-ally.frameworks",
 /**
- * default values under `i18n-ally.frameworks`
+ * Keys' defaults of `i18n-ally.frameworks`
  */
   defaults: {
     "ruby-rails.scopeRoot": "app/views",
@@ -1892,25 +1842,31 @@ const _i18nAllyFrameworks = {
 }
 
 /**
- * config objects of `i18n-ally.frameworks` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.frameworks`
+ * @example
+ * let configValue = i18nAllyFrameworksConfigObject.ruby-rails.scopeRoot //get value 
+ * i18nAllyFrameworksConfigObject.ruby-rails.scopeRoot = true // set value
+ * i18nAllyFrameworksConfigObject.$update("ruby-rails.scopeRoot", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyFrameworksConfigObject = defineConfigObject<I18nAllyFrameworks>(
   _i18nAllyFrameworks.scope,
   _i18nAllyFrameworks.defaults
 )
-
-
 /**
- * configs of `i18n-ally.frameworks` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.frameworks`
+ * @example
+ * let configValue:string =i18nAllyFrameworksConfigs.ruby-rails.scopeRoot.value //get value 
+ * i18nAllyFrameworksConfigs.ruby-rails.scopeRoot.value = "app/views" // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyFrameworksConfigs.ruby-rails.scopeRoot.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyFrameworksConfigs = defineConfigs<I18nAllyFrameworks>(
   _i18nAllyFrameworks.scope,
   _i18nAllyFrameworks.defaults
 )
 
-
 /**
- * Types of `i18n-ally.frameworks.ruby-rails` registed by `cnjimbo`
+ * Config keys of `i18n-ally.frameworks.ruby-rails`
  */
 export interface I18nAllyFrameworksRubyRails {
   /**
@@ -1923,7 +1879,7 @@ export interface I18nAllyFrameworksRubyRails {
 }
 
 /**
- * defaults/scope of `i18n-ally.frameworks.ruby-rails` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.frameworks.ruby-rails`
  */
 const _i18nAllyFrameworksRubyRails = {
 /**
@@ -1931,7 +1887,7 @@ const _i18nAllyFrameworksRubyRails = {
  */
   scope: "i18n-ally.frameworks.ruby-rails",
 /**
- * default values under `i18n-ally.frameworks.ruby-rails`
+ * Keys' defaults of `i18n-ally.frameworks.ruby-rails`
  */
   defaults: {
     "scopeRoot": "app/views",
@@ -1939,25 +1895,31 @@ const _i18nAllyFrameworksRubyRails = {
 }
 
 /**
- * config objects of `i18n-ally.frameworks.ruby-rails` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.frameworks.ruby-rails`
+ * @example
+ * let configValue = i18nAllyFrameworksRubyRailsConfigObject.scopeRoot //get value 
+ * i18nAllyFrameworksRubyRailsConfigObject.scopeRoot = true // set value
+ * i18nAllyFrameworksRubyRailsConfigObject.$update("scopeRoot", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyFrameworksRubyRailsConfigObject = defineConfigObject<I18nAllyFrameworksRubyRails>(
   _i18nAllyFrameworksRubyRails.scope,
   _i18nAllyFrameworksRubyRails.defaults
 )
-
-
 /**
- * configs of `i18n-ally.frameworks.ruby-rails` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.frameworks.ruby-rails`
+ * @example
+ * let configValue:string =i18nAllyFrameworksRubyRailsConfigs.scopeRoot.value //get value 
+ * i18nAllyFrameworksRubyRailsConfigs.scopeRoot.value = "app/views" // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyFrameworksRubyRailsConfigs.scopeRoot.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyFrameworksRubyRailsConfigs = defineConfigs<I18nAllyFrameworksRubyRails>(
   _i18nAllyFrameworksRubyRails.scope,
   _i18nAllyFrameworksRubyRails.defaults
 )
 
-
 /**
- * Types of `i18n-ally.parsers` registed by `cnjimbo`
+ * Config keys of `i18n-ally.parsers`
  */
 export interface I18nAllyParsers {
   /**
@@ -1984,7 +1946,7 @@ export interface I18nAllyParsers {
 }
 
 /**
- * defaults/scope of `i18n-ally.parsers` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.parsers`
  */
 const _i18nAllyParsers = {
 /**
@@ -1992,7 +1954,7 @@ const _i18nAllyParsers = {
  */
   scope: "i18n-ally.parsers",
 /**
- * default values under `i18n-ally.parsers`
+ * Keys' defaults of `i18n-ally.parsers`
  */
   defaults: {
     "typescript.tsNodePath": "node_modules/ts-node/dist/bin.js",
@@ -2002,25 +1964,31 @@ const _i18nAllyParsers = {
 }
 
 /**
- * config objects of `i18n-ally.parsers` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.parsers`
+ * @example
+ * let configValue = i18nAllyParsersConfigObject.typescript.tsNodePath //get value 
+ * i18nAllyParsersConfigObject.typescript.tsNodePath = true // set value
+ * i18nAllyParsersConfigObject.$update("typescript.tsNodePath", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyParsersConfigObject = defineConfigObject<I18nAllyParsers>(
   _i18nAllyParsers.scope,
   _i18nAllyParsers.defaults
 )
-
-
 /**
- * configs of `i18n-ally.parsers` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.parsers`
+ * @example
+ * let configValue:string =i18nAllyParsersConfigs.typescript.tsNodePath.value //get value 
+ * i18nAllyParsersConfigs.typescript.tsNodePath.value = "node_modules/ts-node/dist/bin.js" // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyParsersConfigs.typescript.tsNodePath.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyParsersConfigs = defineConfigs<I18nAllyParsers>(
   _i18nAllyParsers.scope,
   _i18nAllyParsers.defaults
 )
 
-
 /**
- * Types of `i18n-ally.parsers.typescript` registed by `cnjimbo`
+ * Config keys of `i18n-ally.parsers.typescript`
  */
 export interface I18nAllyParsersTypescript {
   /**
@@ -2040,7 +2008,7 @@ export interface I18nAllyParsersTypescript {
 }
 
 /**
- * defaults/scope of `i18n-ally.parsers.typescript` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.parsers.typescript`
  */
 const _i18nAllyParsersTypescript = {
 /**
@@ -2048,7 +2016,7 @@ const _i18nAllyParsersTypescript = {
  */
   scope: "i18n-ally.parsers.typescript",
 /**
- * default values under `i18n-ally.parsers.typescript`
+ * Keys' defaults of `i18n-ally.parsers.typescript`
  */
   defaults: {
     "tsNodePath": "node_modules/ts-node/dist/bin.js",
@@ -2057,25 +2025,31 @@ const _i18nAllyParsersTypescript = {
 }
 
 /**
- * config objects of `i18n-ally.parsers.typescript` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.parsers.typescript`
+ * @example
+ * let configValue = i18nAllyParsersTypescriptConfigObject.tsNodePath //get value 
+ * i18nAllyParsersTypescriptConfigObject.tsNodePath = true // set value
+ * i18nAllyParsersTypescriptConfigObject.$update("tsNodePath", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyParsersTypescriptConfigObject = defineConfigObject<I18nAllyParsersTypescript>(
   _i18nAllyParsersTypescript.scope,
   _i18nAllyParsersTypescript.defaults
 )
-
-
 /**
- * configs of `i18n-ally.parsers.typescript` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.parsers.typescript`
+ * @example
+ * let configValue:string =i18nAllyParsersTypescriptConfigs.tsNodePath.value //get value 
+ * i18nAllyParsersTypescriptConfigs.tsNodePath.value = "node_modules/ts-node/dist/bin.js" // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyParsersTypescriptConfigs.tsNodePath.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyParsersTypescriptConfigs = defineConfigs<I18nAllyParsersTypescript>(
   _i18nAllyParsersTypescript.scope,
   _i18nAllyParsersTypescript.defaults
 )
 
-
 /**
- * Types of `i18n-ally.review` registed by `cnjimbo`
+ * Config keys of `i18n-ally.review`
  */
 export interface I18nAllyReview {
   /**
@@ -2116,7 +2090,7 @@ export interface I18nAllyReview {
 }
 
 /**
- * defaults/scope of `i18n-ally.review` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.review`
  */
 const _i18nAllyReview = {
 /**
@@ -2124,7 +2098,7 @@ const _i18nAllyReview = {
  */
   scope: "i18n-ally.review",
 /**
- * default values under `i18n-ally.review`
+ * Keys' defaults of `i18n-ally.review`
  */
   defaults: {
     "enabled": true,
@@ -2136,25 +2110,31 @@ const _i18nAllyReview = {
 }
 
 /**
- * config objects of `i18n-ally.review` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.review`
+ * @example
+ * let configValue = i18nAllyReviewConfigObject.enabled //get value 
+ * i18nAllyReviewConfigObject.enabled = true // set value
+ * i18nAllyReviewConfigObject.$update("enabled", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyReviewConfigObject = defineConfigObject<I18nAllyReview>(
   _i18nAllyReview.scope,
   _i18nAllyReview.defaults
 )
-
-
 /**
- * configs of `i18n-ally.review` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.review`
+ * @example
+ * let configValue:boolean =i18nAllyReviewConfigs.enabled.value //get value 
+ * i18nAllyReviewConfigs.enabled.value = true // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyReviewConfigs.enabled.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyReviewConfigs = defineConfigs<I18nAllyReview>(
   _i18nAllyReview.scope,
   _i18nAllyReview.defaults
 )
 
-
 /**
- * Types of `i18n-ally.review.user` registed by `cnjimbo`
+ * Config keys of `i18n-ally.review.user`
  */
 export interface I18nAllyReviewUser {
   /**
@@ -2174,7 +2154,7 @@ export interface I18nAllyReviewUser {
 }
 
 /**
- * defaults/scope of `i18n-ally.review.user` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.review.user`
  */
 const _i18nAllyReviewUser = {
 /**
@@ -2182,7 +2162,7 @@ const _i18nAllyReviewUser = {
  */
   scope: "i18n-ally.review.user",
 /**
- * default values under `i18n-ally.review.user`
+ * Keys' defaults of `i18n-ally.review.user`
  */
   defaults: {
     "name": undefined,
@@ -2191,25 +2171,31 @@ const _i18nAllyReviewUser = {
 }
 
 /**
- * config objects of `i18n-ally.review.user` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.review.user`
+ * @example
+ * let configValue = i18nAllyReviewUserConfigObject.name //get value 
+ * i18nAllyReviewUserConfigObject.name = true // set value
+ * i18nAllyReviewUserConfigObject.$update("name", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyReviewUserConfigObject = defineConfigObject<I18nAllyReviewUser>(
   _i18nAllyReviewUser.scope,
   _i18nAllyReviewUser.defaults
 )
-
-
 /**
- * configs of `i18n-ally.review.user` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.review.user`
+ * @example
+ * let configValue:string =i18nAllyReviewUserConfigs.name.value //get value 
+ * i18nAllyReviewUserConfigs.name.value = undefined // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyReviewUserConfigs.name.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyReviewUserConfigs = defineConfigs<I18nAllyReviewUser>(
   _i18nAllyReviewUser.scope,
   _i18nAllyReviewUser.defaults
 )
 
-
 /**
- * Types of `i18n-ally.editor` registed by `cnjimbo`
+ * Config keys of `i18n-ally.editor`
  */
 export interface I18nAllyEditor {
   /**
@@ -2222,7 +2208,7 @@ export interface I18nAllyEditor {
 }
 
 /**
- * defaults/scope of `i18n-ally.editor` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.editor`
  */
 const _i18nAllyEditor = {
 /**
@@ -2230,7 +2216,7 @@ const _i18nAllyEditor = {
  */
   scope: "i18n-ally.editor",
 /**
- * default values under `i18n-ally.editor`
+ * Keys' defaults of `i18n-ally.editor`
  */
   defaults: {
     "preferEditor": false,
@@ -2238,25 +2224,31 @@ const _i18nAllyEditor = {
 }
 
 /**
- * config objects of `i18n-ally.editor` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.editor`
+ * @example
+ * let configValue = i18nAllyEditorConfigObject.preferEditor //get value 
+ * i18nAllyEditorConfigObject.preferEditor = true // set value
+ * i18nAllyEditorConfigObject.$update("preferEditor", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyEditorConfigObject = defineConfigObject<I18nAllyEditor>(
   _i18nAllyEditor.scope,
   _i18nAllyEditor.defaults
 )
-
-
 /**
- * configs of `i18n-ally.editor` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.editor`
+ * @example
+ * let configValue:boolean =i18nAllyEditorConfigs.preferEditor.value //get value 
+ * i18nAllyEditorConfigs.preferEditor.value = false // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyEditorConfigs.preferEditor.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyEditorConfigs = defineConfigs<I18nAllyEditor>(
   _i18nAllyEditor.scope,
   _i18nAllyEditor.defaults
 )
 
-
 /**
- * Types of `i18n-ally.extract` registed by `cnjimbo`
+ * Config keys of `i18n-ally.extract`
  */
 export interface I18nAllyExtract {
   /**
@@ -2332,7 +2324,7 @@ export interface I18nAllyExtract {
 }
 
 /**
- * defaults/scope of `i18n-ally.extract` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.extract`
  */
 const _i18nAllyExtract = {
 /**
@@ -2340,7 +2332,7 @@ const _i18nAllyExtract = {
  */
   scope: "i18n-ally.extract",
 /**
- * default values under `i18n-ally.extract`
+ * Keys' defaults of `i18n-ally.extract`
  */
   defaults: {
     "keygenStrategy": "slug",
@@ -2357,25 +2349,31 @@ const _i18nAllyExtract = {
 }
 
 /**
- * config objects of `i18n-ally.extract` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.extract`
+ * @example
+ * let configValue = i18nAllyExtractConfigObject.keygenStrategy //get value 
+ * i18nAllyExtractConfigObject.keygenStrategy = true // set value
+ * i18nAllyExtractConfigObject.$update("keygenStrategy", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyExtractConfigObject = defineConfigObject<I18nAllyExtract>(
   _i18nAllyExtract.scope,
   _i18nAllyExtract.defaults
 )
-
-
 /**
- * configs of `i18n-ally.extract` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.extract`
+ * @example
+ * let configValue:string =i18nAllyExtractConfigs.keygenStrategy.value //get value 
+ * i18nAllyExtractConfigs.keygenStrategy.value = "slug" // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyExtractConfigs.keygenStrategy.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyExtractConfigs = defineConfigs<I18nAllyExtract>(
   _i18nAllyExtract.scope,
   _i18nAllyExtract.defaults
 )
 
-
 /**
- * Types of `i18n-ally.extract.parsers` registed by `cnjimbo`
+ * Config keys of `i18n-ally.extract.parsers`
  */
 export interface I18nAllyExtractParsers {
   /**
@@ -2395,7 +2393,7 @@ export interface I18nAllyExtractParsers {
 }
 
 /**
- * defaults/scope of `i18n-ally.extract.parsers` registed by `cnjimbo`
+ * Scoped defaults of `i18n-ally.extract.parsers`
  */
 const _i18nAllyExtractParsers = {
 /**
@@ -2403,7 +2401,7 @@ const _i18nAllyExtractParsers = {
  */
   scope: "i18n-ally.extract.parsers",
 /**
- * default values under `i18n-ally.extract.parsers`
+ * Keys' defaults of `i18n-ally.extract.parsers`
  */
   defaults: {
     "html": {},
@@ -2412,186 +2410,25 @@ const _i18nAllyExtractParsers = {
 }
 
 /**
- * config objects of `i18n-ally.extract.parsers` registed by `cnjimbo`
+ * Reactive ConfigObject of `i18n-ally.extract.parsers`
+ * @example
+ * let configValue = i18nAllyExtractParsersConfigObject.html //get value 
+ * i18nAllyExtractParsersConfigObject.html = true // set value
+ * i18nAllyExtractParsersConfigObject.$update("html", !configValue, ConfigurationTarget.Workspace, true)
  */
 export const i18nAllyExtractParsersConfigObject = defineConfigObject<I18nAllyExtractParsers>(
   _i18nAllyExtractParsers.scope,
   _i18nAllyExtractParsers.defaults
 )
-
-
 /**
- * configs of `i18n-ally.extract.parsers` registed by `cnjimbo`
+ * Reactive ToConfigRefs of `i18n-ally.extract.parsers`
+ * @example
+ * let configValue:object =i18nAllyExtractParsersConfigs.html.value //get value 
+ * i18nAllyExtractParsersConfigs.html.value = {} // set value
+ * //update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
+ * i18nAllyExtractParsersConfigs.html.update(true, ConfigurationTarget.WorkspaceFolder, true)
  */
 export const i18nAllyExtractParsersConfigs = defineConfigs<I18nAllyExtractParsers>(
   _i18nAllyExtractParsers.scope,
   _i18nAllyExtractParsers.defaults
 )
-
-
-/**
- * Types of `vue-i18n-ally` registed by `cnjimbo`
- */
-export interface VueI18nAlly {
-  /**
-   * 
-   * @key `vue-i18n-ally.localesPaths`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "localesPaths": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.encoding`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "encoding": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.sourceLanguage`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "sourceLanguage": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.displayLanguage`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "displayLanguage": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.ignoredLocales`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "ignoredLocales": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.keystyle`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "keystyle": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.dirStructure`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "dirStructure": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.annotations`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "annotations": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.annotationMaxLength`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "annotationMaxLength": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.annotationDelimiter`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "annotationDelimiter": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.filenameMatchRegex`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "filenameMatchRegex": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.includeSubfolders`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "includeSubfolders": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.fullReloadOnChanged`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "fullReloadOnChanged": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.sortKeys`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "sortKeys": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.preferredDelimiter`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "preferredDelimiter": (unknown | undefined),
-  /**
-   * 
-   * @key `vue-i18n-ally.readonly`
-   * @default `undefined`
-   * @type `undefined`
-   */
-  "readonly": (unknown | undefined),
-}
-
-/**
- * defaults/scope of `vue-i18n-ally` registed by `cnjimbo`
- */
-const _vueI18nAlly = {
-/**
- * scope: `vue-i18n-ally`
- */
-  scope: "vue-i18n-ally",
-/**
- * default values under `vue-i18n-ally`
- */
-  defaults: {
-    "localesPaths": undefined,
-    "encoding": undefined,
-    "sourceLanguage": undefined,
-    "displayLanguage": undefined,
-    "ignoredLocales": undefined,
-    "keystyle": undefined,
-    "dirStructure": undefined,
-    "annotations": undefined,
-    "annotationMaxLength": undefined,
-    "annotationDelimiter": undefined,
-    "filenameMatchRegex": undefined,
-    "includeSubfolders": undefined,
-    "fullReloadOnChanged": undefined,
-    "sortKeys": undefined,
-    "preferredDelimiter": undefined,
-    "readonly": undefined,
-  } satisfies VueI18nAlly,
-}
-
-/**
- * config objects of `vue-i18n-ally` registed by `cnjimbo`
- */
-export const vueI18nAllyConfigObject = defineConfigObject<VueI18nAlly>(
-  _vueI18nAlly.scope,
-  _vueI18nAlly.defaults
-)
-
-
-/**
- * configs of `vue-i18n-ally` registed by `cnjimbo`
- */
-export const vueI18nAllyConfigs = defineConfigs<VueI18nAlly>(
-  _vueI18nAlly.scope,
-  _vueI18nAlly.defaults
-)
-
