@@ -13,7 +13,8 @@
     "tsup": "catalog:",
     "tsx": "^4.19.0",
     "type-fest": "^4.26.0", 
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "reactive-meta-gen":"0.0.15"
   },
   "funding": "https://github.com/sponsors/cnjimbo",
   "license": "MIT",
@@ -26,7 +27,7 @@
     "ext:publish": "nr ext:build && cd extension && vsce publish --no-dependencies",
     "lint": "eslint .",
     "prepare": "pnpm run update",
-    "update": "pnpx reactive-meta-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated-meta.ts"
+    "update": "reactive-meta-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated-meta.ts"
   },
   "type": "module",
   "workspaces": [

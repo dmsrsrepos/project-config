@@ -1,7 +1,7 @@
 const fs = require('node:fs')
 
 const devPackagePaths = {
-  'vscode-ext-gen': [
+  'reactive-meta-gen': [
     `C:\\AppData\\code-vsextension\\reactive-meta-gen`,
     `G:\\code-vsextension\\reactive-meta-gen`,
   ],

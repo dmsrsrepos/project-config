@@ -40,7 +40,7 @@ catalogs:
       specifier: ^5.5.4
       version: 5.5.4
 
-pnpmfileChecksum: q5nh23lx7esn7fgb6v7aayqm5y
+pnpmfileChecksum: t5bjzapbk5vtatgjkj7tlodcga
 
 importers:
 
@@ -70,6 +70,9 @@ importers:
       ofetch:
         specifier: 'catalog:'
         version: 1.3.4
+      reactive-meta-gen:
+        specifier: file:G:\code-vsextension\reactive-meta-gen
+        version: file:../reactive-meta-gen
       reactive-vscode:
         specifier: 'catalog:'
         version: 0.2.2(@types/vscode@1.92.0)
@@ -1637,6 +1640,14 @@ packages:
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  radash@12.1.0:
+    resolution: {integrity: sha512-b0Zcf09AhqKS83btmUeYBS8tFK7XL2e3RvLmZcm0sTdF1/UUlHSsjXdCcWNxe7yfmAlPve5ym0DmKGtTzP6kVQ==}
+    engines: {node: '>=14.18.0'}
+
+  reactive-meta-gen@file:../reactive-meta-gen:
+    resolution: {directory: ../reactive-meta-gen, type: directory}
+    hasBin: true
 
   reactive-vscode@0.2.2:
     resolution: {integrity: sha512-irwQ/s95TYdL0LWFA/cKUAkwarRpoxe8h3cPd1GR1tQZT8Tn/Sl97f/wxFK5wglyGSLXW2QDbY2kpAOjYWiJ+w==}
@@ -3543,6 +3554,13 @@ snapshots:
   punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
+
+  radash@12.1.0: {}
+
+  reactive-meta-gen@file:../reactive-meta-gen:
+    dependencies:
+      cac: 6.7.14
+      radash: 12.1.0
 
   reactive-vscode@0.2.2(@types/vscode@1.92.0):
     dependencies:

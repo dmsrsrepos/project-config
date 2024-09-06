@@ -717,8 +717,8 @@
             "deprecationMessage": "%config.deprecated%"
           }
         },
-        "title": "Config 2",
-        "type": "object"
+        "title": "Config 4",
+        "type": "object" 
       }
     ]
   },

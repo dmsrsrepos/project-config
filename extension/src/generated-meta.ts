@@ -79,7 +79,7 @@ export type DeprecatedConfigKey =
   | "vue-i18n-ally.readonly"
 
 /**
- * Config keys of `configuration of root`
+ * Config keys of `virtual(Keys in the root)`
  */
 export interface Root {
   /**
@@ -92,15 +92,15 @@ export interface Root {
 }
 
 /**
- * Scoped defaults of `configuration of root`
+ * Scoped defaults of `virtual(Keys in the root)`
  */
 const _root = {
 /**
- * scope: `configuration of root`
+ * scope: `virtual(Keys in the root)`
  */
   scope: "",
 /**
- * Keys' defaults of `configuration of root`
+ * Keys' defaults of `virtual(Keys in the root)`
  */
   defaults: {
     "xxx": true,
@@ -108,7 +108,7 @@ const _root = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of root`
+ * Reactive ConfigObject of `virtual(Keys in the root)`
  * @example
  * let configValue = rootConfigObject.xxx //get value 
  * rootConfigObject.xxx = true // set value
@@ -119,7 +119,7 @@ export const rootConfigObject = defineConfigObject<Root>(
   _root.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of root`
+ * Reactive ToConfigRefs of `virtual(Keys in the root)`
  * @example
  * let configValue:boolean =rootConfigs.xxx.value //get value 
  * rootConfigs.xxx.value = true // set value
@@ -132,7 +132,7 @@ export const rootConfigs = defineConfigs<Root>(
 )
 
 /**
- * Config keys of `configuration of project-config`
+ * Config keys of `project-config`
  */
 export interface ProjectConfig {
   /**
@@ -201,15 +201,15 @@ export interface ProjectConfig {
 }
 
 /**
- * Scoped defaults of `configuration of project-config`
+ * Scoped defaults of `project-config`
  */
 const _projectConfig = {
 /**
- * scope: `configuration of project-config`
+ * scope: `project-config`
  */
   scope: "project-config",
 /**
- * Keys' defaults of `configuration of project-config`
+ * Keys' defaults of `project-config`
  */
   defaults: {
     "test.annotations": true,
@@ -225,7 +225,7 @@ const _projectConfig = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of project-config`
+ * Reactive ConfigObject of `project-config`
  * @example
  * let configValue = projectConfigConfigObject.test.annotations //get value 
  * projectConfigConfigObject.test.annotations = true // set value
@@ -236,7 +236,7 @@ export const projectConfigConfigObject = defineConfigObject<ProjectConfig>(
   _projectConfig.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of project-config`
+ * Reactive ToConfigRefs of `project-config`
  * @example
  * let configValue:boolean =projectConfigConfigs.test.annotations.value //get value 
  * projectConfigConfigs.test.annotations.value = true // set value
@@ -249,7 +249,7 @@ export const projectConfigConfigs = defineConfigs<ProjectConfig>(
 )
 
 /**
- * Config keys of `configuration of project-config.test`
+ * Config keys of `project-config.test`
  */
 export interface Test {
   /**
@@ -283,15 +283,15 @@ export interface Test {
 }
 
 /**
- * Scoped defaults of `configuration of project-config.test`
+ * Scoped defaults of `project-config.test`
  */
 const _test = {
 /**
- * scope: `configuration of project-config.test`
+ * scope: `project-config.test`
  */
   scope: "project-config.test",
 /**
- * Keys' defaults of `configuration of project-config.test`
+ * Keys' defaults of `project-config.test`
  */
   defaults: {
     "annotations": true,
@@ -302,7 +302,7 @@ const _test = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of project-config.test`
+ * Reactive ConfigObject of `project-config.test`
  * @example
  * let configValue = testConfigObject.annotations //get value 
  * testConfigObject.annotations = true // set value
@@ -313,7 +313,7 @@ export const testConfigObject = defineConfigObject<Test>(
   _test.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of project-config.test`
+ * Reactive ToConfigRefs of `project-config.test`
  * @example
  * let configValue:boolean =testConfigs.annotations.value //get value 
  * testConfigs.annotations.value = true // set value
@@ -326,7 +326,7 @@ export const testConfigs = defineConfigs<Test>(
 )
 
 /**
- * Config keys of `configuration of project-config.fileNestingUpdater`
+ * Config keys of `project-config.fileNestingUpdater`
  */
 export interface FileNestingUpdater {
   /**
@@ -367,15 +367,15 @@ export interface FileNestingUpdater {
 }
 
 /**
- * Scoped defaults of `configuration of project-config.fileNestingUpdater`
+ * Scoped defaults of `project-config.fileNestingUpdater`
  */
 const _fileNestingUpdater = {
 /**
- * scope: `configuration of project-config.fileNestingUpdater`
+ * scope: `project-config.fileNestingUpdater`
  */
   scope: "project-config.fileNestingUpdater",
 /**
- * Keys' defaults of `configuration of project-config.fileNestingUpdater`
+ * Keys' defaults of `project-config.fileNestingUpdater`
  */
   defaults: {
     "autoUpdate": true,
@@ -387,7 +387,7 @@ const _fileNestingUpdater = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of project-config.fileNestingUpdater`
+ * Reactive ConfigObject of `project-config.fileNestingUpdater`
  * @example
  * let configValue = fileNestingUpdaterConfigObject.autoUpdate //get value 
  * fileNestingUpdaterConfigObject.autoUpdate = true // set value
@@ -398,7 +398,7 @@ export const fileNestingUpdaterConfigObject = defineConfigObject<FileNestingUpda
   _fileNestingUpdater.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of project-config.fileNestingUpdater`
+ * Reactive ToConfigRefs of `project-config.fileNestingUpdater`
  * @example
  * let configValue:boolean =fileNestingUpdaterConfigs.autoUpdate.value //get value 
  * fileNestingUpdaterConfigs.autoUpdate.value = true // set value
@@ -411,7 +411,7 @@ export const fileNestingUpdaterConfigs = defineConfigs<FileNestingUpdater>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally`
+ * Config keys of `i18n-ally`
  */
 export interface I18nAlly {
   /**
@@ -984,15 +984,15 @@ export interface I18nAlly {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally`
+ * Scoped defaults of `i18n-ally`
  */
 const _i18nAlly = {
 /**
- * scope: `configuration of i18n-ally`
+ * scope: `i18n-ally`
  */
   scope: "i18n-ally",
 /**
- * Keys' defaults of `configuration of i18n-ally`
+ * Keys' defaults of `i18n-ally`
  */
   defaults: {
     "disabled": false,
@@ -1080,7 +1080,7 @@ const _i18nAlly = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally`
+ * Reactive ConfigObject of `i18n-ally`
  * @example
  * let configValue = i18nAllyConfigObject.disabled //get value 
  * i18nAllyConfigObject.disabled = true // set value
@@ -1091,7 +1091,7 @@ export const i18nAllyConfigObject = defineConfigObject<I18nAlly>(
   _i18nAlly.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally`
+ * Reactive ToConfigRefs of `i18n-ally`
  * @example
  * let configValue:boolean =i18nAllyConfigs.disabled.value //get value 
  * i18nAllyConfigs.disabled.value = false // set value
@@ -1104,7 +1104,7 @@ export const i18nAllyConfigs = defineConfigs<I18nAlly>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.theme`
+ * Config keys of `i18n-ally.theme`
  */
 export interface I18nAllyTheme {
   /**
@@ -1138,15 +1138,15 @@ export interface I18nAllyTheme {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.theme`
+ * Scoped defaults of `i18n-ally.theme`
  */
 const _i18nAllyTheme = {
 /**
- * scope: `configuration of i18n-ally.theme`
+ * scope: `i18n-ally.theme`
  */
   scope: "i18n-ally.theme",
 /**
- * Keys' defaults of `configuration of i18n-ally.theme`
+ * Keys' defaults of `i18n-ally.theme`
  */
   defaults: {
     "annotation": "rgba(153, 153, 153, .8)",
@@ -1157,7 +1157,7 @@ const _i18nAllyTheme = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.theme`
+ * Reactive ConfigObject of `i18n-ally.theme`
  * @example
  * let configValue = i18nAllyThemeConfigObject.annotation //get value 
  * i18nAllyThemeConfigObject.annotation = true // set value
@@ -1168,7 +1168,7 @@ export const i18nAllyThemeConfigObject = defineConfigObject<I18nAllyTheme>(
   _i18nAllyTheme.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.theme`
+ * Reactive ToConfigRefs of `i18n-ally.theme`
  * @example
  * let configValue:string =i18nAllyThemeConfigs.annotation.value //get value 
  * i18nAllyThemeConfigs.annotation.value = "rgba(153, 153, 153, .8)" // set value
@@ -1181,7 +1181,7 @@ export const i18nAllyThemeConfigs = defineConfigs<I18nAllyTheme>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.regex`
+ * Config keys of `i18n-ally.regex`
  */
 export interface I18nAllyRegex {
   /**
@@ -1208,15 +1208,15 @@ export interface I18nAllyRegex {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.regex`
+ * Scoped defaults of `i18n-ally.regex`
  */
 const _i18nAllyRegex = {
 /**
- * scope: `configuration of i18n-ally.regex`
+ * scope: `i18n-ally.regex`
  */
   scope: "i18n-ally.regex",
 /**
- * Keys' defaults of `configuration of i18n-ally.regex`
+ * Keys' defaults of `i18n-ally.regex`
  */
   defaults: {
     "key": undefined,
@@ -1226,7 +1226,7 @@ const _i18nAllyRegex = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.regex`
+ * Reactive ConfigObject of `i18n-ally.regex`
  * @example
  * let configValue = i18nAllyRegexConfigObject.key //get value 
  * i18nAllyRegexConfigObject.key = true // set value
@@ -1237,7 +1237,7 @@ export const i18nAllyRegexConfigObject = defineConfigObject<I18nAllyRegex>(
   _i18nAllyRegex.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.regex`
+ * Reactive ToConfigRefs of `i18n-ally.regex`
  * @example
  * let configValue:string =i18nAllyRegexConfigs.key.value //get value 
  * i18nAllyRegexConfigs.key.value = undefined // set value
@@ -1250,7 +1250,7 @@ export const i18nAllyRegexConfigs = defineConfigs<I18nAllyRegex>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.refactor`
+ * Config keys of `i18n-ally.refactor`
  */
 export interface I18nAllyRefactor {
   /**
@@ -1263,15 +1263,15 @@ export interface I18nAllyRefactor {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.refactor`
+ * Scoped defaults of `i18n-ally.refactor`
  */
 const _i18nAllyRefactor = {
 /**
- * scope: `configuration of i18n-ally.refactor`
+ * scope: `i18n-ally.refactor`
  */
   scope: "i18n-ally.refactor",
 /**
- * Keys' defaults of `configuration of i18n-ally.refactor`
+ * Keys' defaults of `i18n-ally.refactor`
  */
   defaults: {
     "templates": undefined,
@@ -1279,7 +1279,7 @@ const _i18nAllyRefactor = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.refactor`
+ * Reactive ConfigObject of `i18n-ally.refactor`
  * @example
  * let configValue = i18nAllyRefactorConfigObject.templates //get value 
  * i18nAllyRefactorConfigObject.templates = true // set value
@@ -1290,7 +1290,7 @@ export const i18nAllyRefactorConfigObject = defineConfigObject<I18nAllyRefactor>
   _i18nAllyRefactor.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.refactor`
+ * Reactive ToConfigRefs of `i18n-ally.refactor`
  * @example
  * let configValue:array =i18nAllyRefactorConfigs.templates.value //get value 
  * i18nAllyRefactorConfigs.templates.value = undefined // set value
@@ -1303,7 +1303,7 @@ export const i18nAllyRefactorConfigs = defineConfigs<I18nAllyRefactor>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.translate`
+ * Config keys of `i18n-ally.translate`
  */
 export interface I18nAllyTranslate {
   /**
@@ -1421,15 +1421,15 @@ export interface I18nAllyTranslate {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.translate`
+ * Scoped defaults of `i18n-ally.translate`
  */
 const _i18nAllyTranslate = {
 /**
- * scope: `configuration of i18n-ally.translate`
+ * scope: `i18n-ally.translate`
  */
   scope: "i18n-ally.translate",
 /**
- * Keys' defaults of `configuration of i18n-ally.translate`
+ * Keys' defaults of `i18n-ally.translate`
  */
   defaults: {
     "saveAsCandidates": false,
@@ -1452,7 +1452,7 @@ const _i18nAllyTranslate = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.translate`
+ * Reactive ConfigObject of `i18n-ally.translate`
  * @example
  * let configValue = i18nAllyTranslateConfigObject.saveAsCandidates //get value 
  * i18nAllyTranslateConfigObject.saveAsCandidates = true // set value
@@ -1463,7 +1463,7 @@ export const i18nAllyTranslateConfigObject = defineConfigObject<I18nAllyTranslat
   _i18nAllyTranslate.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.translate`
+ * Reactive ToConfigRefs of `i18n-ally.translate`
  * @example
  * let configValue:boolean =i18nAllyTranslateConfigs.saveAsCandidates.value //get value 
  * i18nAllyTranslateConfigs.saveAsCandidates.value = false // set value
@@ -1476,7 +1476,7 @@ export const i18nAllyTranslateConfigs = defineConfigs<I18nAllyTranslate>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.translate.google`
+ * Config keys of `i18n-ally.translate.google`
  */
 export interface I18nAllyTranslateGoogle {
   /**
@@ -1489,15 +1489,15 @@ export interface I18nAllyTranslateGoogle {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.translate.google`
+ * Scoped defaults of `i18n-ally.translate.google`
  */
 const _i18nAllyTranslateGoogle = {
 /**
- * scope: `configuration of i18n-ally.translate.google`
+ * scope: `i18n-ally.translate.google`
  */
   scope: "i18n-ally.translate.google",
 /**
- * Keys' defaults of `configuration of i18n-ally.translate.google`
+ * Keys' defaults of `i18n-ally.translate.google`
  */
   defaults: {
     "apiKey": null,
@@ -1505,7 +1505,7 @@ const _i18nAllyTranslateGoogle = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.translate.google`
+ * Reactive ConfigObject of `i18n-ally.translate.google`
  * @example
  * let configValue = i18nAllyTranslateGoogleConfigObject.apiKey //get value 
  * i18nAllyTranslateGoogleConfigObject.apiKey = true // set value
@@ -1516,7 +1516,7 @@ export const i18nAllyTranslateGoogleConfigObject = defineConfigObject<I18nAllyTr
   _i18nAllyTranslateGoogle.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.translate.google`
+ * Reactive ToConfigRefs of `i18n-ally.translate.google`
  * @example
  * let configValue:string =i18nAllyTranslateGoogleConfigs.apiKey.value //get value 
  * i18nAllyTranslateGoogleConfigs.apiKey.value = null // set value
@@ -1529,7 +1529,7 @@ export const i18nAllyTranslateGoogleConfigs = defineConfigs<I18nAllyTranslateGoo
 )
 
 /**
- * Config keys of `configuration of i18n-ally.translate.deepl`
+ * Config keys of `i18n-ally.translate.deepl`
  */
 export interface I18nAllyTranslateDeepl {
   /**
@@ -1556,15 +1556,15 @@ export interface I18nAllyTranslateDeepl {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.translate.deepl`
+ * Scoped defaults of `i18n-ally.translate.deepl`
  */
 const _i18nAllyTranslateDeepl = {
 /**
- * scope: `configuration of i18n-ally.translate.deepl`
+ * scope: `i18n-ally.translate.deepl`
  */
   scope: "i18n-ally.translate.deepl",
 /**
- * Keys' defaults of `configuration of i18n-ally.translate.deepl`
+ * Keys' defaults of `i18n-ally.translate.deepl`
  */
   defaults: {
     "apiKey": null,
@@ -1574,7 +1574,7 @@ const _i18nAllyTranslateDeepl = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.translate.deepl`
+ * Reactive ConfigObject of `i18n-ally.translate.deepl`
  * @example
  * let configValue = i18nAllyTranslateDeeplConfigObject.apiKey //get value 
  * i18nAllyTranslateDeeplConfigObject.apiKey = true // set value
@@ -1585,7 +1585,7 @@ export const i18nAllyTranslateDeeplConfigObject = defineConfigObject<I18nAllyTra
   _i18nAllyTranslateDeepl.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.translate.deepl`
+ * Reactive ToConfigRefs of `i18n-ally.translate.deepl`
  * @example
  * let configValue:string =i18nAllyTranslateDeeplConfigs.apiKey.value //get value 
  * i18nAllyTranslateDeeplConfigs.apiKey.value = null // set value
@@ -1598,7 +1598,7 @@ export const i18nAllyTranslateDeeplConfigs = defineConfigs<I18nAllyTranslateDeep
 )
 
 /**
- * Config keys of `configuration of i18n-ally.translate.baidu`
+ * Config keys of `i18n-ally.translate.baidu`
  */
 export interface I18nAllyTranslateBaidu {
   /**
@@ -1618,15 +1618,15 @@ export interface I18nAllyTranslateBaidu {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.translate.baidu`
+ * Scoped defaults of `i18n-ally.translate.baidu`
  */
 const _i18nAllyTranslateBaidu = {
 /**
- * scope: `configuration of i18n-ally.translate.baidu`
+ * scope: `i18n-ally.translate.baidu`
  */
   scope: "i18n-ally.translate.baidu",
 /**
- * Keys' defaults of `configuration of i18n-ally.translate.baidu`
+ * Keys' defaults of `i18n-ally.translate.baidu`
  */
   defaults: {
     "appid": null,
@@ -1635,7 +1635,7 @@ const _i18nAllyTranslateBaidu = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.translate.baidu`
+ * Reactive ConfigObject of `i18n-ally.translate.baidu`
  * @example
  * let configValue = i18nAllyTranslateBaiduConfigObject.appid //get value 
  * i18nAllyTranslateBaiduConfigObject.appid = true // set value
@@ -1646,7 +1646,7 @@ export const i18nAllyTranslateBaiduConfigObject = defineConfigObject<I18nAllyTra
   _i18nAllyTranslateBaidu.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.translate.baidu`
+ * Reactive ToConfigRefs of `i18n-ally.translate.baidu`
  * @example
  * let configValue:string =i18nAllyTranslateBaiduConfigs.appid.value //get value 
  * i18nAllyTranslateBaiduConfigs.appid.value = null // set value
@@ -1659,7 +1659,7 @@ export const i18nAllyTranslateBaiduConfigs = defineConfigs<I18nAllyTranslateBaid
 )
 
 /**
- * Config keys of `configuration of i18n-ally.translate.libre`
+ * Config keys of `i18n-ally.translate.libre`
  */
 export interface I18nAllyTranslateLibre {
   /**
@@ -1672,15 +1672,15 @@ export interface I18nAllyTranslateLibre {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.translate.libre`
+ * Scoped defaults of `i18n-ally.translate.libre`
  */
 const _i18nAllyTranslateLibre = {
 /**
- * scope: `configuration of i18n-ally.translate.libre`
+ * scope: `i18n-ally.translate.libre`
  */
   scope: "i18n-ally.translate.libre",
 /**
- * Keys' defaults of `configuration of i18n-ally.translate.libre`
+ * Keys' defaults of `i18n-ally.translate.libre`
  */
   defaults: {
     "apiRoot": "http://localhost:5000",
@@ -1688,7 +1688,7 @@ const _i18nAllyTranslateLibre = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.translate.libre`
+ * Reactive ConfigObject of `i18n-ally.translate.libre`
  * @example
  * let configValue = i18nAllyTranslateLibreConfigObject.apiRoot //get value 
  * i18nAllyTranslateLibreConfigObject.apiRoot = true // set value
@@ -1699,7 +1699,7 @@ export const i18nAllyTranslateLibreConfigObject = defineConfigObject<I18nAllyTra
   _i18nAllyTranslateLibre.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.translate.libre`
+ * Reactive ToConfigRefs of `i18n-ally.translate.libre`
  * @example
  * let configValue:string =i18nAllyTranslateLibreConfigs.apiRoot.value //get value 
  * i18nAllyTranslateLibreConfigs.apiRoot.value = "http://localhost:5000" // set value
@@ -1712,7 +1712,7 @@ export const i18nAllyTranslateLibreConfigs = defineConfigs<I18nAllyTranslateLibr
 )
 
 /**
- * Config keys of `configuration of i18n-ally.translate.openai`
+ * Config keys of `i18n-ally.translate.openai`
  */
 export interface I18nAllyTranslateOpenai {
   /**
@@ -1739,15 +1739,15 @@ export interface I18nAllyTranslateOpenai {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.translate.openai`
+ * Scoped defaults of `i18n-ally.translate.openai`
  */
 const _i18nAllyTranslateOpenai = {
 /**
- * scope: `configuration of i18n-ally.translate.openai`
+ * scope: `i18n-ally.translate.openai`
  */
   scope: "i18n-ally.translate.openai",
 /**
- * Keys' defaults of `configuration of i18n-ally.translate.openai`
+ * Keys' defaults of `i18n-ally.translate.openai`
  */
   defaults: {
     "apiKey": null,
@@ -1757,7 +1757,7 @@ const _i18nAllyTranslateOpenai = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.translate.openai`
+ * Reactive ConfigObject of `i18n-ally.translate.openai`
  * @example
  * let configValue = i18nAllyTranslateOpenaiConfigObject.apiKey //get value 
  * i18nAllyTranslateOpenaiConfigObject.apiKey = true // set value
@@ -1768,7 +1768,7 @@ export const i18nAllyTranslateOpenaiConfigObject = defineConfigObject<I18nAllyTr
   _i18nAllyTranslateOpenai.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.translate.openai`
+ * Reactive ToConfigRefs of `i18n-ally.translate.openai`
  * @example
  * let configValue:string =i18nAllyTranslateOpenaiConfigs.apiKey.value //get value 
  * i18nAllyTranslateOpenaiConfigs.apiKey.value = null // set value
@@ -1781,7 +1781,7 @@ export const i18nAllyTranslateOpenaiConfigs = defineConfigs<I18nAllyTranslateOpe
 )
 
 /**
- * Config keys of `configuration of i18n-ally.usage`
+ * Config keys of `i18n-ally.usage`
  */
 export interface I18nAllyUsage {
   /**
@@ -1801,15 +1801,15 @@ export interface I18nAllyUsage {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.usage`
+ * Scoped defaults of `i18n-ally.usage`
  */
 const _i18nAllyUsage = {
 /**
- * scope: `configuration of i18n-ally.usage`
+ * scope: `i18n-ally.usage`
  */
   scope: "i18n-ally.usage",
 /**
- * Keys' defaults of `configuration of i18n-ally.usage`
+ * Keys' defaults of `i18n-ally.usage`
  */
   defaults: {
     "scanningIgnore": undefined,
@@ -1818,7 +1818,7 @@ const _i18nAllyUsage = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.usage`
+ * Reactive ConfigObject of `i18n-ally.usage`
  * @example
  * let configValue = i18nAllyUsageConfigObject.scanningIgnore //get value 
  * i18nAllyUsageConfigObject.scanningIgnore = true // set value
@@ -1829,7 +1829,7 @@ export const i18nAllyUsageConfigObject = defineConfigObject<I18nAllyUsage>(
   _i18nAllyUsage.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.usage`
+ * Reactive ToConfigRefs of `i18n-ally.usage`
  * @example
  * let configValue:array =i18nAllyUsageConfigs.scanningIgnore.value //get value 
  * i18nAllyUsageConfigs.scanningIgnore.value = undefined // set value
@@ -1842,7 +1842,7 @@ export const i18nAllyUsageConfigs = defineConfigs<I18nAllyUsage>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.frameworks`
+ * Config keys of `i18n-ally.frameworks`
  */
 export interface I18nAllyFrameworks {
   /**
@@ -1855,15 +1855,15 @@ export interface I18nAllyFrameworks {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.frameworks`
+ * Scoped defaults of `i18n-ally.frameworks`
  */
 const _i18nAllyFrameworks = {
 /**
- * scope: `configuration of i18n-ally.frameworks`
+ * scope: `i18n-ally.frameworks`
  */
   scope: "i18n-ally.frameworks",
 /**
- * Keys' defaults of `configuration of i18n-ally.frameworks`
+ * Keys' defaults of `i18n-ally.frameworks`
  */
   defaults: {
     "ruby-rails.scopeRoot": "app/views",
@@ -1871,7 +1871,7 @@ const _i18nAllyFrameworks = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.frameworks`
+ * Reactive ConfigObject of `i18n-ally.frameworks`
  * @example
  * let configValue = i18nAllyFrameworksConfigObject.ruby-rails.scopeRoot //get value 
  * i18nAllyFrameworksConfigObject.ruby-rails.scopeRoot = true // set value
@@ -1882,7 +1882,7 @@ export const i18nAllyFrameworksConfigObject = defineConfigObject<I18nAllyFramewo
   _i18nAllyFrameworks.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.frameworks`
+ * Reactive ToConfigRefs of `i18n-ally.frameworks`
  * @example
  * let configValue:string =i18nAllyFrameworksConfigs.ruby-rails.scopeRoot.value //get value 
  * i18nAllyFrameworksConfigs.ruby-rails.scopeRoot.value = "app/views" // set value
@@ -1895,7 +1895,7 @@ export const i18nAllyFrameworksConfigs = defineConfigs<I18nAllyFrameworks>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.frameworks.ruby-rails`
+ * Config keys of `i18n-ally.frameworks.ruby-rails`
  */
 export interface I18nAllyFrameworksRubyRails {
   /**
@@ -1908,15 +1908,15 @@ export interface I18nAllyFrameworksRubyRails {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.frameworks.ruby-rails`
+ * Scoped defaults of `i18n-ally.frameworks.ruby-rails`
  */
 const _i18nAllyFrameworksRubyRails = {
 /**
- * scope: `configuration of i18n-ally.frameworks.ruby-rails`
+ * scope: `i18n-ally.frameworks.ruby-rails`
  */
   scope: "i18n-ally.frameworks.ruby-rails",
 /**
- * Keys' defaults of `configuration of i18n-ally.frameworks.ruby-rails`
+ * Keys' defaults of `i18n-ally.frameworks.ruby-rails`
  */
   defaults: {
     "scopeRoot": "app/views",
@@ -1924,7 +1924,7 @@ const _i18nAllyFrameworksRubyRails = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.frameworks.ruby-rails`
+ * Reactive ConfigObject of `i18n-ally.frameworks.ruby-rails`
  * @example
  * let configValue = i18nAllyFrameworksRubyRailsConfigObject.scopeRoot //get value 
  * i18nAllyFrameworksRubyRailsConfigObject.scopeRoot = true // set value
@@ -1935,7 +1935,7 @@ export const i18nAllyFrameworksRubyRailsConfigObject = defineConfigObject<I18nAl
   _i18nAllyFrameworksRubyRails.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.frameworks.ruby-rails`
+ * Reactive ToConfigRefs of `i18n-ally.frameworks.ruby-rails`
  * @example
  * let configValue:string =i18nAllyFrameworksRubyRailsConfigs.scopeRoot.value //get value 
  * i18nAllyFrameworksRubyRailsConfigs.scopeRoot.value = "app/views" // set value
@@ -1948,7 +1948,7 @@ export const i18nAllyFrameworksRubyRailsConfigs = defineConfigs<I18nAllyFramewor
 )
 
 /**
- * Config keys of `configuration of i18n-ally.parsers`
+ * Config keys of `i18n-ally.parsers`
  */
 export interface I18nAllyParsers {
   /**
@@ -1975,15 +1975,15 @@ export interface I18nAllyParsers {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.parsers`
+ * Scoped defaults of `i18n-ally.parsers`
  */
 const _i18nAllyParsers = {
 /**
- * scope: `configuration of i18n-ally.parsers`
+ * scope: `i18n-ally.parsers`
  */
   scope: "i18n-ally.parsers",
 /**
- * Keys' defaults of `configuration of i18n-ally.parsers`
+ * Keys' defaults of `i18n-ally.parsers`
  */
   defaults: {
     "typescript.tsNodePath": "node_modules/ts-node/dist/bin.js",
@@ -1993,7 +1993,7 @@ const _i18nAllyParsers = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.parsers`
+ * Reactive ConfigObject of `i18n-ally.parsers`
  * @example
  * let configValue = i18nAllyParsersConfigObject.typescript.tsNodePath //get value 
  * i18nAllyParsersConfigObject.typescript.tsNodePath = true // set value
@@ -2004,7 +2004,7 @@ export const i18nAllyParsersConfigObject = defineConfigObject<I18nAllyParsers>(
   _i18nAllyParsers.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.parsers`
+ * Reactive ToConfigRefs of `i18n-ally.parsers`
  * @example
  * let configValue:string =i18nAllyParsersConfigs.typescript.tsNodePath.value //get value 
  * i18nAllyParsersConfigs.typescript.tsNodePath.value = "node_modules/ts-node/dist/bin.js" // set value
@@ -2017,7 +2017,7 @@ export const i18nAllyParsersConfigs = defineConfigs<I18nAllyParsers>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.parsers.typescript`
+ * Config keys of `i18n-ally.parsers.typescript`
  */
 export interface I18nAllyParsersTypescript {
   /**
@@ -2037,15 +2037,15 @@ export interface I18nAllyParsersTypescript {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.parsers.typescript`
+ * Scoped defaults of `i18n-ally.parsers.typescript`
  */
 const _i18nAllyParsersTypescript = {
 /**
- * scope: `configuration of i18n-ally.parsers.typescript`
+ * scope: `i18n-ally.parsers.typescript`
  */
   scope: "i18n-ally.parsers.typescript",
 /**
- * Keys' defaults of `configuration of i18n-ally.parsers.typescript`
+ * Keys' defaults of `i18n-ally.parsers.typescript`
  */
   defaults: {
     "tsNodePath": "node_modules/ts-node/dist/bin.js",
@@ -2054,7 +2054,7 @@ const _i18nAllyParsersTypescript = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.parsers.typescript`
+ * Reactive ConfigObject of `i18n-ally.parsers.typescript`
  * @example
  * let configValue = i18nAllyParsersTypescriptConfigObject.tsNodePath //get value 
  * i18nAllyParsersTypescriptConfigObject.tsNodePath = true // set value
@@ -2065,7 +2065,7 @@ export const i18nAllyParsersTypescriptConfigObject = defineConfigObject<I18nAlly
   _i18nAllyParsersTypescript.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.parsers.typescript`
+ * Reactive ToConfigRefs of `i18n-ally.parsers.typescript`
  * @example
  * let configValue:string =i18nAllyParsersTypescriptConfigs.tsNodePath.value //get value 
  * i18nAllyParsersTypescriptConfigs.tsNodePath.value = "node_modules/ts-node/dist/bin.js" // set value
@@ -2078,7 +2078,7 @@ export const i18nAllyParsersTypescriptConfigs = defineConfigs<I18nAllyParsersTyp
 )
 
 /**
- * Config keys of `configuration of i18n-ally.review`
+ * Config keys of `i18n-ally.review`
  */
 export interface I18nAllyReview {
   /**
@@ -2119,15 +2119,15 @@ export interface I18nAllyReview {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.review`
+ * Scoped defaults of `i18n-ally.review`
  */
 const _i18nAllyReview = {
 /**
- * scope: `configuration of i18n-ally.review`
+ * scope: `i18n-ally.review`
  */
   scope: "i18n-ally.review",
 /**
- * Keys' defaults of `configuration of i18n-ally.review`
+ * Keys' defaults of `i18n-ally.review`
  */
   defaults: {
     "enabled": true,
@@ -2139,7 +2139,7 @@ const _i18nAllyReview = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.review`
+ * Reactive ConfigObject of `i18n-ally.review`
  * @example
  * let configValue = i18nAllyReviewConfigObject.enabled //get value 
  * i18nAllyReviewConfigObject.enabled = true // set value
@@ -2150,7 +2150,7 @@ export const i18nAllyReviewConfigObject = defineConfigObject<I18nAllyReview>(
   _i18nAllyReview.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.review`
+ * Reactive ToConfigRefs of `i18n-ally.review`
  * @example
  * let configValue:boolean =i18nAllyReviewConfigs.enabled.value //get value 
  * i18nAllyReviewConfigs.enabled.value = true // set value
@@ -2163,7 +2163,7 @@ export const i18nAllyReviewConfigs = defineConfigs<I18nAllyReview>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.review.user`
+ * Config keys of `i18n-ally.review.user`
  */
 export interface I18nAllyReviewUser {
   /**
@@ -2183,15 +2183,15 @@ export interface I18nAllyReviewUser {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.review.user`
+ * Scoped defaults of `i18n-ally.review.user`
  */
 const _i18nAllyReviewUser = {
 /**
- * scope: `configuration of i18n-ally.review.user`
+ * scope: `i18n-ally.review.user`
  */
   scope: "i18n-ally.review.user",
 /**
- * Keys' defaults of `configuration of i18n-ally.review.user`
+ * Keys' defaults of `i18n-ally.review.user`
  */
   defaults: {
     "name": undefined,
@@ -2200,7 +2200,7 @@ const _i18nAllyReviewUser = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.review.user`
+ * Reactive ConfigObject of `i18n-ally.review.user`
  * @example
  * let configValue = i18nAllyReviewUserConfigObject.name //get value 
  * i18nAllyReviewUserConfigObject.name = true // set value
@@ -2211,7 +2211,7 @@ export const i18nAllyReviewUserConfigObject = defineConfigObject<I18nAllyReviewU
   _i18nAllyReviewUser.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.review.user`
+ * Reactive ToConfigRefs of `i18n-ally.review.user`
  * @example
  * let configValue:string =i18nAllyReviewUserConfigs.name.value //get value 
  * i18nAllyReviewUserConfigs.name.value = undefined // set value
@@ -2224,7 +2224,7 @@ export const i18nAllyReviewUserConfigs = defineConfigs<I18nAllyReviewUser>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.editor`
+ * Config keys of `i18n-ally.editor`
  */
 export interface I18nAllyEditor {
   /**
@@ -2237,15 +2237,15 @@ export interface I18nAllyEditor {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.editor`
+ * Scoped defaults of `i18n-ally.editor`
  */
 const _i18nAllyEditor = {
 /**
- * scope: `configuration of i18n-ally.editor`
+ * scope: `i18n-ally.editor`
  */
   scope: "i18n-ally.editor",
 /**
- * Keys' defaults of `configuration of i18n-ally.editor`
+ * Keys' defaults of `i18n-ally.editor`
  */
   defaults: {
     "preferEditor": false,
@@ -2253,7 +2253,7 @@ const _i18nAllyEditor = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.editor`
+ * Reactive ConfigObject of `i18n-ally.editor`
  * @example
  * let configValue = i18nAllyEditorConfigObject.preferEditor //get value 
  * i18nAllyEditorConfigObject.preferEditor = true // set value
@@ -2264,7 +2264,7 @@ export const i18nAllyEditorConfigObject = defineConfigObject<I18nAllyEditor>(
   _i18nAllyEditor.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.editor`
+ * Reactive ToConfigRefs of `i18n-ally.editor`
  * @example
  * let configValue:boolean =i18nAllyEditorConfigs.preferEditor.value //get value 
  * i18nAllyEditorConfigs.preferEditor.value = false // set value
@@ -2277,7 +2277,7 @@ export const i18nAllyEditorConfigs = defineConfigs<I18nAllyEditor>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.extract`
+ * Config keys of `i18n-ally.extract`
  */
 export interface I18nAllyExtract {
   /**
@@ -2353,15 +2353,15 @@ export interface I18nAllyExtract {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.extract`
+ * Scoped defaults of `i18n-ally.extract`
  */
 const _i18nAllyExtract = {
 /**
- * scope: `configuration of i18n-ally.extract`
+ * scope: `i18n-ally.extract`
  */
   scope: "i18n-ally.extract",
 /**
- * Keys' defaults of `configuration of i18n-ally.extract`
+ * Keys' defaults of `i18n-ally.extract`
  */
   defaults: {
     "keygenStrategy": "slug",
@@ -2378,7 +2378,7 @@ const _i18nAllyExtract = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.extract`
+ * Reactive ConfigObject of `i18n-ally.extract`
  * @example
  * let configValue = i18nAllyExtractConfigObject.keygenStrategy //get value 
  * i18nAllyExtractConfigObject.keygenStrategy = true // set value
@@ -2389,7 +2389,7 @@ export const i18nAllyExtractConfigObject = defineConfigObject<I18nAllyExtract>(
   _i18nAllyExtract.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.extract`
+ * Reactive ToConfigRefs of `i18n-ally.extract`
  * @example
  * let configValue:string =i18nAllyExtractConfigs.keygenStrategy.value //get value 
  * i18nAllyExtractConfigs.keygenStrategy.value = "slug" // set value
@@ -2402,7 +2402,7 @@ export const i18nAllyExtractConfigs = defineConfigs<I18nAllyExtract>(
 )
 
 /**
- * Config keys of `configuration of i18n-ally.extract.parsers`
+ * Config keys of `i18n-ally.extract.parsers`
  */
 export interface I18nAllyExtractParsers {
   /**
@@ -2422,15 +2422,15 @@ export interface I18nAllyExtractParsers {
 }
 
 /**
- * Scoped defaults of `configuration of i18n-ally.extract.parsers`
+ * Scoped defaults of `i18n-ally.extract.parsers`
  */
 const _i18nAllyExtractParsers = {
 /**
- * scope: `configuration of i18n-ally.extract.parsers`
+ * scope: `i18n-ally.extract.parsers`
  */
   scope: "i18n-ally.extract.parsers",
 /**
- * Keys' defaults of `configuration of i18n-ally.extract.parsers`
+ * Keys' defaults of `i18n-ally.extract.parsers`
  */
   defaults: {
     "html": {},
@@ -2439,7 +2439,7 @@ const _i18nAllyExtractParsers = {
 }
 
 /**
- * Reactive ConfigObject of `configuration of i18n-ally.extract.parsers`
+ * Reactive ConfigObject of `i18n-ally.extract.parsers`
  * @example
  * let configValue = i18nAllyExtractParsersConfigObject.html //get value 
  * i18nAllyExtractParsersConfigObject.html = true // set value
@@ -2450,7 +2450,7 @@ export const i18nAllyExtractParsersConfigObject = defineConfigObject<I18nAllyExt
   _i18nAllyExtractParsers.defaults
 )
 /**
- * Reactive ToConfigRefs of `configuration of i18n-ally.extract.parsers`
+ * Reactive ToConfigRefs of `i18n-ally.extract.parsers`
  * @example
  * let configValue:object =i18nAllyExtractParsersConfigs.html.value //get value 
  * i18nAllyExtractParsersConfigs.html.value = {} // set value
