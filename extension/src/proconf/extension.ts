@@ -8,7 +8,7 @@ const { activate, deactivate } = defineExtension(() => {
   // 'vscode-project-config-updater.helloWorld'
   useCommand(commands.manualUpdate, () => {
     window.showInformationMessage(testConfigObject.color)
-    testConfigObject.$update("annotations", !testConfigObject.annotations)
+    testConfigObject.$update('annotations', !testConfigObject.annotations)
   })
 
   const isDark = useIsDarkTheme()

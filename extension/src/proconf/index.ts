@@ -1,16 +1,12 @@
 import {
   extensionContext as ctxRef,
   defineExtension,
-  useCommand, useIsDarkTheme, useVscodeContext,
-  useWindowState,
-  watchEffect
+  useCommand,
 } from 'reactive-vscode'
-import { commands, projectConfigConfigObject as config } from "@/meta"
+import { commands, projectConfigConfigObject as config } from '@/meta'
 import { fetchAndUpdate } from './fetch'
 
-
 const { activate, deactivate } = defineExtension(() => {
-
   const ctx = ctxRef.value
   if (ctx) {
     useCommand(commands.manualUpdate, (..._args) => {
@@ -29,8 +25,6 @@ const { activate, deactivate } = defineExtension(() => {
         fetchAndUpdate(ctx, config['fileNestingUpdater.promptOnAutoUpdate'])
     }
   }
-
 })
 
 export { activate, deactivate }
-

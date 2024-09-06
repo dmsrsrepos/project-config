@@ -13,8 +13,7 @@
     "tsup": "catalog:",
     "tsx": "^4.19.0",
     "type-fest": "^4.26.0",
-    "typescript": "catalog:",
-    "vscode-ext-gen": "^0.4.3"
+    "typescript": "catalog:"
   },
   "funding": "https://github.com/sponsors/cnjimbo",
   "license": "MIT",

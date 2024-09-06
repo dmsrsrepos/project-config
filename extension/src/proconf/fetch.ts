@@ -1,14 +1,13 @@
 import type { FetchResponse } from 'ofetch'
 import { fetch } from 'ofetch'
 import type { ExtensionContext } from 'vscode'
-import { ConfigurationTarget, window, workspace } from 'vscode'
+import { ConfigurationTarget, window } from 'vscode'
 import { FILE, MSG_PREFIX, URL_PREFIX } from '@/constants'
 import { fileNestingUpdaterConfigObject as config } from '@/meta'
 import { logger } from '@/utils'
 import { defineConfigs } from 'reactive-vscode'
 
 export async function fetchLatest(): Promise<Record<string, string>> {
-
   const repo = config.upstreamRepo
   const branch = config.upstreamBranch
 
@@ -26,18 +25,17 @@ export async function fetchLatest(): Promise<Record<string, string>> {
     .filter(line => !line.trim().startsWith('//'))
     .join('\n')
     .slice(0, -1)
-    }}`
+  }}`
 
   const mdConfig = JSON.parse(json) || {}
   return mdConfig['explorer.fileNesting.patterns']
 }
 
 export async function fetchAndUpdate(ctx: ExtensionContext, prompt = true): Promise<void> {
-
   const { patterns, enabled, expand } = defineConfigs('explorer.fileNesting', {
-    "patterns": Object,
-    "enabled": Boolean,
-    "expand": Boolean
+    patterns: Object,
+    enabled: Boolean,
+    expand: Boolean,
   })
   const mdPatterns = await fetchLatest()
   let shouldUpdate = true
@@ -60,12 +58,7 @@ export async function fetchAndUpdate(ctx: ExtensionContext, prompt = true): Prom
     shouldUpdate = result === buttonUpdate
   }
 
-
-
-
   if (shouldUpdate) {
-
-
     enabled.update(true, ConfigurationTarget.Global)
     expand.update(false, ConfigurationTarget.Global)
     patterns.update({
