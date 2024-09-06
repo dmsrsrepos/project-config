@@ -133,29 +133,12 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 | `i18n-ally.extract.ignoredByFiles`                     | Strings to be ignored on hard-coded strings detection, by files                                                                      | `object`       | `{}`                                 |
 | `i18n-ally.parserOptions`                              |                                                                                                                                      | `object`       | `{}`                                 |
 | `i18n-ally.defaultNamespace`                           | %config.default_namespace%                                                                                                           | `string`       | ``                                   |
-| `i18n-ally.derivedKeyRules`                            |                                                                                                                                      | `undefined`    | ``                                   |
-| `i18n-ally.filenameMatchRegex`                         |                                                                                                                                      | `undefined`    | ``                                   |
-| `i18n-ally.fileNamespace`                              |                                                                                                                                      | `undefined`    | ``                                   |
-| `i18n-ally.keyMatchRegex`                              |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.localesPaths`                           |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.encoding`                               |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.sourceLanguage`                         |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.displayLanguage`                        |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.ignoredLocales`                         |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.keystyle`                               |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.dirStructure`                           |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.annotations`                            |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.annotationMaxLength`                    |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.annotationDelimiter`                    |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.filenameMatchRegex`                     |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.includeSubfolders`                      |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.fullReloadOnChanged`                    |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.sortKeys`                               |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.preferredDelimiter`                     |                                                                                                                                      | `undefined`    | ``                                   |
-| `vue-i18n-ally.readonly`                               |                                                                                                                                      | `undefined`    | ``                                   |
 
 <!-- configs -->
 
+
+<!-- configsJson -->
+<!-- configsJson -->
 It will check for update every 12 hours by default. You can also do it manually by executing command `Project Config Updater: Update config now`.
 
 ## License
