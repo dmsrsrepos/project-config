@@ -3,7 +3,7 @@ import {
   defineExtension,
   useCommand,
 } from 'reactive-vscode'
-import { commands, projectConfigConfigObject as config } from '@/meta'
+import { commands, projectConfigConfigObject as config } from '@/generated-meta'
 import { fetchAndUpdate } from './fetch'
 
 const { activate, deactivate } = defineExtension(() => {

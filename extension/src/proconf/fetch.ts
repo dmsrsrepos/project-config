@@ -3,7 +3,7 @@ import { fetch } from 'ofetch'
 import type { ExtensionContext } from 'vscode'
 import { ConfigurationTarget, window } from 'vscode'
 import { FILE, MSG_PREFIX, URL_PREFIX } from '@/constants'
-import { fileNestingUpdaterConfigObject as config } from '@/meta'
+import { fileNestingUpdaterConfigObject as config } from '@/generated-meta'
 import { logger } from '@/utils'
 import { defineConfigs } from 'reactive-vscode'
 
