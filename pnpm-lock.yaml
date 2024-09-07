@@ -70,6 +70,9 @@ importers:
       ofetch:
         specifier: 'catalog:'
         version: 1.3.4
+      radash:
+        specifier: ^12.1.0
+        version: 12.1.0
       reactive-meta-gen:
         specifier: file:G:\code-vsextension\reactive-meta-gen
         version: file:../reactive-meta-gen
