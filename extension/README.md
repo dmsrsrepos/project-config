@@ -1,3 +1,6 @@
+![License](https://img.shields.io/badge/license-MIT-yellow) #静态badge图标
+![github license](https://img.shields.io/github/license/:user/:repo) #动态连接github仓库的图标
+
 <br>
 
 <p align="center">
@@ -47,64 +50,21 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 
 ```json
 {
-  //`boolean`, Fetch and update the latest config automatically 
+  //Fetch and update the latest config automatically
   "project-config.fileNestingUpdater.autoUpdate": true,
 
-  //`boolean`, Should show up the prompt before doing auto update 
+  //Should show up the prompt before doing auto update
   "project-config.fileNestingUpdater.promptOnAutoUpdate": true,
 
-  //`number`, The minimal interval for auto update, in minutes 
+  //The minimal interval for auto update, in minutes
   "project-config.fileNestingUpdater.autoUpdateInterval": 4320,
 
-  //`string`, The upstream repo you want to update from 
+  //The upstream repo you want to update from
   "project-config.fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
 
-  //`string`, The branch name of upstream repo 
+  //The branch name of upstream repo
   "project-config.fileNestingUpdater.upstreamBranch": "main",
 
-  //{
-      /**
-     * Automatically clear the console on each save before running commands.
-     * @default `false`
-     */
-    'autoClearConsole': boolean
-    /**
-     * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
-     * @default `undefined`
-     */
-    'shell'?: string
-    /**
-     * 
-     * @default `undefined`
-     */
-    'commands'?: {
-              /**
-         * Regex for matching files to run commands on 
-         * 
-         * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
-         * 
-         * e.g.
-         * "match": "some\\\\directory\\\\.*"
-         * @default `".*"`
-         */
-        'match': string
-        /**
-         * Regex for matching files *not* to run commands on.
-         * @default `".*"`
-         */
-        'notMatch': string
-        /**
-         * Command to execute on save.
-         * @default `"echo ${file}"`
-         */
-        'cmd': string
-        /**
-         * Run command asynchronously.
-         * @default `false`
-         */
-        'isAsync': boolean 
-      }[] 
-  }
   //
   "emeraldwalk.runonsave": { "autoClearConsole": false, "shell": undefined, "commands": undefined },
 

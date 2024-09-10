@@ -72,5 +72,6 @@
   "github.branchProtection": true,
   "git-graph.repository.showRemoteBranches": false,
   "pnpmCatalogLens.enabled": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
 
 }

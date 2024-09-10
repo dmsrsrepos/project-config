@@ -2,23 +2,32 @@ import path from 'node:path'
 import { exec } from 'node:child_process'
 import process from 'node:process'
 import vscode from 'vscode'
-import { useCommandExtensionEmeraldwalkDisableRunOnSave, useCommandExtensionEmeraldwalkEnableRunOnSave } from '@/generated-meta'
+import {
+  useCommandExtensionEmeraldwalkDisableRunOnSave,
+  useCommandExtensionEmeraldwalkEnableRunOnSave,
+  name,
+  useConfigObjectsEmeraldwalk
+} from '@/generated-meta'
+import { useEvent, useDisposable, useWorkspaceFolders, useL10nText, useOutputChannel } from 'reactive-vscode'
 export function activate(context: vscode.ExtensionContext): void {
   const extension = new RunOnSaveExtension(context)
   extension.showOutputMessage()
 
-  vscode.workspace.onDidChangeConfiguration(() => {
-    const disposeStatus = extension.showStatusMessage('Run On Save: Reloading config.')
+  useEvent(vscode.workspace.onDidChangeConfiguration)(e => {
+    useDisposable(extension.showStatusMessage('Run On Save: Reloading config.'))
     extension.loadConfig()
-    disposeStatus.dispose()
   })
+
+
   useCommandExtensionEmeraldwalkEnableRunOnSave(async () => {
     extension.isEnabled = true
   })
+
   useCommandExtensionEmeraldwalkDisableRunOnSave(async () => {
     extension.isEnabled = false
   })
-  vscode.workspace.onDidSaveTextDocument((document: vscode.TextDocument) => {
+
+  useEvent(vscode.workspace.onDidSaveTextDocument)((document: vscode.TextDocument) => {
     extension.runCommands(document)
   })
 }
@@ -43,7 +52,7 @@ class RunOnSaveExtension {
 
   constructor(context: vscode.ExtensionContext) {
     this._context = context
-    this._outputChannel = vscode.window.createOutputChannel('Run On Save')
+    this._outputChannel = useOutputChannel(name) // vscode.window.createOutputChannel('Run On Save')
     this._config = <IConfig><any>vscode.workspace.getConfiguration('emeraldwalk.runonsave')
   }
 
@@ -92,6 +101,9 @@ class RunOnSaveExtension {
   }
 
   private _getWorkspaceFolderPath(uri: vscode.Uri): string | undefined {
+
+    const folders = useWorkspaceFolders()
+
     const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri)
 
     // NOTE: rootPath seems to be deprecated but seems like the best fallback so that
