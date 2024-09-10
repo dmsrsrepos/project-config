@@ -24,46 +24,19 @@
         "category": "Project Config Updater",
         "command": "project-config.stop-watch",
         "title": "stop watch"
+      },
+      {
+        "command": "extension.emeraldwalk.enableRunOnSave",
+        "title": "Run On Save: Enable"
+      },
+      {
+        "command": "extension.emeraldwalk.disableRunOnSave",
+        "title": "Run On Save: Disable"
       }
     ],
     "configuration": [
       {
         "properties": {
-          "xxx": {
-            "default": true,
-            "description": "Enabled project-config inline annotations",
-            "type": "boolean"
-          },
-          "project-config.test.annotations": {
-            "default": true,
-            "description": "Enabled project-config inline annotations",
-            "type": "boolean"
-          },
-          "project-config.test.color": {
-            "default": "auto",
-            "description": "Icon color hex for inline displaying",
-            "type": "string"
-          },
-          "project-config.test.partten": {
-            "default": [
-              "src /**/*",
-              "docs /**/*"
-            ],
-            "description": "Icon color hex for inline displaying",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "project-config.test.position": {
-            "default": "before",
-            "description": "Position the icon before or after the icon name",
-            "enum": [
-              "after",
-              "before"
-            ],
-            "type": "string"
-          },
           "project-config.fileNestingUpdater.autoUpdate": {
             "type": "boolean",
             "description": "Fetch and update the latest config automatically",
@@ -94,631 +67,52 @@
         "type": "object"
       },
       {
+        "title": "Run On Save command configuration.",
+        "type": "object",
         "properties": {
-          "i18n-ally.disabled": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.disabled%"
-          },
-          "i18n-ally.autoDetection": {
-            "type": "boolean",
-            "default": true,
-            "description": "%config.auto_detection%"
-          },
-          "i18n-ally.localesPaths": {
-            "type": [
-              "string",
-              "array"
-            ],
-            "items": {
-              "type": "string"
-            },
-            "description": "%config.locales_paths%",
-            "scope": "resource"
-          },
-          "i18n-ally.encoding": {
-            "type": "string",
-            "default": "utf-8",
-            "description": "%config.encoding%"
-          },
-          "i18n-ally.sourceLanguage": {
-            "type": "string",
-            "description": "%config.source_language%"
-          },
-          "i18n-ally.displayLanguage": {
-            "type": "string",
-            "description": "%config.display_language%"
-          },
-          "i18n-ally.ignoredLocales": {
-            "type": "array",
-            "description": "%config.ignored_locales%"
-          },
-          "i18n-ally.keystyle": {
-            "type": "string",
-            "enum": [
-              "auto",
-              "nested",
-              "flat"
-            ],
-            "description": "%config.keystyle%"
-          },
-          "i18n-ally.dirStructure": {
-            "type": "string",
-            "enum": [
-              "auto",
-              "file",
-              "dir"
-            ],
-            "description": "%config.dir_structure%"
-          },
-          "i18n-ally.annotations": {
-            "type": "boolean",
-            "default": true,
-            "description": "%config.annotations%"
-          },
-          "i18n-ally.annotationInPlace": {
-            "type": "boolean",
-            "default": true,
-            "description": "%config.annotation_in_place%"
-          },
-          "i18n-ally.annotationMaxLength": {
-            "type": "number",
-            "default": 40,
-            "description": "%config.annotation_max_length%"
-          },
-          "i18n-ally.annotationDelimiter": {
-            "type": "string",
-            "default": "·",
-            "description": "%config.annotation_delimiter%"
-          },
-          "i18n-ally.includeSubfolders": {
-            "type": "boolean",
-            "default": true,
-            "description": "%config.include_subfolders%"
-          },
-          "i18n-ally.fullReloadOnChanged": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.full_reload_on_changed%"
-          },
-          "i18n-ally.showFlags": {
-            "type": "boolean",
-            "default": true,
-            "description": "%config.show_flags%"
-          },
-          "i18n-ally.enabledFrameworks": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "vue",
-                "react",
-                "vscode",
-                "ngx-translate",
-                "i18next",
-                "react-i18next",
-                "i18next-shopify",
-                "i18n-tag",
-                "flutter",
-                "vue-sfc",
-                "ember",
-                "chrome-ext",
-                "ruby-rails",
-                "custom",
-                "laravel",
-                "transloco",
-                "svelte",
-                "globalize",
-                "ui5",
-                "next-translate",
-                "php-gettext",
-                "general",
-                "lingui",
-                "jekyll",
-                "fluent-vue",
-                "fluent-vue-sfc",
-                "next-intl",
-                "next-international"
-              ]
-            },
-            "description": "%config.enabled_frameworks%"
-          },
-          "i18n-ally.enabledParsers": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "js",
-                "ts",
-                "json",
-                "json5",
-                "yaml",
-                "ini",
-                "po",
-                "php",
-                "properties",
-                "ftl"
-              ]
-            },
-            "description": "%config.enabled_parsers%"
-          },
-          "i18n-ally.keysInUse": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "%config.keys_in_use%"
-          },
-          "i18n-ally.sortKeys": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.sort_keys%"
-          },
-          "i18n-ally.sortCompare": {
-            "type": "string",
-            "enum": [
-              "binary",
-              "locale"
-            ],
-            "default": "binary",
-            "description": "%config.sort_compare%"
-          },
-          "i18n-ally.sortLocale": {
-            "type": "string",
-            "description": "%config.sort_locale%"
-          },
-          "i18n-ally.preferredDelimiter": {
-            "type": "string",
-            "default": "-",
-            "description": "%config.preferred_delimiter%"
-          },
-          "i18n-ally.readonly": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.readonly%"
-          },
-          "i18n-ally.keepFulfilled": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.keep_fulfill%"
-          },
-          "i18n-ally.localeCountryMap": {
+          "emeraldwalk.runonsave": {
             "type": "object",
-            "default": {},
-            "description": "%config.locale_country_map%"
-          },
-          "i18n-ally.indent": {
-            "type": "number",
-            "default": 2,
-            "description": "%config.indent%"
-          },
-          "i18n-ally.disablePathParsing": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.disable_path_parsing%"
-          },
-          "i18n-ally.tabStyle": {
-            "type": "string",
-            "default": "space",
-            "enum": [
-              "space",
-              "tab"
-            ],
-            "description": "%config.tab_style%"
-          },
-          "i18n-ally.namespace": {
-            "type": "boolean",
-            "description": "%config.namespace%"
-          },
-          "i18n-ally.pathMatcher": {
-            "type": "string",
-            "description": "%config.path_matcher%"
-          },
-          "i18n-ally.languageTagSystem": {
-            "type": "string",
-            "enum": [
-              "bcp47",
-              "legacy",
-              "none"
-            ],
-            "default": "bcp47",
-            "description": "%config.language_tag_system%"
-          },
-          "i18n-ally.ignoreFiles": {
-            "type": "array",
-            "item": {
-              "type": "string"
-            },
-            "description": "%config.ignore_files%"
-          },
-          "i18n-ally.theme.annotation": {
-            "type": "string",
-            "default": "rgba(153, 153, 153, .8)"
-          },
-          "i18n-ally.theme.annotationMissing": {
-            "type": "string",
-            "default": "rgba(153, 153, 153, .3)"
-          },
-          "i18n-ally.theme.annotationBorder": {
-            "type": "string",
-            "default": "rgba(153, 153, 153, .2)"
-          },
-          "i18n-ally.theme.annotationMissingBorder": {
-            "type": "string",
-            "default": "rgba(153, 153, 153, .2)"
-          },
-          "i18n-ally.regex.key": {
-            "type": "string",
-            "description": "%config.regex_key%"
-          },
-          "i18n-ally.regex.usageMatch": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "%config.regex_usage_match%"
-          },
-          "i18n-ally.regex.usageMatchAppend": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "%config.regex_usage_match_append%"
-          },
-          "i18n-ally.refactor.templates": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "source": {
-                  "type": "string",
-                  "enum": [
-                    "html-attribute",
-                    "html-inline",
-                    "js-string",
-                    "js-template",
-                    "jsx-text"
-                  ]
-                },
-                "template": {
-                  "type": "string"
-                },
-                "templates": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "include": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "exclude": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
+            "properties": {
+              "autoClearConsole": {
+                "type": "boolean",
+                "description": "Automatically clear the console on each save before running commands.",
+                "default": false
+              },
+              "shell": {
+                "type": "string",
+                "description": "Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell })."
+              },
+              "commands": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "match": {
+                      "type": "string",
+                      "description": "Regex for matching files to run commands on \n\nNOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.\n\ne.g.\n\"match\": \"some\\\\\\\\directory\\\\\\\\.*\"",
+                      "default": ".*"
+                    },
+                    "notMatch": {
+                      "type": "string",
+                      "description": "Regex for matching files *not* to run commands on.",
+                      "default": ".*"
+                    },
+                    "cmd": {
+                      "type": "string",
+                      "description": "Command to execute on save.",
+                      "default": "echo ${file}"
+                    },
+                    "isAsync": {
+                      "type": "boolean",
+                      "description": "Run command asynchronously.",
+                      "default": false
+                    }
                   }
                 }
               }
-            },
-            "description": "%config.refactor_templates%"
-          },
-          "i18n-ally.translate.saveAsCandidates": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.translate_save_as_candidates%"
-          },
-          "i18n-ally.translate.fallbackToKey": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.translate.fallbackToKey%"
-          },
-          "i18n-ally.translate.engines": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "google",
-                "google-cn",
-                "deepl",
-                "libretranslate",
-                "baidu",
-                "openai"
-              ]
-            },
-            "default": [
-              "google"
-            ],
-            "description": "%config.translate.engines%"
-          },
-          "i18n-ally.translate.parallels": {
-            "type": "number",
-            "default": 5,
-            "description": "%config.translate.parallels%"
-          },
-          "i18n-ally.translate.promptSource": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.prompt_translating_source%"
-          },
-          "i18n-ally.translate.overrideExisting": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.translate_override_existing%"
-          },
-          "i18n-ally.translate.google.apiKey": {
-            "type": "string",
-            "default": null,
-            "description": "%config.google_api_key%"
-          },
-          "i18n-ally.translate.deepl.apiKey": {
-            "type": "string",
-            "default": null,
-            "description": "%config.deepl_api_key%"
-          },
-          "i18n-ally.translate.baidu.appid": {
-            "type": "string",
-            "default": null,
-            "description": "%config.baidu_appid%"
-          },
-          "i18n-ally.translate.baidu.apiSecret": {
-            "type": "string",
-            "default": null,
-            "description": "%config.baidu_app_secret%"
-          },
-          "i18n-ally.translate.deepl.enableLog": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.deepl_log%"
-          },
-          "i18n-ally.translate.deepl.useFreeApiEntry": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.deepl_use_free_api_entry%"
-          },
-          "i18n-ally.translate.libre.apiRoot": {
-            "type": "string",
-            "default": "http://localhost:5000",
-            "description": "%config.libretranslate_api_root%"
-          },
-          "i18n-ally.translate.openai.apiKey": {
-            "type": "string",
-            "default": null,
-            "description": "%config.openai_api_key%"
-          },
-          "i18n-ally.translate.openai.apiRoot": {
-            "type": "string",
-            "default": "https://api.openai.com",
-            "description": "%config.openai_api_root%"
-          },
-          "i18n-ally.translate.openai.apiModel": {
-            "type": "string",
-            "default": "gpt-3.5-turbo",
-            "enum": [
-              "gpt-3.5-turbo",
-              "gpt-3.5-turbo-16k",
-              "gpt-3.5-turbo-0301",
-              "gpt-3.5-turbo-0613",
-              "gpt-4",
-              "gpt-4-0314",
-              "gpt-4-0613",
-              "gpt-4-32k",
-              "gpt-4-32k-0314",
-              "gpt-4-32k-0613"
-            ],
-            "description": "%config.openai_api_model%"
-          },
-          "i18n-ally.usage.scanningIgnore": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "%config.usage.scanning_ignore%"
-          },
-          "i18n-ally.usage.derivedKeyRules": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "default": null,
-            "description": "%config.derived_keys%"
-          },
-          "i18n-ally.frameworks.ruby-rails.scopeRoot": {
-            "type": "string",
-            "default": "app/views"
-          },
-          "i18n-ally.parsers.typescript.tsNodePath": {
-            "type": "string",
-            "default": "node_modules/ts-node/dist/bin.js"
-          },
-          "i18n-ally.parsers.typescript.compilerOptions": {
-            "type": "object",
-            "default": {}
-          },
-          "i18n-ally.parsers.extendFileExtensions": {
-            "type": "object",
-            "default": {}
-          },
-          "i18n-ally.review.enabled": {
-            "type": "boolean",
-            "default": true,
-            "description": "%config.review_enabled%"
-          },
-          "i18n-ally.review.gutters": {
-            "type": "boolean",
-            "default": true,
-            "description": "%config.review_gutters%"
-          },
-          "i18n-ally.review.user.name": {
-            "type": "string",
-            "description": "%config.review_username%"
-          },
-          "i18n-ally.review.user.email": {
-            "type": "string",
-            "description": "%config.review_email%"
-          },
-          "i18n-ally.review.removeCommentOnResolved": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.review_remove_on_resolved%"
-          },
-          "i18n-ally.editor.preferEditor": {
-            "type": "boolean",
-            "default": false,
-            "description": "%config.editor_prefer_editor%"
-          },
-          "i18n-ally.extract.keygenStrategy": {
-            "type": "string",
-            "default": "slug",
-            "enum": [
-              "slug",
-              "random",
-              "empty",
-              "source"
-            ],
-            "description": "%config.keygen_strategy%"
-          },
-          "i18n-ally.extract.keygenStyle": {
-            "type": "string",
-            "default": "default",
-            "enum": [
-              "default",
-              "kebab-case",
-              "snake_case",
-              "camelCase",
-              "PascalCase",
-              "ALL_CAPS"
-            ],
-            "description": "%config.keygen_style%"
-          },
-          "i18n-ally.extract.keyPrefix": {
-            "type": "string",
-            "default": "",
-            "description": "%config.key_prefix%"
-          },
-          "i18n-ally.extract.keyMaxLength": {
-            "type": "number",
-            "default": null,
-            "description": "%config.key_max_length%"
-          },
-          "i18n-ally.extract.targetPickingStrategy": {
-            "type": "string",
-            "default": "none",
-            "enum": [
-              "none",
-              "most-similar",
-              "most-similar-by-key",
-              "file-previous",
-              "global-previous"
-            ],
-            "enumDescriptions": [
-              "%config.target_picking_strategy.none%",
-              "%config.target_picking_strategy.most-similar%",
-              "%config.target_picking_strategy.file-previous%",
-              "%config.target_picking_strategy.global-previous%",
-              "%config.target_picking_strategy.most-similar-by-key%"
-            ],
-            "description": "%config.target_picking_strategy%"
-          },
-          "i18n-ally.extract.parsers.html": {
-            "type": "object",
-            "default": {},
-            "description": "Parser options for extracting HTML, see https://github.com/lokalise/i18n-ally/blob/master/src/extraction/parsers/options.ts"
-          },
-          "i18n-ally.extract.parsers.babel": {
-            "type": "object",
-            "default": {},
-            "description": "Parser options for extracting JS/TS/JSX/TSX, see https://github.com/lokalise/i18n-ally/blob/master/src/extraction/parsers/options.ts"
-          },
-          "i18n-ally.extract.autoDetect": {
-            "type": "boolean",
-            "default": false,
-            "description": "Enables hard-coded strings detection automatically whenever opening a supported file"
-          },
-          "i18n-ally.extract.ignored": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Strings to be ignored on hard-coded strings detection"
-          },
-          "i18n-ally.extract.ignoredByFiles": {
-            "type": "object",
-            "default": {},
-            "description": "Strings to be ignored on hard-coded strings detection, by files"
-          },
-          "i18n-ally.parserOptions": {
-            "type": "object"
-          },
-          "i18n-ally.defaultNamespace": {
-            "type": "string",
-            "description": "%config.default_namespace%"
-          },
-          "i18n-ally.derivedKeyRules": {
-            "deprecationMessage": "Deprecated. Use \"i18n-ally.usage.derivedKeyRules\" instead."
-          },
-          "i18n-ally.filenameMatchRegex": {
-            "deprecationMessage": "Deprecated. Use \"i18n-ally.pathMatcher\" instead."
-          },
-          "i18n-ally.fileNamespace": {
-            "deprecationMessage": "Deprecated. Use \"i18n-ally.namespace\" instead."
-          },
-          "i18n-ally.keyMatchRegex": {
-            "deprecationMessage": "Deprecated. Use \"i18n-ally.regex.key\" instead."
-          },
-          "vue-i18n-ally.localesPaths": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.encoding": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.sourceLanguage": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.displayLanguage": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.ignoredLocales": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.keystyle": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.dirStructure": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.annotations": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.annotationMaxLength": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.annotationDelimiter": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.filenameMatchRegex": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.includeSubfolders": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.fullReloadOnChanged": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.sortKeys": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.preferredDelimiter": {
-            "deprecationMessage": "%config.deprecated%"
-          },
-          "vue-i18n-ally.readonly": {
-            "deprecationMessage": "%config.deprecated%"
+            }
           }
-        },
-        "title": "Config 4",
-        "type": "object" 
+        }
       }
     ]
   },

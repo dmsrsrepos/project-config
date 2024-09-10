@@ -2,7 +2,7 @@ import path from 'node:path'
 import { exec } from 'node:child_process'
 import process from 'node:process'
 import vscode from 'vscode'
-
+import { useCommandExtensionEmeraldwalkDisableRunOnSave, useCommandExtensionEmeraldwalkEnableRunOnSave } from '@/generated-meta'
 export function activate(context: vscode.ExtensionContext): void {
   const extension = new RunOnSaveExtension(context)
   extension.showOutputMessage()
@@ -12,15 +12,12 @@ export function activate(context: vscode.ExtensionContext): void {
     extension.loadConfig()
     disposeStatus.dispose()
   })
-
-  vscode.commands.registerCommand('extension.emeraldwalk.enableRunOnSave', () => {
+  useCommandExtensionEmeraldwalkEnableRunOnSave(async () => {
     extension.isEnabled = true
   })
-
-  vscode.commands.registerCommand('extension.emeraldwalk.disableRunOnSave', () => {
+  useCommandExtensionEmeraldwalkDisableRunOnSave(async () => {
     extension.isEnabled = false
   })
-
   vscode.workspace.onDidSaveTextDocument((document: vscode.TextDocument) => {
     extension.runCommands(document)
   })

@@ -10,7 +10,7 @@
     "eslint-factory": "catalog:",
     "ofetch": "catalog:",
     "radash": "^12.1.0",
-    "reactive-meta-gen": "0.0.15",
+    "reactive-meta-gen": "^0.0.19",
     "reactive-vscode": "catalog:",
     "tsup": "catalog:",
     "tsx": "^4.19.0",
