@@ -1,15 +1,14 @@
 import {
   extensionContext as ctxRef,
   defineExtension,
-  useCommand,
 } from 'reactive-vscode'
-import { commands, projectConfigConfigObject as config } from '@/generated-meta'
+import { configObjectFileNestingUpdater as config, useCommandManualUpdate } from '@/generated-meta'
 import { fetchAndUpdate } from './fetch'
 
 const { activate, deactivate } = defineExtension(() => {
   const ctx = ctxRef.value
   if (ctx) {
-    useCommand(commands.manualUpdate, (..._args) => {
+    useCommandManualUpdate((..._args) => {
       fetchAndUpdate(ctx, false)
     })
 
@@ -20,9 +19,9 @@ const { activate, deactivate } = defineExtension(() => {
     }
 
     const lastUpdate = ctx.globalState.get('lastUpdate', 0)
-    if (config['fileNestingUpdater.autoUpdateInterval']) {
-      if (Date.now() - lastUpdate >= config['fileNestingUpdater.autoUpdateInterval'] * 60_000)
-        fetchAndUpdate(ctx, config['fileNestingUpdater.promptOnAutoUpdate'])
+    if (config.autoUpdateInterval) {
+      if (Date.now() - lastUpdate >= config.autoUpdateInterval * 60_000)
+        fetchAndUpdate(ctx, config.promptOnAutoUpdate)
     }
   }
 })

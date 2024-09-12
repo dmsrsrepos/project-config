@@ -6,7 +6,7 @@ import {
   useCommandExtensionEmeraldwalkDisableRunOnSave,
   useCommandExtensionEmeraldwalkEnableRunOnSave,
   name,
-  useConfigObjectsEmeraldwalk
+  configEmeraldwalk as useConfigObjectEmeraldwalk
 } from '@/generated-meta'
 import { useEvent, useDisposable, useWorkspaceFolders, useL10nText, useOutputChannel } from 'reactive-vscode'
 export function activate(context: vscode.ExtensionContext): void {

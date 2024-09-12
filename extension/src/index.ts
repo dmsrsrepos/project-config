@@ -1,6 +1,6 @@
-import { defineExtension, useCommands, Commands, useCommand, useFsWatcher, watchEffect } from 'reactive-vscode'
+import { defineExtension, useCommands, Commands, useFsWatcher, watchEffect } from 'reactive-vscode'
 import { ConfigurationTarget, window } from 'vscode'
-import { commands, useConfigsEmeraldwalk } from '@/generated-meta'
+import { configEmeraldwalk as useConfigsEmeraldwalk, useCommandsBase, useCommandStopWatch } from '@/generated-meta'
 
 
 const { activate, deactivate } = defineExtension(() => {
@@ -18,21 +18,16 @@ const { activate, deactivate } = defineExtension(() => {
 
 
 
-  function useuseCommandStopWatch(callback: (...args: any[]) => any) {
-    useCommand(commands.stopWatch, callback)
-  }
 
-  const ob: Partial<Commands> = {
-    [commands.stopWatch]: () => {
+  useCommandsBase({
+    "project-config.manualUpdate": () => {
       window.showInformationMessage(`handl name:${stop.toString()}`)
       stop()
     },
-    [commands.changeAnnnotations]() {
-      // emeraldwalkConfigs.annotations.update(!testConfigs.annotations.value, ConfigurationTarget.Workspace, true)
-    }
-  }
+    "extension.emeraldwalk.disableRunOnSave": () => {
 
-  useCommands(ob)
+    }
+  })
 
 
 })
