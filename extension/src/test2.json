@@ -1,0 +1,131 @@
+{
+    "title": "File Watcher command configuration.",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "filewatcher.autoClearConsole": {
+            "type": "boolean",
+            "description": "Automatically clear the console on each save before running commands.",
+            "default": false
+        },
+        "filewatcher.shell": {
+            "type": "string",
+            "description": "Common shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell })."
+        },
+        "filewatcher.isClearStatusBar": {
+            "type": "boolean",
+            "description": "Returns the status bar to its normal position (after receiving a 'Success' or 'Error' status) after a some time.",
+            "default": false
+        },
+        "filewatcher.statusBarDelay": {
+            "type": "number",
+            "description": "The time after which the status returns to normal. Only works if isClearStatusBar === true. Default is 5000ms",
+            "default": 5000,
+            "minimum": 100
+        },
+        "filewatcher.isSyncRunEvents": {
+            "type": "boolean",
+            "description": "Launches event handlers of the same name with the appropriate pattern 'match' or 'notMatch' (e.g. onFileChange and onFolderChange) in synchronous or asynchronous mode.",
+            "default": false
+        },
+        "filewatcher.successTextColor": {
+            "type": "string",
+            "description": "Color for success message in the status bar. Default: dark: '#25E028', light: '#18CE1B', highContrast: '#0DC610'"
+        },
+        "filewatcher.runTextColor": {
+            "type": "string",
+            "description": "Color for run message in the status bar. Default: dark: '#00FFFB', light: '#02D4D1', highContrast: '#03D2CE'"
+        },
+        "filewatcher.commands": {
+            "description": "array of commands",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "shell": {
+                        "type": "string",
+                        "description": "Unique shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell })."
+                    },
+                    "match": {
+                        "type": "string",
+                        "description": "Regex for matching files to run commands on \n\nNOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.\n\ne.g.\n\"match\": \"some\\\\\\\\directory\\\\\\\\.*\"",
+                        "default": ".*"
+                    },
+                    "notMatch": {
+                        "type": "string",
+                        "description": "Regex for matching files *not* to run commands on.",
+                        "default": ".*"
+                    },
+                    "cmd": {
+                        "type": "string",
+                        "description": "Command to execute.",
+                        "default": "echo ${file}"
+                    },
+                    "vscodeTask": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        ],
+                        "description": "Name of a VS Code task defined in tasks.json or commands to execute. Only works if cmd value does not exist. Must be a string (e.g. command id) or array of strings (e.g. ['workbench.action.tasks.runTask', 'some-task-name'] and etc.)"
+                    },
+                    "isAsync": {
+                        "type": "boolean",
+                        "description": "Run command asynchronously."
+                    },
+                    "event": {
+                        "type": "string",
+                        "description": "events onFileChange, onFileChangeImmediate, onFileDelete, onFileRename, onFileCreate, onFolderChange, onFolderCreate, onFolderDelete",
+                        "enum": [
+                            "onFileChange",
+                            "onFileChangeImmediate",
+                            "onFolderChange",
+                            "onFileDelete",
+                            "onFileRename",
+                            "onFileCreate",
+                            "onFolderCreate",
+                            "onFolderDelete"
+                        ]
+                    }
+                },
+                "anyOf": [
+                    {
+                        "required": [
+                            "cmd"
+                        ],
+                        "not": {
+                            "required": [
+                                "vscodeTask"
+                            ]
+                        },
+                        "errorMessage": "Only one of the cmd or vscodeTask property can exist in an object"
+                    },
+                    {
+                        "required": [
+                            "vscodeTask"
+                        ],
+                        "not": {
+                            "required": [
+                                "cmd"
+                            ]
+                        },
+                        "errorMessage": "Only one of the cmd or vscodeTask property can exist in an object"
+                    }
+                ],
+                "required": [
+                    "match",
+                    "event"
+                ]
+            }
+        }
+    },
+    "required": [
+        "filewatcher.commands"
+    ]
+}

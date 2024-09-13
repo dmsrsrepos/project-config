@@ -31,7 +31,8 @@ export default antfu(
       "no-console": "off",
       "import/order": "off",
       "import/newline-after-import": "off",
-      "sort-imports": "off"
+      "sort-imports": "off",
+      "eslint-comments/no-unlimited-disable": "off"
     }
   }
 )
