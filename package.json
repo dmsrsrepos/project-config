@@ -10,11 +10,11 @@
     "eslint-factory": "catalog:",
     "ofetch": "catalog:",
     "radash": "^12.1.0",
-    "reactive-meta-gen": "^0.0.19",
+    "reactive-meta-gen": "file:G:/code-vsextension/reactive-meta-gen",
     "reactive-vscode": "catalog:",
     "tsup": "catalog:",
-    "tsx": "^4.19.0",
-    "type-fest": "^4.26.0",
+    "tsx": "^4.19.1",
+    "type-fest": "^4.26.1",
     "typescript": "catalog:"
   },
   "funding": "https://github.com/sponsors/cnjimbo",
@@ -28,7 +28,7 @@
     "ext:publish": "nr ext:build && cd extension && vsce publish --no-dependencies",
     "lint": "eslint .",
     "prepare": "pnpm run update",
-    "update": "pnpx reactive-meta-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated-meta.ts"
+    "update": "reactive-meta-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated-meta.ts"
   },
   "type": "module",
   "workspaces": [
