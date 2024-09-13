@@ -1,6 +1,6 @@
-import { defineExtension, useCommands, Commands, useFsWatcher, watchEffect } from 'reactive-vscode'
+import { defineExtension, useFsWatcher, watchEffect } from 'reactive-vscode'
 import { ConfigurationTarget, window } from 'vscode'
-import { configEmeraldwalk as useConfigsEmeraldwalk, useCommandsBase, useCommandStopWatch } from '@/generated-meta'
+import { configEmeraldwalk as useConfigsEmeraldwalk, useCommands, useCommandStopWatch } from '@/generated-meta'
 
 
 const { activate, deactivate } = defineExtension(() => {
@@ -16,10 +16,7 @@ const { activate, deactivate } = defineExtension(() => {
   const watcher = useFsWatcher(globs)
   watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
 
-
-
-
-  useCommandsBase({
+  useCommands({
     "project-config.manualUpdate": () => {
       window.showInformationMessage(`handl name:${stop.toString()}`)
       stop()

@@ -1,4 +1,3 @@
-import {  useLogger } from 'reactive-vscode'
-import { name } from '@/generated-meta'
+import { useLogger  } from '@/generated-meta'
 
-export const logger = useLogger(name)
+export const logger = useLogger()
