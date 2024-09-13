@@ -1,4 +1,4 @@
-import { defineLogger } from 'reactive-vscode'
-import * as meta from '@/generated-meta'
+import {  useLogger } from 'reactive-vscode'
+import { name } from '@/generated-meta'
 
-export const logger = defineLogger(meta.name)
+export const logger = useLogger(name)

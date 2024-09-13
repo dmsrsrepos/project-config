@@ -3,32 +3,30 @@ import { exec } from 'node:child_process'
 import process from 'node:process'
 import vscode from 'vscode'
 import {
-  useCommandExtensionEmeraldwalkDisableRunOnSave,
-  useCommandExtensionEmeraldwalkEnableRunOnSave,
+  useCommands,
   name,
-  configEmeraldwalk as useConfigObjectEmeraldwalk
 } from '@/generated-meta'
 import { useEvent, useDisposable, useWorkspaceFolders, useL10nText, useOutputChannel } from 'reactive-vscode'
 export function activate(context: vscode.ExtensionContext): void {
   const extension = new RunOnSaveExtension(context)
   extension.showOutputMessage()
 
-  useEvent(vscode.workspace.onDidChangeConfiguration)(e => {
+  useEvent(vscode.workspace.onDidChangeConfiguration)((_) => {
     useDisposable(extension.showStatusMessage('Run On Save: Reloading config.'))
     extension.loadConfig()
   })
 
-
-  useCommandExtensionEmeraldwalkEnableRunOnSave(async () => {
-    extension.isEnabled = true
-  })
-
-  useCommandExtensionEmeraldwalkDisableRunOnSave(async () => {
-    extension.isEnabled = false
-  })
-
   useEvent(vscode.workspace.onDidSaveTextDocument)((document: vscode.TextDocument) => {
     extension.runCommands(document)
+  })
+
+  useCommands({
+    'extension.emeraldwalk.enableRunOnSave': async () => {
+      extension.isEnabled = true
+    },
+    'extension.emeraldwalk.disableRunOnSave': async () => {
+      extension.isEnabled = false
+    },
   })
 }
 
@@ -101,9 +99,7 @@ class RunOnSaveExtension {
   }
 
   private _getWorkspaceFolderPath(uri: vscode.Uri): string | undefined {
-
-    const folders = useWorkspaceFolders()
-
+ 
     const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri)
 
     // NOTE: rootPath seems to be deprecated but seems like the best fallback so that
