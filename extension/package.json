@@ -1,83 +1,91 @@
 {
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "type": "module",
+  "name": "project-config",
+  "main": "./dist/index.cjs",
+  "icon": "res/logo.png",
+  "version": "1.1.2",
+  "private": true,
+  "preview": true,
+  "license": "MIT",
   "engines": {
     "vscode": "^1.67.0"
+  },
+  "publisher": "cnjimbo",
+  "repository": {
+    "url": "https://github.com/open-dmsrs/vscode-project-config-updater",
+    "type": "git",
+    "directory": "extension"
   },
   "categories": [
     "Other"
   ],
+  "displayName": "Project Config Updater",
+  "description": "Export current settings to workspace config file ",
   "contributes": {
     "commands": [
       {
-        "category": "Project Config Updater",
+        "title": "Update config now",
         "command": "project-config.manualUpdate",
-        "title": "Update config now"
+        "category": "Project Config Updater"
       },
       {
-        "category": "Project Config Updater",
+        "title": "change annotations",
         "command": "project-config.change-annnotations",
-        "title": "change annotations"
+        "category": "Project Config Updater"
       },
       {
-        "category": "Project Config Updater",
+        "title": "stop watch",
         "command": "project-config.stop-watch",
-        "title": "stop watch"
+        "category": "Project Config Updater"
       },
       {
-        "command": "extension.emeraldwalk.enableRunOnSave",
-        "title": "Run On Save: Enable"
+        "title": "Run On Save: Enable",
+        "command": "extension.emeraldwalk.enableRunOnSave"
       },
       {
-        "command": "extension.emeraldwalk.disableRunOnSave",
-        "title": "Run On Save: Disable"
+        "title": "Run On Save: Disable",
+        "command": "extension.emeraldwalk.disableRunOnSave"
       }
     ],
     "configuration": [
       {
+        "type": "object",
+        "title": "Config 1",
         "properties": {
-          "project-config.fileNestingUpdater.autoUpdate": {
+          "fileNestingUpdater.autoUpdate": {
             "type": "boolean",
-            "description": "Fetch and update the latest config automatically",
-            "default": true
+            "default": true,
+            "description": "Fetch and update the latest config automatically"
           },
-          "project-config.fileNestingUpdater.promptOnAutoUpdate": {
-            "type": "boolean",
-            "description": "Should show up the prompt before doing auto update",
-            "default": true
-          },
-          "project-config.fileNestingUpdater.autoUpdateInterval": {
-            "type": "number",
-            "description": "The minimal interval for auto update, in minutes",
-            "default": 4320
-          },
-          "project-config.fileNestingUpdater.upstreamRepo": {
+          "fileNestingUpdater.upstreamRepo": {
             "type": "string",
-            "description": "The upstream repo you want to update from",
-            "default": "antfu/vscode-file-nesting-config"
+            "default": "antfu/vscode-file-nesting-config",
+            "description": "The upstream repo you want to update from"
           },
           "project-config.fileNestingUpdater.upstreamBranch": {
             "type": "string",
-            "description": "The branch name of upstream repo",
-            "default": "main"
+            "default": "main",
+            "description": "The branch name of upstream repo"
+          },
+          "project-config.fileNestingUpdater.promptOnAutoUpdate": {
+            "type": "boolean",
+            "default": true,
+            "description": "Should show up the prompt before doing auto update"
+          },
+          "project-config.fileNestingUpdater.autoUpdateInterval": {
+            "type": "number",
+            "default": 4320,
+            "description": "The minimal interval for auto update, in minutes"
           }
-        },
-        "title": "Config 1",
-        "type": "object"
+        }
       },
       {
-        "title": "Run On Save command configuration.",
         "type": "object",
+        "title": "Run On Save command configuration.",
         "properties": {
-          "emeraldwalk.runonsave": {
+          "project-config.emeraldwalk.runonsave": {
             "type": "object",
             "properties": {
-              "autoClearConsole": {
-                "type": "boolean",
-                "description": "Automatically clear the console on each save before running commands.",
-                "default": false
-              },
               "shell": {
                 "type": "string",
                 "description": "Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell })."
@@ -87,28 +95,33 @@
                 "items": {
                   "type": "object",
                   "properties": {
-                    "match": {
-                      "type": "string",
-                      "description": "Regex for matching files to run commands on \n\nNOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.\n\ne.g.\n\"match\": \"some\\\\\\\\directory\\\\\\\\.*\"",
-                      "default": ".*"
-                    },
-                    "notMatch": {
-                      "type": "string",
-                      "description": "Regex for matching files *not* to run commands on.",
-                      "default": ".*"
-                    },
                     "cmd": {
                       "type": "string",
-                      "description": "Command to execute on save.",
-                      "default": "echo ${file}"
+                      "default": "echo ${file}",
+                      "description": "Command to execute on save."
+                    },
+                    "match": {
+                      "type": "string",
+                      "default": ".*",
+                      "description": "Regex for matching files to run commands on \n\nNOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.\n\ne.g.\n\"match\": \"some\\\\\\\\directory\\\\\\\\.*\""
                     },
                     "isAsync": {
                       "type": "boolean",
-                      "description": "Run command asynchronously.",
-                      "default": false
+                      "default": false,
+                      "description": "Run command asynchronously."
+                    },
+                    "notMatch": {
+                      "type": "string",
+                      "default": ".*",
+                      "description": "Regex for matching files *not* to run commands on."
                     }
                   }
                 }
+              },
+              "autoClearConsole": {
+                "type": "boolean",
+                "default": false,
+                "description": "Automatically clear the console on each save before running commands."
               }
             }
           }
@@ -116,20 +129,7 @@
       }
     ]
   },
-  "description": "Export current settings to workspace config file ",
-  "displayName": "Project Config Updater",
-  "icon": "res/logo.png",
-  "license": "MIT",
-  "main": "./dist/index.cjs",
-  "name": "project-config",
-  "preview": true,
-  "private": true,
-  "publisher": "cnjimbo",
-  "repository": {
-    "directory": "extension",
-    "type": "git",
-    "url": "https://github.com/open-dmsrs/vscode-project-config-updater"
-  },
-  "version": "1.1.2",
-  "type": "module"
+  "activationEvents": [
+    "onStartupFinished"
+  ]
 }

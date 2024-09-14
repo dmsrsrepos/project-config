@@ -51,7 +51,13 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 ```json
 {
   //Fetch and update the latest config automatically
-  "project-config.fileNestingUpdater.autoUpdate": true,
+  "fileNestingUpdater.autoUpdate": true,
+
+  //The upstream repo you want to update from
+  "fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
+
+  //The branch name of upstream repo
+  "project-config.fileNestingUpdater.upstreamBranch": "main",
 
   //Should show up the prompt before doing auto update
   "project-config.fileNestingUpdater.promptOnAutoUpdate": true,
@@ -59,14 +65,8 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
   //The minimal interval for auto update, in minutes
   "project-config.fileNestingUpdater.autoUpdateInterval": 4320,
 
-  //The upstream repo you want to update from
-  "project-config.fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
-
-  //The branch name of upstream repo
-  "project-config.fileNestingUpdater.upstreamBranch": "main",
-
   //
-  "emeraldwalk.runonsave": { "autoClearConsole": false, "shell": undefined, "commands": undefined },
+  "project-config.emeraldwalk.runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
 
 }
 ```

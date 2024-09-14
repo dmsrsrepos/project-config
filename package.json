@@ -19,10 +19,10 @@
   },
   "funding": "https://github.com/sponsors/cnjimbo",
   "license": "MIT",
-  "name": "xxxx-config",
+  "name": "poject-config",
   "private": true,
   "scripts": {
-    "ext:build": "cd extension && tsup src/index.ts --external vscode",
+    "ext:build": "cd $(pwd)/extension && pnpm tsup src/index.ts --sourcemap --external vscode",
     "ext:dev": "nr ext:build --watch src",
     "ext:pack": "nr ext:build && cd extension && vsce package --no-dependencies",
     "ext:publish": "nr ext:build && cd extension && vsce publish --no-dependencies",

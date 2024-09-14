@@ -62,13 +62,26 @@ export function useCommandExtensionEmeraldwalkDisableRunOnSave(callback: (...arg
     return useCommand("extension.emeraldwalk.disableRunOnSave", callback);
 }
 /**
+ * Section Type of `fileNestingUpdater`
+ */
+export interface FileNestingUpdater {
+    /**
+     * Fetch and update the latest config automatically
+     */
+    "autoUpdate": boolean;
+    /**
+     * The upstream repo you want to update from
+     */
+    "upstreamRepo": string;
+}
+/**
  * Section Type of `project-config`
  */
 export interface ProjectConfig {
     /**
-     * Fetch and update the latest config automatically
+     * The branch name of upstream repo
      */
-    "fileNestingUpdater.autoUpdate": boolean;
+    "fileNestingUpdater.upstreamBranch": string;
     /**
      * Should show up the prompt before doing auto update
      */
@@ -77,23 +90,58 @@ export interface ProjectConfig {
      * The minimal interval for auto update, in minutes
      */
     "fileNestingUpdater.autoUpdateInterval": number;
-    /**
-     * The upstream repo you want to update from
-     */
-    "fileNestingUpdater.upstreamRepo": string;
-    /**
-     * The branch name of upstream repo
-     */
-    "fileNestingUpdater.upstreamBranch": string;
+    "emeraldwalk.runonsave": {
+        /**
+       * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
+       * @default `undefined`
+       */
+        'shell'?: string;
+        /**
+         *
+         * @default `undefined`
+         */
+        'commands'?: {
+            /**
+       * Command to execute on save.
+       * @default `"echo ${file}"`
+       */
+            'cmd': string;
+            /**
+             * Regex for matching files to run commands on
+             *
+             * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
+             *
+             * e.g.
+             * "match": "some\\\\directory\\\\.*"
+             * @default `".*"`
+             */
+            'match': string;
+            /**
+             * Run command asynchronously.
+             * @default `false`
+             */
+            'isAsync': boolean;
+            /**
+             * Regex for matching files *not* to run commands on.
+             * @default `".*"`
+             */
+            'notMatch': string;
+        }[];
+        /**
+         * Automatically clear the console on each save before running commands.
+         * @default `false`
+         */
+        'autoClearConsole': boolean;
+    };
 }
 /**
  * Section Type of `project-config.fileNestingUpdater`
  */
-export interface FileNestingUpdater {
+export interface FileNestingUpdater_1 {
     /**
-     * Fetch and update the latest config automatically
+     * The branch name of upstream repo
      */
-    "autoUpdate": boolean;
+    "upstreamBranch": string;
     /**
      * Should show up the prompt before doing auto update
      */
@@ -102,29 +150,16 @@ export interface FileNestingUpdater {
      * The minimal interval for auto update, in minutes
      */
     "autoUpdateInterval": number;
-    /**
-     * The upstream repo you want to update from
-     */
-    "upstreamRepo": string;
-    /**
-     * The branch name of upstream repo
-     */
-    "upstreamBranch": string;
 }
 /**
- * Section Type of `emeraldwalk`
+ * Section Type of `project-config.emeraldwalk`
  */
 export interface Emeraldwalk {
     "runonsave": {
         /**
-       * Automatically clear the console on each save before running commands.
-       * @default `false`
+       * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
+       * @default `undefined`
        */
-        'autoClearConsole': boolean;
-        /**
-         * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
-         * @default `undefined`
-         */
         'shell'?: string;
         /**
          *
@@ -132,42 +167,60 @@ export interface Emeraldwalk {
          */
         'commands'?: {
             /**
-       * Regex for matching files to run commands on
-       *
-       * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
-       *
-       * e.g.
-       * "match": "some\\\\directory\\\\.*"
-       * @default `".*"`
+       * Command to execute on save.
+       * @default `"echo ${file}"`
        */
-            'match': string;
+            'cmd': string;
             /**
-             * Regex for matching files *not* to run commands on.
+             * Regex for matching files to run commands on
+             *
+             * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
+             *
+             * e.g.
+             * "match": "some\\\\directory\\\\.*"
              * @default `".*"`
              */
-            'notMatch': string;
-            /**
-             * Command to execute on save.
-             * @default `"echo ${file}"`
-             */
-            'cmd': string;
+            'match': string;
             /**
              * Run command asynchronously.
              * @default `false`
              */
             'isAsync': boolean;
+            /**
+             * Regex for matching files *not* to run commands on.
+             * @default `".*"`
+             */
+            'notMatch': string;
         }[];
+        /**
+         * Automatically clear the console on each save before running commands.
+         * @default `false`
+         */
+        'autoClearConsole': boolean;
     };
 }
 const projectConfigConfig = {
+    /**
+     * Section defaults of `fileNestingUpdater`
+     */
+    "fileNestingUpdater": {
+        /**
+         * Fetch and update the latest config automatically
+         */
+        "autoUpdate": true,
+        /**
+         * The upstream repo you want to update from
+         */
+        "upstreamRepo": "antfu/vscode-file-nesting-config",
+    } satisfies FileNestingUpdater as FileNestingUpdater,
     /**
      * Section defaults of `project-config`
      */
     "project-config": {
         /**
-         * Fetch and update the latest config automatically
+         * The branch name of upstream repo
          */
-        "fileNestingUpdater.autoUpdate": true,
+        "fileNestingUpdater.upstreamBranch": "main",
         /**
          * Should show up the prompt before doing auto update
          */
@@ -176,23 +229,16 @@ const projectConfigConfig = {
          * The minimal interval for auto update, in minutes
          */
         "fileNestingUpdater.autoUpdateInterval": 4320,
-        /**
-         * The upstream repo you want to update from
-         */
-        "fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
-        /**
-         * The branch name of upstream repo
-         */
-        "fileNestingUpdater.upstreamBranch": "main",
+        "emeraldwalk.runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
     } satisfies ProjectConfig as ProjectConfig,
     /**
      * Section defaults of `project-config.fileNestingUpdater`
      */
     "project-config.fileNestingUpdater": {
         /**
-         * Fetch and update the latest config automatically
+         * The branch name of upstream repo
          */
-        "autoUpdate": true,
+        "upstreamBranch": "main",
         /**
          * Should show up the prompt before doing auto update
          */
@@ -201,23 +247,15 @@ const projectConfigConfig = {
          * The minimal interval for auto update, in minutes
          */
         "autoUpdateInterval": 4320,
-        /**
-         * The upstream repo you want to update from
-         */
-        "upstreamRepo": "antfu/vscode-file-nesting-config",
-        /**
-         * The branch name of upstream repo
-         */
-        "upstreamBranch": "main",
-    } satisfies FileNestingUpdater as FileNestingUpdater,
+    } satisfies FileNestingUpdater_1 as FileNestingUpdater_1,
     /**
-     * Section defaults of `emeraldwalk`
+     * Section defaults of `project-config.emeraldwalk`
      */
-    "emeraldwalk": {
-        "runonsave": { "autoClearConsole": false, "shell": undefined, "commands": undefined },
+    "project-config.emeraldwalk": {
+        "runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
     } satisfies Emeraldwalk as Emeraldwalk,
 };
-export type ConfigKey = "project-config" | "project-config.fileNestingUpdater" | "emeraldwalk";
+export type ConfigKey = "fileNestingUpdater" | "project-config" | "project-config.fileNestingUpdater" | "project-config.emeraldwalk";
 export function useConfig<K extends ConfigKey>(section: K) {
     return defineConfigs<typeof projectConfigConfig[K]>(section, projectConfigConfig[section]);
 }
@@ -225,44 +263,58 @@ export function useConfigObject<K extends ConfigKey>(section: K) {
     return defineConfigObject<typeof projectConfigConfig[K]>(section, projectConfigConfig[section]);
 }
 /**
+ * ConfigObject of `fileNestingUpdater`
+ * @example
+ * const oldVal = configObjectFileNestingUpdater.autoUpdate //get value
+ * configObjectFileNestingUpdater.$update("autoUpdate", oldVal) //update value
+ */
+export const configObjectFileNestingUpdater = useConfigObject("fileNestingUpdater");
+/**
+ * ToConfigRefs of `fileNestingUpdater`
+ * @example
+ * const oldVal:boolean =configFileNestingUpdater.autoUpdate.value //get value
+ * configFileNestingUpdater.autoUpdate.update(oldVal) //update value
+ */
+export const configFileNestingUpdater = useConfig("fileNestingUpdater");
+/**
  * ConfigObject of `project-config`
  * @example
- * const oldVal = configObjectProjectConfig.fileNestingUpdater.autoUpdate //get value
- * configObjectProjectConfig.$update("fileNestingUpdater.autoUpdate", oldVal) //update value
+ * const oldVal = configObjectProjectConfig.fileNestingUpdater.upstreamBranch //get value
+ * configObjectProjectConfig.$update("fileNestingUpdater.upstreamBranch", oldVal) //update value
  */
 export const configObjectProjectConfig = useConfigObject("project-config");
 /**
  * ToConfigRefs of `project-config`
  * @example
- * const oldVal:boolean =configProjectConfig.fileNestingUpdater.autoUpdate.value //get value
- * configProjectConfig.fileNestingUpdater.autoUpdate.update(oldVal) //update value
+ * const oldVal:string =configProjectConfig.fileNestingUpdater.upstreamBranch.value //get value
+ * configProjectConfig.fileNestingUpdater.upstreamBranch.update(oldVal) //update value
  */
 export const configProjectConfig = useConfig("project-config");
 /**
  * ConfigObject of `project-config.fileNestingUpdater`
  * @example
- * const oldVal = configObjectFileNestingUpdater.autoUpdate //get value
- * configObjectFileNestingUpdater.$update("autoUpdate", oldVal) //update value
+ * const oldVal = configObjectFileNestingUpdater_1.upstreamBranch //get value
+ * configObjectFileNestingUpdater_1.$update("upstreamBranch", oldVal) //update value
  */
-export const configObjectFileNestingUpdater = useConfigObject("project-config.fileNestingUpdater");
+export const configObjectFileNestingUpdater_1 = useConfigObject("project-config.fileNestingUpdater");
 /**
  * ToConfigRefs of `project-config.fileNestingUpdater`
  * @example
- * const oldVal:boolean =configFileNestingUpdater.autoUpdate.value //get value
- * configFileNestingUpdater.autoUpdate.update(oldVal) //update value
+ * const oldVal:string =configFileNestingUpdater_1.upstreamBranch.value //get value
+ * configFileNestingUpdater_1.upstreamBranch.update(oldVal) //update value
  */
-export const configFileNestingUpdater = useConfig("project-config.fileNestingUpdater");
+export const configFileNestingUpdater_1 = useConfig("project-config.fileNestingUpdater");
 /**
- * ConfigObject of `emeraldwalk`
+ * ConfigObject of `project-config.emeraldwalk`
  * @example
  * const oldVal = configObjectEmeraldwalk.runonsave //get value
  * configObjectEmeraldwalk.$update("runonsave", oldVal) //update value
  */
-export const configObjectEmeraldwalk = useConfigObject("emeraldwalk");
+export const configObjectEmeraldwalk = useConfigObject("project-config.emeraldwalk");
 /**
- * ToConfigRefs of `emeraldwalk`
+ * ToConfigRefs of `project-config.emeraldwalk`
  * @example
  * const oldVal:object =configEmeraldwalk.runonsave.value //get value
  * configEmeraldwalk.runonsave.update(oldVal) //update value
  */
-export const configEmeraldwalk = useConfig("emeraldwalk");
+export const configEmeraldwalk = useConfig("project-config.emeraldwalk");

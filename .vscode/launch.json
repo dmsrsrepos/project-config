@@ -1,5 +1,6 @@
 {
   "version": "0.2.0",
+  "console": "integratedTerminal",
   "configurations": [
     {
       "name": "Extension",
@@ -7,12 +8,14 @@
       "request": "launch",
       "runtimeExecutable": "${execPath}",
       "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/extension"
+        "--extensionDevelopmentPath=${workspaceFolder}/extension/"
       ],
       "outFiles": [
-        "${workspaceFolder}/extension/dist/**/*.js"
+        "${workspaceFolder}/extension/dist/**/*.cjs"
       ],
-      "preLaunchTask": "npm: ext:dev"
+      
+      "preLaunchTask": "npm: ext:dev",
+      "sourceMaps": true
     }
   ]
 }
