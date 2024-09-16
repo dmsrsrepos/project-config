@@ -5,11 +5,11 @@ import { configObjectEmeraldwalk, useCommands } from '@/generated-meta'
 
 const { activate, deactivate } = defineExtension(() => {
   logger.info('Extension Activated')
-  // 'vscode-project-config-updater.helloWorld'
+  // 'vscode-project-kit.helloWorld'
 
 
   useCommands({
-    "project-config.manualUpdate": (..._args: any[]) => {
+    "project-kit.manualUpdate": (..._args: any[]) => {
       window.showInformationMessage(`${configObjectEmeraldwalk.runonsave.shell}`)
       // useConfigObjectFileNestingUpdater.$update('autoUpdate', configObjectFileNestingUpdater.autoUpdate)
     },

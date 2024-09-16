@@ -1,20 +1,20 @@
 const configsObject = {
   'xxx': {
     default: true,
-    description: 'Enabled project-config inline annotations',
+    description: 'Enabled project-kit inline annotations',
     type: 'boolean',
   },
-  'project-config.test.annotations': {
+  'project-kit.test.annotations': {
     default: true,
-    description: 'Enabled project-config inline annotations',
+    description: 'Enabled project-kit inline annotations',
     type: 'boolean',
   },
-  'project-config.test.color': {
+  'project-kit.test.color': {
     default: 'auto',
     description: 'Icon color hex for inline displaying',
     type: 'string',
   },
-  'project-config.test': {
+  'project-kit.test': {
     default: 'auto',
     description: 'Icon color hex for inline displaying',
     type: 'string',

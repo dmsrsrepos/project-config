@@ -4,18 +4,18 @@
 <br>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/antfu/vscode-project-config-config/main/extension/res/logo.png" style="width:100px;" />
+<img src="https://raw.githubusercontent.com/antfu/vscode-project-kit-config/main/extension/res/logo.png" style="width:100px;" />
 </p>
 
 <h1 align="center">Project Kit</h1>
 
 <p align="center">
-Auto updater for <a href="https://github.com/open-dmsrs/vscode-project-config-updater" target="_blank"><code>vscode-project-config-config</code></a>.<br>
-A config to make your file tree cleaner with the <a href="https://code.visualstudio.com/updates/v1_64#_explorer-project-config">file nesting feature</a> of VS Code.</a>
+Auto updater for <a href="https://github.com/open-dmsrs/vscode-project-kit" target="_blank"><code>vscode-project-kit-config</code></a>.<br>
+A config to make your file tree cleaner with the <a href="https://code.visualstudio.com/updates/v1_64#_explorer-project-kit">file nesting feature</a> of VS Code.</a>
 </p>
 
 <p align="center">
-<a href="https://marketplace.visualstudio.com/items?itemName=cnjimbo.project-config" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/cnjimbo.project-config.svg?color=blue&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=cnjimbo.project-kit" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/cnjimbo.project-kit.svg?color=blue&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
 </p>
 
 
@@ -26,7 +26,7 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
   "fileNestingUpdater.autoUpdate": true,
   "fileNestingUpdater.autoUpdateInterval": 720,
   "fileNestingUpdater.promptOnAutoUpdate": true,
-  "fileNestingUpdater.upstreamRepo": "antfu/vscode-project-config-config",
+  "fileNestingUpdater.upstreamRepo": "antfu/vscode-project-kit-config",
   "fileNestingUpdater.upstreamBranch": "main"
 }
 ```
@@ -35,9 +35,9 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 
 | Command                                  | Title                           |
 | ---------------------------------------- | ------------------------------- |
-| `project-config.manualUpdate`            | Project Kit: Update config now  |
-| `project-config.change-annnotations`     | Project Kit: change annotations |
-| `project-config.stop-watch`              | Project Kit: stop watch         |
+| `project-kit.manualUpdate`               | Project Kit: Update config now  |
+| `project-kit.change-annnotations`        | Project Kit: change annotations |
+| `project-kit.stop-watch`                 | Project Kit: stop watch         |
 | `extension.emeraldwalk.enableRunOnSave`  | Run On Save: Enable             |
 | `extension.emeraldwalk.disableRunOnSave` | Run On Save: Disable            |
 
@@ -51,22 +51,22 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 ```json
 {
   //Fetch and update the latest config automatically
-  "fileNestingUpdater.autoUpdate": true,
+  "project-kit.fileNestingUpdater.autoUpdate": true,
 
   //The upstream repo you want to update from
-  "fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
+  "project-kit.fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
 
   //The branch name of upstream repo
-  "project-config.fileNestingUpdater.upstreamBranch": "main",
+  "project-kit.fileNestingUpdater.upstreamBranch": "main",
 
   //Should show up the prompt before doing auto update
-  "project-config.fileNestingUpdater.promptOnAutoUpdate": true,
+  "project-kit.fileNestingUpdater.promptOnAutoUpdate": true,
 
   //The minimal interval for auto update, in minutes
-  "project-config.fileNestingUpdater.autoUpdateInterval": 4320,
+  "project-kit.fileNestingUpdater.autoUpdateInterval": 4320,
 
   //
-  "project-config.emeraldwalk.runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
+  "project-kit.emeraldwalk.runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
 
 }
 ```

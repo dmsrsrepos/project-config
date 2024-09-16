@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "project-config",
+  "name": "project-kit",
   "main": "./dist/index.cjs",
   "icon": "res/logo.png",
   "version": "1.1.2",
@@ -12,7 +12,7 @@
   },
   "publisher": "cnjimbo",
   "repository": {
-    "url": "https://github.com/open-dmsrs/vscode-project-config-updater",
+    "url": "https://github.com/open-dmsrs/vscode-project-kit",
     "type": "git",
     "directory": "extension"
   },
@@ -25,17 +25,17 @@
     "commands": [
       {
         "title": "Update config now",
-        "command": "project-config.manualUpdate",
+        "command": "project-kit.manualUpdate",
         "category": "Project Kit"
       },
       {
         "title": "change annotations",
-        "command": "project-config.change-annnotations",
+        "command": "project-kit.change-annnotations",
         "category": "Project Kit"
       },
       {
         "title": "stop watch",
-        "command": "project-config.stop-watch",
+        "command": "project-kit.stop-watch",
         "category": "Project Kit"
       },
       {
@@ -52,27 +52,27 @@
         "type": "object",
         "title": "Config 1",
         "properties": {
-          "fileNestingUpdater.autoUpdate": {
+          "project-kit.fileNestingUpdater.autoUpdate": {
             "type": "boolean",
             "default": true,
             "description": "Fetch and update the latest config automatically"
           },
-          "fileNestingUpdater.upstreamRepo": {
+          "project-kit.fileNestingUpdater.upstreamRepo": {
             "type": "string",
             "default": "antfu/vscode-file-nesting-config",
             "description": "The upstream repo you want to update from"
           },
-          "project-config.fileNestingUpdater.upstreamBranch": {
+          "project-kit.fileNestingUpdater.upstreamBranch": {
             "type": "string",
             "default": "main",
             "description": "The branch name of upstream repo"
           },
-          "project-config.fileNestingUpdater.promptOnAutoUpdate": {
+          "project-kit.fileNestingUpdater.promptOnAutoUpdate": {
             "type": "boolean",
             "default": true,
             "description": "Should show up the prompt before doing auto update"
           },
-          "project-config.fileNestingUpdater.autoUpdateInterval": {
+          "project-kit.fileNestingUpdater.autoUpdateInterval": {
             "type": "number",
             "default": 4320,
             "description": "The minimal interval for auto update, in minutes"
@@ -83,7 +83,7 @@
         "type": "object",
         "title": "Run On Save command configuration.",
         "properties": {
-          "project-config.emeraldwalk.runonsave": {
+          "project-kit.emeraldwalk.runonsave": {
             "type": "object",
             "properties": {
               "shell": {

@@ -4,7 +4,7 @@
 
 > Requires VS Code v1.67
 
-This is a config snippet making your file tree cleaner with the [file nesting feature](https://code.visualstudio.com/updates/v1_67#_explorer-project-config) of VS Code.
+This is a config snippet making your file tree cleaner with the [file nesting feature](https://code.visualstudio.com/updates/v1_67#_explorer-project-kit) of VS Code.
 
 Inspired by [this tweet](https://twitter.com/dzhavatushev/status/1500511236634599430) by [Dzhavat Ushev](https://twitter.com/dzhavatushev) and [this tweet](https://twitter.com/jachands/status/1500173829733240844) by [Jacob Hands](https://twitter.com/jachands).
 
@@ -16,7 +16,7 @@ With some scripts to avoid duplication of works. And it's very opinionated.
 
 We now have a new VS Code extension to handle the updates automatically for you.
 
-[Check the readme for instructions](https://github.com/open-dmsrs/vscode-project-config-updater/tree/main/extension).
+[Check the readme for instructions](https://github.com/open-dmsrs/vscode-project-kit/tree/main/extension).
 
 ### Update Manually
 

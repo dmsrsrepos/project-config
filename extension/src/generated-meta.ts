@@ -4,34 +4,34 @@
 // Meta info
 import { defineConfigObject, defineConfigs, useCommand as useReactiveCommand, useCommands as useReactiveCommands, useLogger as useReactiveLogger, useOutputChannel as useReactiveOutputChannel, } from 'reactive-vscode';
 export const publisher = "cnjimbo";
-export const name = "project-config";
+export const name = "project-kit";
 export const version = "1.1.2";
 export const displayName = "Project Kit";
 export const description = "Export current settings to workspace config file ";
-export const extensionId = "cnjimbo.project-config";
+export const extensionId = "cnjimbo.project-kit";
 /**
  * Type union of all commands
  */
-export type CommandKey = "project-config.manualUpdate" | "project-config.change-annnotations" | "project-config.stop-watch" | "extension.emeraldwalk.enableRunOnSave" | "extension.emeraldwalk.disableRunOnSave";
+export type CommandKey = "project-kit.manualUpdate" | "project-kit.change-annnotations" | "project-kit.stop-watch" | "extension.emeraldwalk.enableRunOnSave" | "extension.emeraldwalk.disableRunOnSave";
 /**
- * Commands map registed by `cnjimbo.project-config`
+ * Commands map registed by `cnjimbo.project-kit`
  */
 export const commands = {
     /**
      * Update config now
-     * @value `project-config.manualUpdate`
+     * @value `project-kit.manualUpdate`
      */
-    manualUpdate: "project-config.manualUpdate",
+    manualUpdate: "project-kit.manualUpdate",
     /**
      * change annotations
-     * @value `project-config.change-annnotations`
+     * @value `project-kit.change-annnotations`
      */
-    changeAnnnotations: "project-config.change-annnotations",
+    changeAnnnotations: "project-kit.change-annnotations",
     /**
      * stop watch
-     * @value `project-config.stop-watch`
+     * @value `project-kit.stop-watch`
      */
-    stopWatch: "project-config.stop-watch",
+    stopWatch: "project-kit.stop-watch",
     /**
      * Run On Save: Enable
      * @value `extension.emeraldwalk.enableRunOnSave`
@@ -58,21 +58,21 @@ export function useOutputChannel(outputName: NameType = displayName ?? name ?? e
 }
 /**
  * Update config now
- * @value `project-config.manualUpdate` identifier of the command
+ * @value `project-kit.manualUpdate` identifier of the command
  */
 export function useCommandManualUpdate(callback: (...args: any[]) => any) {
     return useCommand(commands.manualUpdate, callback);
 }
 /**
  * change annotations
- * @value `project-config.change-annnotations` identifier of the command
+ * @value `project-kit.change-annnotations` identifier of the command
  */
 export function useCommandChangeAnnnotations(callback: (...args: any[]) => any) {
     return useCommand(commands.changeAnnnotations, callback);
 }
 /**
  * stop watch
- * @value `project-config.stop-watch` identifier of the command
+ * @value `project-kit.stop-watch` identifier of the command
  */
 export function useCommandStopWatch(callback: (...args: any[]) => any) {
     return useCommand(commands.stopWatch, callback);
@@ -92,22 +92,17 @@ export function useCommandDisableRunOnSave(callback: (...args: any[]) => any) {
     return useCommand(commands.disableRunOnSave, callback);
 }
 /**
- * Section Type of `fileNestingUpdater`
+ * Section Type of `project-kit`
  */
-export interface FileNestingUpdater {
+export interface ProjectKit {
     /**
      * Fetch and update the latest config automatically
      */
-    "autoUpdate": boolean;
+    "fileNestingUpdater.autoUpdate": boolean;
     /**
      * The upstream repo you want to update from
      */
-    "upstreamRepo": string;
-}
-/**
- * Section Type of `project-config`
- */
-export interface ProjectConfig {
+    "fileNestingUpdater.upstreamRepo": string;
     /**
      * The branch name of upstream repo
      */
@@ -165,9 +160,17 @@ export interface ProjectConfig {
     };
 }
 /**
- * Section Type of `project-config.fileNestingUpdater`
+ * Section Type of `project-kit.fileNestingUpdater`
  */
-export interface ProjectConfigFileNestingUpdater {
+export interface FileNestingUpdater {
+    /**
+     * Fetch and update the latest config automatically
+     */
+    "autoUpdate": boolean;
+    /**
+     * The upstream repo you want to update from
+     */
+    "upstreamRepo": string;
     /**
      * The branch name of upstream repo
      */
@@ -182,7 +185,7 @@ export interface ProjectConfigFileNestingUpdater {
     "autoUpdateInterval": number;
 }
 /**
- * Section Type of `project-config.emeraldwalk`
+ * Section Type of `project-kit.emeraldwalk`
  */
 export interface Emeraldwalk {
     "runonsave": {
@@ -229,24 +232,19 @@ export interface Emeraldwalk {
         'autoClearConsole': boolean;
     };
 }
-const projectConfigConfig = {
+const projectKitConfig = {
     /**
-     * Section defaults of `fileNestingUpdater`
+     * Section defaults of `project-kit`
      */
-    "fileNestingUpdater": {
+    "project-kit": {
         /**
          * Fetch and update the latest config automatically
          */
-        "autoUpdate": true,
+        "fileNestingUpdater.autoUpdate": true,
         /**
          * The upstream repo you want to update from
          */
-        "upstreamRepo": "antfu/vscode-file-nesting-config",
-    } satisfies FileNestingUpdater as FileNestingUpdater,
-    /**
-     * Section defaults of `project-config`
-     */
-    "project-config": {
+        "fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
         /**
          * The branch name of upstream repo
          */
@@ -260,11 +258,19 @@ const projectConfigConfig = {
          */
         "fileNestingUpdater.autoUpdateInterval": 4320,
         "emeraldwalk.runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
-    } satisfies ProjectConfig as ProjectConfig,
+    } satisfies ProjectKit as ProjectKit,
     /**
-     * Section defaults of `project-config.fileNestingUpdater`
+     * Section defaults of `project-kit.fileNestingUpdater`
      */
-    "project-config.fileNestingUpdater": {
+    "project-kit.fileNestingUpdater": {
+        /**
+         * Fetch and update the latest config automatically
+         */
+        "autoUpdate": true,
+        /**
+         * The upstream repo you want to update from
+         */
+        "upstreamRepo": "antfu/vscode-file-nesting-config",
         /**
          * The branch name of upstream repo
          */
@@ -277,74 +283,60 @@ const projectConfigConfig = {
          * The minimal interval for auto update, in minutes
          */
         "autoUpdateInterval": 4320,
-    } satisfies ProjectConfigFileNestingUpdater as ProjectConfigFileNestingUpdater,
+    } satisfies FileNestingUpdater as FileNestingUpdater,
     /**
-     * Section defaults of `project-config.emeraldwalk`
+     * Section defaults of `project-kit.emeraldwalk`
      */
-    "project-config.emeraldwalk": {
+    "project-kit.emeraldwalk": {
         "runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
     } satisfies Emeraldwalk as Emeraldwalk,
 };
-export type ConfigKey = "fileNestingUpdater" | "project-config" | "project-config.fileNestingUpdater" | "project-config.emeraldwalk";
+export type ConfigKey = "project-kit" | "project-kit.fileNestingUpdater" | "project-kit.emeraldwalk";
 export function useConfig<K extends ConfigKey>(section: K) {
-    return defineConfigs<typeof projectConfigConfig[K]>(section, projectConfigConfig[section]);
+    return defineConfigs<typeof projectKitConfig[K]>(section, projectKitConfig[section]);
 }
 export function useConfigObject<K extends ConfigKey>(section: K) {
-    return defineConfigObject<typeof projectConfigConfig[K]>(section, projectConfigConfig[section]);
+    return defineConfigObject<typeof projectKitConfig[K]>(section, projectKitConfig[section]);
 }
 /**
- * ConfigObject of `fileNestingUpdater`
+ * ConfigObject of `project-kit`
+ * @example
+ * const oldVal = configObjectProjectKit.fileNestingUpdater.autoUpdate //get value
+ * configObjectProjectKit.$update("fileNestingUpdater.autoUpdate", oldVal) //update value
+ */
+export const configObjectProjectKit = useConfigObject("project-kit");
+/**
+ * ToConfigRefs of `project-kit`
+ * @example
+ * const oldVal:boolean =configProjectKit.fileNestingUpdater.autoUpdate.value //get value
+ * configProjectKit.fileNestingUpdater.autoUpdate.update(oldVal) //update value
+ */
+export const configProjectKit = useConfig("project-kit");
+/**
+ * ConfigObject of `project-kit.fileNestingUpdater`
  * @example
  * const oldVal = configObjectFileNestingUpdater.autoUpdate //get value
  * configObjectFileNestingUpdater.$update("autoUpdate", oldVal) //update value
  */
-export const configObjectFileNestingUpdater = useConfigObject("fileNestingUpdater");
+export const configObjectFileNestingUpdater = useConfigObject("project-kit.fileNestingUpdater");
 /**
- * ToConfigRefs of `fileNestingUpdater`
+ * ToConfigRefs of `project-kit.fileNestingUpdater`
  * @example
  * const oldVal:boolean =configFileNestingUpdater.autoUpdate.value //get value
  * configFileNestingUpdater.autoUpdate.update(oldVal) //update value
  */
-export const configFileNestingUpdater = useConfig("fileNestingUpdater");
+export const configFileNestingUpdater = useConfig("project-kit.fileNestingUpdater");
 /**
- * ConfigObject of `project-config`
- * @example
- * const oldVal = configObjectProjectConfig.fileNestingUpdater.upstreamBranch //get value
- * configObjectProjectConfig.$update("fileNestingUpdater.upstreamBranch", oldVal) //update value
- */
-export const configObjectProjectConfig = useConfigObject("project-config");
-/**
- * ToConfigRefs of `project-config`
- * @example
- * const oldVal:string =configProjectConfig.fileNestingUpdater.upstreamBranch.value //get value
- * configProjectConfig.fileNestingUpdater.upstreamBranch.update(oldVal) //update value
- */
-export const configProjectConfig = useConfig("project-config");
-/**
- * ConfigObject of `project-config.fileNestingUpdater`
- * @example
- * const oldVal = configObjectProjectConfigFileNestingUpdater.upstreamBranch //get value
- * configObjectProjectConfigFileNestingUpdater.$update("upstreamBranch", oldVal) //update value
- */
-export const configObjectProjectConfigFileNestingUpdater = useConfigObject("project-config.fileNestingUpdater");
-/**
- * ToConfigRefs of `project-config.fileNestingUpdater`
- * @example
- * const oldVal:string =configProjectConfigFileNestingUpdater.upstreamBranch.value //get value
- * configProjectConfigFileNestingUpdater.upstreamBranch.update(oldVal) //update value
- */
-export const configProjectConfigFileNestingUpdater = useConfig("project-config.fileNestingUpdater");
-/**
- * ConfigObject of `project-config.emeraldwalk`
+ * ConfigObject of `project-kit.emeraldwalk`
  * @example
  * const oldVal = configObjectEmeraldwalk.runonsave //get value
  * configObjectEmeraldwalk.$update("runonsave", oldVal) //update value
  */
-export const configObjectEmeraldwalk = useConfigObject("project-config.emeraldwalk");
+export const configObjectEmeraldwalk = useConfigObject("project-kit.emeraldwalk");
 /**
- * ToConfigRefs of `project-config.emeraldwalk`
+ * ToConfigRefs of `project-kit.emeraldwalk`
  * @example
  * const oldVal:object =configEmeraldwalk.runonsave.value //get value
  * configEmeraldwalk.runonsave.update(oldVal) //update value
  */
-export const configEmeraldwalk = useConfig("project-config.emeraldwalk");
+export const configEmeraldwalk = useConfig("project-kit.emeraldwalk");
