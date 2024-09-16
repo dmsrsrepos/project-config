@@ -6,13 +6,43 @@ import { defineConfigObject, defineConfigs, useCommand as useReactiveCommand, us
 export const publisher = "cnjimbo";
 export const name = "project-config";
 export const version = "1.1.2";
-export const displayName = "Project Config Updater";
+export const displayName = "Project Kit";
 export const description = "Export current settings to workspace config file ";
 export const extensionId = "cnjimbo.project-config";
 /**
  * Type union of all commands
  */
 export type CommandKey = "project-config.manualUpdate" | "project-config.change-annnotations" | "project-config.stop-watch" | "extension.emeraldwalk.enableRunOnSave" | "extension.emeraldwalk.disableRunOnSave";
+/**
+ * Commands map registed by `cnjimbo.project-config`
+ */
+export const commands = {
+    /**
+     * Update config now
+     * @value `project-config.manualUpdate`
+     */
+    manualUpdate: "project-config.manualUpdate",
+    /**
+     * change annotations
+     * @value `project-config.change-annnotations`
+     */
+    changeAnnnotations: "project-config.change-annnotations",
+    /**
+     * stop watch
+     * @value `project-config.stop-watch`
+     */
+    stopWatch: "project-config.stop-watch",
+    /**
+     * Run On Save: Enable
+     * @value `extension.emeraldwalk.enableRunOnSave`
+     */
+    enableRunOnSave: "extension.emeraldwalk.enableRunOnSave",
+    /**
+     * Run On Save: Disable
+     * @value `extension.emeraldwalk.disableRunOnSave`
+     */
+    disableRunOnSave: "extension.emeraldwalk.disableRunOnSave",
+} satisfies Record<string, CommandKey>;
 export function useCommand(commandFullKey: CommandKey, callback: (...args: any[]) => any): void {
     return useReactiveCommand(commandFullKey, callback);
 }
@@ -20,46 +50,46 @@ export function useCommands(commands: Partial<Record<CommandKey, (...args: any[]
     return useReactiveCommands(commands);
 }
 type NameType = typeof name | typeof displayName | typeof extensionId;
-export function useLogger(name: NameType = displayName, getPrefix?: ((type: string) => string) | null) {
-    return useReactiveLogger(name, { 'getPrefix': getPrefix });
+export function useLogger(loggerName: NameType = displayName ?? name ?? extensionId, getPrefix?: ((type: string) => string) | null) {
+    return useReactiveLogger(loggerName, { 'getPrefix': getPrefix });
 }
-export function useOutputChannel(name: NameType = displayName) {
-    return useReactiveOutputChannel(name);
+export function useOutputChannel(outputName: NameType = displayName ?? name ?? extensionId) {
+    return useReactiveOutputChannel(outputName);
 }
 /**
  * Update config now
  * @value `project-config.manualUpdate` identifier of the command
  */
 export function useCommandManualUpdate(callback: (...args: any[]) => any) {
-    return useCommand("project-config.manualUpdate", callback);
+    return useCommand(commands.manualUpdate, callback);
 }
 /**
  * change annotations
  * @value `project-config.change-annnotations` identifier of the command
  */
 export function useCommandChangeAnnnotations(callback: (...args: any[]) => any) {
-    return useCommand("project-config.change-annnotations", callback);
+    return useCommand(commands.changeAnnnotations, callback);
 }
 /**
  * stop watch
  * @value `project-config.stop-watch` identifier of the command
  */
 export function useCommandStopWatch(callback: (...args: any[]) => any) {
-    return useCommand("project-config.stop-watch", callback);
+    return useCommand(commands.stopWatch, callback);
 }
 /**
  * Run On Save: Enable
  * @value `extension.emeraldwalk.enableRunOnSave` identifier of the command
  */
-export function useCommandExtensionEmeraldwalkEnableRunOnSave(callback: (...args: any[]) => any) {
-    return useCommand("extension.emeraldwalk.enableRunOnSave", callback);
+export function useCommandEnableRunOnSave(callback: (...args: any[]) => any) {
+    return useCommand(commands.enableRunOnSave, callback);
 }
 /**
  * Run On Save: Disable
  * @value `extension.emeraldwalk.disableRunOnSave` identifier of the command
  */
-export function useCommandExtensionEmeraldwalkDisableRunOnSave(callback: (...args: any[]) => any) {
-    return useCommand("extension.emeraldwalk.disableRunOnSave", callback);
+export function useCommandDisableRunOnSave(callback: (...args: any[]) => any) {
+    return useCommand(commands.disableRunOnSave, callback);
 }
 /**
  * Section Type of `fileNestingUpdater`
@@ -137,7 +167,7 @@ export interface ProjectConfig {
 /**
  * Section Type of `project-config.fileNestingUpdater`
  */
-export interface FileNestingUpdater_1 {
+export interface ProjectConfigFileNestingUpdater {
     /**
      * The branch name of upstream repo
      */
@@ -247,7 +277,7 @@ const projectConfigConfig = {
          * The minimal interval for auto update, in minutes
          */
         "autoUpdateInterval": 4320,
-    } satisfies FileNestingUpdater_1 as FileNestingUpdater_1,
+    } satisfies ProjectConfigFileNestingUpdater as ProjectConfigFileNestingUpdater,
     /**
      * Section defaults of `project-config.emeraldwalk`
      */
@@ -293,17 +323,17 @@ export const configProjectConfig = useConfig("project-config");
 /**
  * ConfigObject of `project-config.fileNestingUpdater`
  * @example
- * const oldVal = configObjectFileNestingUpdater_1.upstreamBranch //get value
- * configObjectFileNestingUpdater_1.$update("upstreamBranch", oldVal) //update value
+ * const oldVal = configObjectProjectConfigFileNestingUpdater.upstreamBranch //get value
+ * configObjectProjectConfigFileNestingUpdater.$update("upstreamBranch", oldVal) //update value
  */
-export const configObjectFileNestingUpdater_1 = useConfigObject("project-config.fileNestingUpdater");
+export const configObjectProjectConfigFileNestingUpdater = useConfigObject("project-config.fileNestingUpdater");
 /**
  * ToConfigRefs of `project-config.fileNestingUpdater`
  * @example
- * const oldVal:string =configFileNestingUpdater_1.upstreamBranch.value //get value
- * configFileNestingUpdater_1.upstreamBranch.update(oldVal) //update value
+ * const oldVal:string =configProjectConfigFileNestingUpdater.upstreamBranch.value //get value
+ * configProjectConfigFileNestingUpdater.upstreamBranch.update(oldVal) //update value
  */
-export const configFileNestingUpdater_1 = useConfig("project-config.fileNestingUpdater");
+export const configProjectConfigFileNestingUpdater = useConfig("project-config.fileNestingUpdater");
 /**
  * ConfigObject of `project-config.emeraldwalk`
  * @example

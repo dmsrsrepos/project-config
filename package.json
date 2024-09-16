@@ -19,7 +19,7 @@
   },
   "funding": "https://github.com/sponsors/cnjimbo",
   "license": "MIT",
-  "name": "poject-config",
+  "name": "vscode-project-kit",
   "private": true,
   "scripts": {
     "ext:build": "cd $(pwd)/extension && pnpm tsup src/index.ts --sourcemap --external vscode",

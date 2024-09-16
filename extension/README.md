@@ -7,7 +7,7 @@
 <img src="https://raw.githubusercontent.com/antfu/vscode-project-config-config/main/extension/res/logo.png" style="width:100px;" />
 </p>
 
-<h1 align="center">Project Config Updater</h1>
+<h1 align="center">Project Kit</h1>
 
 <p align="center">
 Auto updater for <a href="https://github.com/open-dmsrs/vscode-project-config-updater" target="_blank"><code>vscode-project-config-config</code></a>.<br>
@@ -33,13 +33,13 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 
 <!-- commands -->
 
-| Command                                  | Title                                      |
-| ---------------------------------------- | ------------------------------------------ |
-| `project-config.manualUpdate`            | Project Config Updater: Update config now  |
-| `project-config.change-annnotations`     | Project Config Updater: change annotations |
-| `project-config.stop-watch`              | Project Config Updater: stop watch         |
-| `extension.emeraldwalk.enableRunOnSave`  | Run On Save: Enable                        |
-| `extension.emeraldwalk.disableRunOnSave` | Run On Save: Disable                       |
+| Command                                  | Title                           |
+| ---------------------------------------- | ------------------------------- |
+| `project-config.manualUpdate`            | Project Kit: Update config now  |
+| `project-config.change-annnotations`     | Project Kit: change annotations |
+| `project-config.stop-watch`              | Project Kit: stop watch         |
+| `extension.emeraldwalk.enableRunOnSave`  | Run On Save: Enable             |
+| `extension.emeraldwalk.disableRunOnSave` | Run On Save: Disable            |
 
 <!-- commands -->
 
@@ -72,7 +72,7 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 ```
 
 <!-- configsJson -->
-It will check for update every 12 hours by default. You can also do it manually by executing command `Project Config Updater: Update config now`.
+It will check for update every 12 hours by default. You can also do it manually by executing command `Project Kit: Update config now`.
 
 ## License
 

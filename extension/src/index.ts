@@ -1,7 +1,6 @@
 import { defineExtension, useFsWatcher, watchEffect } from 'reactive-vscode'
 import { ConfigurationTarget, window } from 'vscode'
-import { configEmeraldwalk as useConfigsEmeraldwalk, useCommand, useLogger, useOutputChannel } from '@/generated-meta'
-
+import { configObjectEmeraldwalk as useConfigsEmeraldwalk, useCommandManualUpdate, useLogger } from '@/generated-meta'
 
 // const { activate, deactivate } = defineExtension(() => {
 //   const logger = useLogger()
@@ -12,7 +11,6 @@ import { configEmeraldwalk as useConfigsEmeraldwalk, useCommand, useLogger, useO
 //     output.appendLine(`testConfigs.annotations: ${useConfigsEmeraldwalk.runonsave.value.shell}`)
 //   })
 //   // update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
-
 
 //   console.log('activate')
 //   const globs = useConfigsEmeraldwalk.runonsave.value.shell ?? "cmd"
@@ -29,30 +27,21 @@ import { configEmeraldwalk as useConfigsEmeraldwalk, useCommand, useLogger, useO
 // })
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
-  const output = useOutputChannel()
   const stop = watchEffect(() => {
-    window.showInformationMessage(`testConfigs.annotations: ${useConfigsEmeraldwalk.runonsave.value.shell}`)
-    logger.warn(`testConfigs.annotations: ${useConfigsEmeraldwalk.runonsave.value.shell}`)
-    output.appendLine(`testConfigs.annotations: ${useConfigsEmeraldwalk.runonsave.value.shell}`)
+    window.showInformationMessage(`testConfigs.annotations: ${useConfigsEmeraldwalk.runonsave.shell}`)
+    logger.warn(`testConfigs.annotations: ${useConfigsEmeraldwalk.runonsave.shell}`)
   })
   // update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
 
-
   logger.info('activate')
-  const globs = useConfigsEmeraldwalk.runonsave.value.shell ?? "cmd"
+  const globs = useConfigsEmeraldwalk.runonsave.shell ?? 'cmd'
 
   const watcher = useFsWatcher(globs)
   watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
 
-  // useCommandManualUpdate(() => {
-  //   window.showInformationMessage(`handl name:${stop?.toString()}`)
-  //   logger.warn(`handl name:${stop?.toString()}`)
-  //   output.appendLine(`handl name:${stop?.toString()}`)
-  // })
-  useCommand("project-config.manualUpdate", () => {
+  useCommandManualUpdate(() => {
     window.showInformationMessage(`handl name:${stop?.toString()}`)
-    logger.warn(`handl name:${stop?.toString()}`)
-    output.appendLine(`handl name:${stop?.toString()}`)
-  })
+    logger.warn(`handl name:${stop?.toString()}`) 
+  }) 
 })
 export { activate, deactivate }

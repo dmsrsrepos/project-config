@@ -19,24 +19,24 @@
   "categories": [
     "Other"
   ],
-  "displayName": "Project Config Updater",
+  "displayName": "Project Kit",
   "description": "Export current settings to workspace config file ",
   "contributes": {
     "commands": [
       {
         "title": "Update config now",
         "command": "project-config.manualUpdate",
-        "category": "Project Config Updater"
+        "category": "Project Kit"
       },
       {
         "title": "change annotations",
         "command": "project-config.change-annnotations",
-        "category": "Project Config Updater"
+        "category": "Project Kit"
       },
       {
         "title": "stop watch",
         "command": "project-config.stop-watch",
-        "category": "Project Config Updater"
+        "category": "Project Kit"
       },
       {
         "title": "Run On Save: Enable",
