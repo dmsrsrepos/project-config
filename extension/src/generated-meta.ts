@@ -21,78 +21,73 @@ export const commands = {
      * Update config now
      * @commandkey `project-kit.manualUpdate`
      */
-    useCommandManualUpdate: "project-kit.manualUpdate",
+    manualUpdate: "project-kit.manualUpdate",
     /**
      * change annotations
      * @commandkey `project-kit.change-annnotations`
      */
-    useCommandChangeAnnnotations: "project-kit.change-annnotations",
+    changeAnnnotations: "project-kit.change-annnotations",
     /**
      * stop watch
      * @commandkey `project-kit.stop-watch`
      */
-    useCommandStopWatch: "project-kit.stop-watch",
+    stopWatch: "project-kit.stop-watch",
     /**
      * Run On Save: Enable
      * @commandkey `extension.emeraldwalk.enableRunOnSave`
      */
-    useCommandEnableRunOnSave: "extension.emeraldwalk.enableRunOnSave",
+    enableRunOnSave: "extension.emeraldwalk.enableRunOnSave",
     /**
      * Run On Save: Disable
      * @commandkey `extension.emeraldwalk.disableRunOnSave`
      */
-    useCommandDisableRunOnSave: "extension.emeraldwalk.disableRunOnSave",
+    disableRunOnSave: "extension.emeraldwalk.disableRunOnSave",
 } satisfies Record<string, CommandKey>;
 /**
  * Register a command. See `vscode::commands.registerCommand`.
  */
-export function useCommand(commandFullKey: CommandKey, callback: (...args: any[]) => any): void {
-    return useReactiveCommand(commandFullKey, callback);
-}
+export const useCommand = (commandFullKey: CommandKey, callback: (...args: any[]) => any): void => useReactiveCommand(commandFullKey, callback);
 /**
  * Register multiple commands. See `vscode::commands.registerCommand`.
  */
-export function useCommands(commands: Partial<Record<CommandKey, (...args: any[]) => any>>): void {
-    return useReactiveCommands(commands);
-}
+export const useCommands = (commands: Partial<Record<CommandKey, (...args: any[]) => any>>): void => useReactiveCommands(commands);
+/**
+ * name type of Logger and OutputChannel
+ */
 export type LoggerNameType = typeof name | typeof displayName | typeof extensionId;
 /**
  * Creates a logger that writes to the output channel.
  */
-export function useLogger(loggerName: LoggerNameType = displayName ?? name ?? extensionId, getPrefix?: ((type: string) => string) | null) {
-    return useReactiveLogger(loggerName, { 'getPrefix': getPrefix });
-}
+export const useLogger = (loggerName: LoggerNameType = displayName ?? name ?? extensionId, getPrefix?: ((type: string) => string) | null) => useReactiveLogger(loggerName, { 'getPrefix': getPrefix });
 /**
  * @reactive `window.createOutputChannel`
  */
-export function useOutputChannel(outputName: LoggerNameType = displayName ?? name ?? extensionId) {
-    return useReactiveOutputChannel(outputName);
-}
+export const useOutputChannel = (outputName: LoggerNameType = displayName ?? name ?? extensionId) => useReactiveOutputChannel(outputName);
 /**
  * Update config now
  * @commandkey Register a command `project-kit.manualUpdate`
  */
-export const useCommandManualUpdate = (callback: (...args: any[]) => any) => useCommand(commands.useCommandManualUpdate, callback);
+export const useCommandManualUpdate = (callback: (...args: any[]) => any) => useCommand(commands.manualUpdate, callback);
 /**
  * change annotations
  * @commandkey Register a command `project-kit.change-annnotations`
  */
-export const useCommandChangeAnnnotations = (callback: (...args: any[]) => any) => useCommand(commands.useCommandChangeAnnnotations, callback);
+export const useCommandChangeAnnnotations = (callback: (...args: any[]) => any) => useCommand(commands.changeAnnnotations, callback);
 /**
  * stop watch
  * @commandkey Register a command `project-kit.stop-watch`
  */
-export const useCommandStopWatch = (callback: (...args: any[]) => any) => useCommand(commands.useCommandStopWatch, callback);
+export const useCommandStopWatch = (callback: (...args: any[]) => any) => useCommand(commands.stopWatch, callback);
 /**
  * Run On Save: Enable
  * @commandkey Register a command `extension.emeraldwalk.enableRunOnSave`
  */
-export const useCommandEnableRunOnSave = (callback: (...args: any[]) => any) => useCommand(commands.useCommandEnableRunOnSave, callback);
+export const useCommandEnableRunOnSave = (callback: (...args: any[]) => any) => useCommand(commands.enableRunOnSave, callback);
 /**
  * Run On Save: Disable
  * @commandkey Register a command `extension.emeraldwalk.disableRunOnSave`
  */
-export const useCommandDisableRunOnSave = (callback: (...args: any[]) => any) => useCommand(commands.useCommandDisableRunOnSave, callback);
+export const useCommandDisableRunOnSave = (callback: (...args: any[]) => any) => useCommand(commands.disableRunOnSave, callback);
 /**
  * Section Type of `project-kit`
  */
@@ -236,7 +231,7 @@ export interface Emeraldwalk {
 }
 const projectKitDefaults = {
     /**
-     * Section defaults of `project-kit`
+     * Config defaults of `project-kit`
      */
     "project-kit": {
         /**
@@ -262,7 +257,7 @@ const projectKitDefaults = {
         "emeraldwalk.runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
     } satisfies ProjectKit as ProjectKit,
     /**
-     * Section defaults of `project-kit.fileNestingUpdater`
+     * Config defaults of `project-kit.fileNestingUpdater`
      */
     "project-kit.fileNestingUpdater": {
         /**
@@ -287,13 +282,16 @@ const projectKitDefaults = {
         "autoUpdateInterval": 4320,
     } satisfies FileNestingUpdater as FileNestingUpdater,
     /**
-     * Section defaults of `project-kit.emeraldwalk`
+     * Config defaults of `project-kit.emeraldwalk`
      */
     "project-kit.emeraldwalk": {
         "runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
     } satisfies Emeraldwalk as Emeraldwalk,
 };
 export type ConfigSecionKey = keyof typeof projectKitDefaults;
+/**
+ * Shorthand of config section name.
+ */
 export const configs = {
     projectKit: "project-kit",
     fileNestingUpdater: "project-kit.fileNestingUpdater",
@@ -302,54 +300,56 @@ export const configs = {
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
  */
-export function useConfig<K extends ConfigSecionKey>(section: K) {
-    return defineConfigs<typeof projectKitDefaults[K]>(section, projectKitDefaults[section]);
-}
+export const useConfig = <K extends ConfigSecionKey>(section: K) => defineConfigs<typeof projectKitDefaults[K]>(section, projectKitDefaults[section]);
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
  */
-export function useConfigObject<K extends ConfigSecionKey>(section: K) {
-    return defineConfigObject<typeof projectKitDefaults[K]>(section, projectKitDefaults[section]);
-}
+export const useConfigObject = <K extends ConfigSecionKey>(section: K) => defineConfigObject<typeof projectKitDefaults[K]>(section, projectKitDefaults[section]);
 /**
  * ConfigObject of `project-kit`
  * @example
- * const oldVal = useConfigObjectProjectKit.fileNestingUpdater.autoUpdate //get value
- * useConfigObjectProjectKit.$update("fileNestingUpdater.autoUpdate", oldVal) //update value
+ * const projectKit = useConfigObjectProjectKit()
+ * const oldVal:boolean = projectKit.fileNestingUpdater.autoUpdate //get value
+ * projectKit.$update("fileNestingUpdater.autoUpdate", oldVal) //update value
  */
 export const useConfigObjectProjectKit = () => useConfigObject(configs.projectKit);
 /**
  * ToConfigRefs of `project-kit`
  * @example
- * const oldVal:boolean =useConfigProjectKit.fileNestingUpdater.autoUpdate.value //get value
- * useConfigProjectKit.fileNestingUpdater.autoUpdate.update(oldVal) //update value
+ * const projectKit = useConfigProjectKit()
+ * const oldVal:boolean = projectKit.fileNestingUpdater.autoUpdate.value //get value
+ * projectKit.fileNestingUpdater.autoUpdate.update(oldVal) //update value
  */
 export const useConfigProjectKit = () => useConfig(configs.projectKit);
 /**
  * ConfigObject of `project-kit.fileNestingUpdater`
  * @example
- * const oldVal = useConfigObjectFileNestingUpdater.autoUpdate //get value
- * useConfigObjectFileNestingUpdater.$update("autoUpdate", oldVal) //update value
+ * const fileNestingUpdater = useConfigObjectFileNestingUpdater()
+ * const oldVal:boolean = fileNestingUpdater.autoUpdate //get value
+ * fileNestingUpdater.$update("autoUpdate", oldVal) //update value
  */
 export const useConfigObjectFileNestingUpdater = () => useConfigObject(configs.fileNestingUpdater);
 /**
  * ToConfigRefs of `project-kit.fileNestingUpdater`
  * @example
- * const oldVal:boolean =useConfigFileNestingUpdater.autoUpdate.value //get value
- * useConfigFileNestingUpdater.autoUpdate.update(oldVal) //update value
+ * const fileNestingUpdater = useConfigFileNestingUpdater()
+ * const oldVal:boolean = fileNestingUpdater.autoUpdate.value //get value
+ * fileNestingUpdater.autoUpdate.update(oldVal) //update value
  */
 export const useConfigFileNestingUpdater = () => useConfig(configs.fileNestingUpdater);
 /**
  * ConfigObject of `project-kit.emeraldwalk`
  * @example
- * const oldVal = useConfigObjectEmeraldwalk.runonsave //get value
- * useConfigObjectEmeraldwalk.$update("runonsave", oldVal) //update value
+ * const emeraldwalk = useConfigObjectEmeraldwalk()
+ * const oldVal:object = emeraldwalk.runonsave //get value
+ * emeraldwalk.$update("runonsave", oldVal) //update value
  */
 export const useConfigObjectEmeraldwalk = () => useConfigObject(configs.emeraldwalk);
 /**
  * ToConfigRefs of `project-kit.emeraldwalk`
  * @example
- * const oldVal:object =useConfigEmeraldwalk.runonsave.value //get value
- * useConfigEmeraldwalk.runonsave.update(oldVal) //update value
+ * const emeraldwalk = useConfigEmeraldwalk()
+ * const oldVal:object = emeraldwalk.runonsave.value //get value
+ * emeraldwalk.runonsave.update(oldVal) //update value
  */
 export const useConfigEmeraldwalk = () => useConfig(configs.emeraldwalk);

@@ -9,7 +9,7 @@ import { defineConfigs } from 'reactive-vscode'
 
 export async function fetchLatest(): Promise<Record<string, string>> {
   const config = useConfigObjectFileNestingUpdater()
-  const repo = config
+  const repo = config.upstreamRepo
   const branch = config.upstreamBranch
 
   const url = `${URL_PREFIX}/${repo}@${branch}/${FILE}`
