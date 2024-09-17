@@ -23,7 +23,7 @@ export default antfu(
 
     // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
     ignores: [
-      '**/fixtures', 'src/*.ts', '**/eslint.config.js'
+      '**/fixtures', '**/eslint.config.js'
     ],
   },
   {

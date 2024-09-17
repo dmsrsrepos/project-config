@@ -1,3 +1,3 @@
-import { useLogger  } from '@/generated-meta'
+import { useLogger } from '@/generated-meta'
 
 export const logger = useLogger()

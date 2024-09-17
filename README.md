@@ -1,7 +1,6 @@
 <sub><em>Anthony's</em></sub>
 <h1>File Nesting Config<sup><em> for VS Code</em></sup></h1>
 
-
 > Requires VS Code v1.67
 
 This is a config snippet making your file tree cleaner with the [file nesting feature](https://code.visualstudio.com/updates/v1_67#_explorer-project-kit) of VS Code.
@@ -16,7 +15,7 @@ With some scripts to avoid duplication of works. And it's very opinionated.
 
 We now have a new VS Code extension to handle the updates automatically for you.
 
-[Check the readme for instructions](https://github.com/open-dmsrs/vscode-project-kit/tree/main/extension).
+[Check the readme for instructions](https://github.com/open-dmsrs/project-kit/tree/main/extension).
 
 ### Update Manually
 

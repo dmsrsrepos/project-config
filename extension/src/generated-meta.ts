@@ -12,7 +12,7 @@ export const extensionId = "cnjimbo.project-kit";
 /**
  * Type union of all commands
  */
-export type CommandKey = "project-kit.manualUpdate" | "project-kit.change-annnotations" | "project-kit.stop-watch" | "extension.emeraldwalk.enableRunOnSave" | "extension.emeraldwalk.disableRunOnSave";
+export type CommandKey = "project-kit.manualUpdate" | "project-kit.change-annnotations" | "project-kit.stop-watch" | "project-kit.enableRunOnSave" | "project-kit.disableRunOnSave";
 /**
  * Commands map registed by `cnjimbo.project-kit`
  */
@@ -34,14 +34,14 @@ export const commands = {
     stopWatch: "project-kit.stop-watch",
     /**
      * Run On Save: Enable
-     * @commandkey `extension.emeraldwalk.enableRunOnSave`
+     * @commandkey `project-kit.enableRunOnSave`
      */
-    enableRunOnSave: "extension.emeraldwalk.enableRunOnSave",
+    enableRunOnSave: "project-kit.enableRunOnSave",
     /**
      * Run On Save: Disable
-     * @commandkey `extension.emeraldwalk.disableRunOnSave`
+     * @commandkey `project-kit.disableRunOnSave`
      */
-    disableRunOnSave: "extension.emeraldwalk.disableRunOnSave",
+    disableRunOnSave: "project-kit.disableRunOnSave",
 } satisfies Record<string, CommandKey>;
 /**
  * Register a command. See `vscode::commands.registerCommand`.
@@ -80,12 +80,12 @@ export const useCommandChangeAnnnotations = (callback: (...args: any[]) => any) 
 export const useCommandStopWatch = (callback: (...args: any[]) => any) => useCommand(commands.stopWatch, callback);
 /**
  * Run On Save: Enable
- * @commandkey Register a command `extension.emeraldwalk.enableRunOnSave`
+ * @commandkey Register a command `project-kit.enableRunOnSave`
  */
 export const useCommandEnableRunOnSave = (callback: (...args: any[]) => any) => useCommand(commands.enableRunOnSave, callback);
 /**
  * Run On Save: Disable
- * @commandkey Register a command `extension.emeraldwalk.disableRunOnSave`
+ * @commandkey Register a command `project-kit.disableRunOnSave`
  */
 export const useCommandDisableRunOnSave = (callback: (...args: any[]) => any) => useCommand(commands.disableRunOnSave, callback);
 /**

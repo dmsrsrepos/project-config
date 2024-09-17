@@ -4,20 +4,19 @@
 <br>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/antfu/vscode-project-kit-config/main/extension/res/logo.png" style="width:100px;" />
+<img src="https://raw.githubusercontent.com/antfu/project-kit-config/main/extension/res/logo.png" style="width:100px;" />
 </p>
 
 <h1 align="center">Project Kit</h1>
 
 <p align="center">
-Auto updater for <a href="https://github.com/open-dmsrs/vscode-project-kit" target="_blank"><code>vscode-project-kit-config</code></a>.<br>
+Auto updater for <a href="https://github.com/open-dmsrs/project-kit" target="_blank"><code>project-kit-config</code></a>.<br>
 A config to make your file tree cleaner with the <a href="https://code.visualstudio.com/updates/v1_64#_explorer-project-kit">file nesting feature</a> of VS Code.</a>
 </p>
 
 <p align="center">
 <a href="https://marketplace.visualstudio.com/items?itemName=cnjimbo.project-kit" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/cnjimbo.project-kit.svg?color=blue&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
 </p>
-
 
 ## Configurations
 
@@ -26,25 +25,22 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
   "fileNestingUpdater.autoUpdate": true,
   "fileNestingUpdater.autoUpdateInterval": 720,
   "fileNestingUpdater.promptOnAutoUpdate": true,
-  "fileNestingUpdater.upstreamRepo": "antfu/vscode-project-kit-config",
+  "fileNestingUpdater.upstreamRepo": "antfu/project-kit-config",
   "fileNestingUpdater.upstreamBranch": "main"
 }
 ```
 
 <!-- commands -->
 
-| Command                                  | Title                           |
-| ---------------------------------------- | ------------------------------- |
-| `project-kit.manualUpdate`               | Project Kit: Update config now  |
-| `project-kit.change-annnotations`        | Project Kit: change annotations |
-| `project-kit.stop-watch`                 | Project Kit: stop watch         |
-| `extension.emeraldwalk.enableRunOnSave`  | Run On Save: Enable             |
-| `extension.emeraldwalk.disableRunOnSave` | Run On Save: Disable            |
+| Command                           | Title                           |
+| --------------------------------- | ------------------------------- |
+| `project-kit.manualUpdate`        | Project Kit: Update config now  |
+| `project-kit.change-annnotations` | Project Kit: change annotations |
+| `project-kit.stop-watch`          | Project Kit: stop watch         |
+| `project-kit.enableRunOnSave`     | Run On Save: Enable             |
+| `project-kit.disableRunOnSave`    | Run On Save: Disable            |
 
 <!-- commands -->
-
-
-
 
 <!-- configsJson -->
 

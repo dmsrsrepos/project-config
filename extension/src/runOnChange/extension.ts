@@ -3,26 +3,28 @@ import { exec } from 'node:child_process'
 import process from 'node:process'
 import vscode from 'vscode'
 import type {
-  Runonsave
-} from '@/generated-meta';
+  Runonsave,
+} from '@/generated-meta'
 import {
   useCommands,
   name,
   useConfigObjectRunonsave,
   commands,
-  configs
 } from '@/generated-meta'
-import { useEvent, useDisposable, useWorkspaceFolders, useL10nText, useOutputChannel } from 'reactive-vscode'
+import { useEvent, useDisposable, useOutputChannel } from 'reactive-vscode'
+
+const onDidChangeConfiguration = useEvent(vscode.workspace.onDidChangeConfiguration)
+const onDidSaveTextDocument = useEvent(vscode.workspace.onDidSaveTextDocument)
 export function activate(context: vscode.ExtensionContext): void {
   const extension = new RunOnSaveExtension(context)
   extension.showOutputMessage()
 
-  useEvent(vscode.workspace.onDidChangeConfiguration)((_) => {
+  onDidChangeConfiguration((_) => {
     useDisposable(extension.showStatusMessage('Run On Save: Reloading config.'))
     extension.loadConfig()
   })
 
-  useEvent(vscode.workspace.onDidSaveTextDocument)((document: vscode.TextDocument) => {
+  onDidSaveTextDocument((document: vscode.TextDocument) => {
     extension.runCommands(document)
   })
 
@@ -41,10 +43,6 @@ interface ICommand {
   notMatch?: string
   cmd: string
   isAsync: boolean
-}
-
-interface IConfig extends Runonsave {
-
 }
 
 class RunOnSaveExtension {
@@ -103,7 +101,6 @@ class RunOnSaveExtension {
   }
 
   private _getWorkspaceFolderPath(uri: vscode.Uri): string | undefined {
-
     const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri)
 
     // NOTE: rootPath seems to be deprecated but seems like the best fallback so that
@@ -123,7 +120,7 @@ class RunOnSaveExtension {
   }
 
   public get shell(): string {
-    return this._config.shell ?? ""
+    return this._config.shell ?? ''
   }
 
   public get autoClearConsole(): boolean {
@@ -135,7 +132,7 @@ class RunOnSaveExtension {
   }
 
   public loadConfig(): void {
-    this._config = <IConfig><any>vscode.workspace.getConfiguration('emeraldwalk.runonsave')
+    this._config = useConfigObjectRunonsave()
   }
 
   /**

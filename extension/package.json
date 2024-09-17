@@ -12,7 +12,7 @@
   },
   "publisher": "cnjimbo",
   "repository": {
-    "url": "https://github.com/open-dmsrs/vscode-project-kit",
+    "url": "https://github.com/open-dmsrs/project-kit",
     "type": "git",
     "directory": "extension"
   },
@@ -40,11 +40,11 @@
       },
       {
         "title": "Run On Save: Enable",
-        "command": "extension.emeraldwalk.enableRunOnSave"
+        "command": "project-kit.enableRunOnSave"
       },
       {
         "title": "Run On Save: Disable",
-        "command": "extension.emeraldwalk.disableRunOnSave"
+        "command": "project-kit.disableRunOnSave"
       }
     ],
     "configuration": [
