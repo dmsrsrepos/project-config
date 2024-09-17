@@ -1,22 +1,23 @@
 import { defineExtension, useFsWatcher, watchEffect } from 'reactive-vscode'
 import { ConfigurationTarget, window } from 'vscode'
 import {
-  useConfigObjectEmeraldwalk,
+  useConfigObjectRunonsave,
   useCommandManualUpdate, useLogger, useCommands, commands
 } from '@/generated-meta'
 
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
-  const emeraldwalk = useConfigObjectEmeraldwalk()
+  const emeraldwalk = useConfigObjectRunonsave()
 
   const stop = watchEffect(() => {
-    window.showInformationMessage(`testConfigs.annotations: ${emeraldwalk.runonsave.shell}`)
-    logger.warn(`testConfigs.annotations: ${emeraldwalk.runonsave.shell}`)
+    window.showInformationMessage(`testConfigs.annotations: ${emeraldwalk.shell}`)
+    logger.warn(`testConfigs.annotations: ${emeraldwalk.shell}`)
+
   })
   // update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
 
   logger.info('activate')
-  const globs = emeraldwalk.runonsave.shell ?? 'cmd'
+  const globs = emeraldwalk.shell ?? 'cmd'
 
   const watcher = useFsWatcher(globs)
   watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))

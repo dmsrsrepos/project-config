@@ -83,7 +83,7 @@
         "type": "object",
         "title": "Run On Save command configuration.",
         "properties": {
-          "project-kit.emeraldwalk.runonsave": {
+          "project-kit.runonsave": {
             "type": "object",
             "properties": {
               "shell": {

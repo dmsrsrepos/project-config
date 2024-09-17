@@ -2,9 +2,15 @@ import path from 'node:path'
 import { exec } from 'node:child_process'
 import process from 'node:process'
 import vscode from 'vscode'
+import type {
+  Runonsave
+} from '@/generated-meta';
 import {
   useCommands,
   name,
+  useConfigObjectRunonsave,
+  commands,
+  configs
 } from '@/generated-meta'
 import { useEvent, useDisposable, useWorkspaceFolders, useL10nText, useOutputChannel } from 'reactive-vscode'
 export function activate(context: vscode.ExtensionContext): void {
@@ -21,10 +27,10 @@ export function activate(context: vscode.ExtensionContext): void {
   })
 
   useCommands({
-    'extension.emeraldwalk.enableRunOnSave': async () => {
+    [commands.enableRunOnSave]: async () => {
       extension.isEnabled = true
     },
-    'extension.emeraldwalk.disableRunOnSave': async () => {
+    [commands.disableRunOnSave]: async () => {
       extension.isEnabled = false
     },
   })
@@ -37,21 +43,19 @@ interface ICommand {
   isAsync: boolean
 }
 
-interface IConfig {
-  shell: string
-  autoClearConsole: boolean
-  commands: Array<ICommand>
+interface IConfig extends Runonsave {
+
 }
 
 class RunOnSaveExtension {
   private _outputChannel: vscode.OutputChannel
   private _context: vscode.ExtensionContext
-  private _config: IConfig
+  private _config: Runonsave
 
   constructor(context: vscode.ExtensionContext) {
     this._context = context
     this._outputChannel = useOutputChannel(name) // vscode.window.createOutputChannel('Run On Save')
-    this._config = <IConfig><any>vscode.workspace.getConfiguration('emeraldwalk.runonsave')
+    this._config = useConfigObjectRunonsave()
   }
 
   /** Recursive call to run commands. */
@@ -99,7 +103,7 @@ class RunOnSaveExtension {
   }
 
   private _getWorkspaceFolderPath(uri: vscode.Uri): string | undefined {
- 
+
     const workspaceFolder = vscode.workspace.getWorkspaceFolder(uri)
 
     // NOTE: rootPath seems to be deprecated but seems like the best fallback so that
@@ -119,7 +123,7 @@ class RunOnSaveExtension {
   }
 
   public get shell(): string {
-    return this._config.shell
+    return this._config.shell ?? ""
   }
 
   public get autoClearConsole(): boolean {

@@ -112,49 +112,41 @@ export interface ProjectKit {
      * The minimal interval for auto update, in minutes
      */
     "fileNestingUpdater.autoUpdateInterval": number;
-    "emeraldwalk.runonsave": {
+    /**
+     * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
+     */
+    "runonsave.shell"?: (string | undefined);
+    "runonsave.commands": ({
         /**
-       * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
-       * @default `undefined`
-       */
-        'shell'?: string;
+     * Command to execute on save.
+     * @default `"echo ${file}"`
+     */
+        'cmd': string;
         /**
+         * Regex for matching files to run commands on
          *
-         * @default `undefined`
+         * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
+         *
+         * e.g.
+         * "match": "some\\\\directory\\\\.*"
+         * @default `".*"`
          */
-        'commands'?: {
-            /**
-       * Command to execute on save.
-       * @default `"echo ${file}"`
-       */
-            'cmd': string;
-            /**
-             * Regex for matching files to run commands on
-             *
-             * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
-             *
-             * e.g.
-             * "match": "some\\\\directory\\\\.*"
-             * @default `".*"`
-             */
-            'match': string;
-            /**
-             * Run command asynchronously.
-             * @default `false`
-             */
-            'isAsync': boolean;
-            /**
-             * Regex for matching files *not* to run commands on.
-             * @default `".*"`
-             */
-            'notMatch': string;
-        }[];
+        'match': string;
         /**
-         * Automatically clear the console on each save before running commands.
+         * Run command asynchronously.
          * @default `false`
          */
-        'autoClearConsole': boolean;
-    };
+        'isAsync': boolean;
+        /**
+         * Regex for matching files *not* to run commands on.
+         * @default `".*"`
+         */
+        'notMatch': string;
+    }[] | undefined);
+    /**
+     * Automatically clear the console on each save before running commands.
+     */
+    "runonsave.autoClearConsole": boolean;
 }
 /**
  * Section Type of `project-kit.fileNestingUpdater`
@@ -182,52 +174,44 @@ export interface FileNestingUpdater {
     "autoUpdateInterval": number;
 }
 /**
- * Section Type of `project-kit.emeraldwalk`
+ * Section Type of `project-kit.runonsave`
  */
-export interface Emeraldwalk {
-    "runonsave": {
+export interface Runonsave {
+    /**
+     * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
+     */
+    "shell"?: (string | undefined);
+    "commands": ({
         /**
-       * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
-       * @default `undefined`
-       */
-        'shell'?: string;
+     * Command to execute on save.
+     * @default `"echo ${file}"`
+     */
+        'cmd': string;
         /**
+         * Regex for matching files to run commands on
          *
-         * @default `undefined`
+         * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
+         *
+         * e.g.
+         * "match": "some\\\\directory\\\\.*"
+         * @default `".*"`
          */
-        'commands'?: {
-            /**
-       * Command to execute on save.
-       * @default `"echo ${file}"`
-       */
-            'cmd': string;
-            /**
-             * Regex for matching files to run commands on
-             *
-             * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
-             *
-             * e.g.
-             * "match": "some\\\\directory\\\\.*"
-             * @default `".*"`
-             */
-            'match': string;
-            /**
-             * Run command asynchronously.
-             * @default `false`
-             */
-            'isAsync': boolean;
-            /**
-             * Regex for matching files *not* to run commands on.
-             * @default `".*"`
-             */
-            'notMatch': string;
-        }[];
+        'match': string;
         /**
-         * Automatically clear the console on each save before running commands.
+         * Run command asynchronously.
          * @default `false`
          */
-        'autoClearConsole': boolean;
-    };
+        'isAsync': boolean;
+        /**
+         * Regex for matching files *not* to run commands on.
+         * @default `".*"`
+         */
+        'notMatch': string;
+    }[] | undefined);
+    /**
+     * Automatically clear the console on each save before running commands.
+     */
+    "autoClearConsole": boolean;
 }
 const projectKitDefaults = {
     /**
@@ -254,7 +238,15 @@ const projectKitDefaults = {
          * The minimal interval for auto update, in minutes
          */
         "fileNestingUpdater.autoUpdateInterval": 4320,
-        "emeraldwalk.runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
+        /**
+         * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
+         */
+        "runonsave.shell": undefined,
+        "runonsave.commands": [],
+        /**
+         * Automatically clear the console on each save before running commands.
+         */
+        "runonsave.autoClearConsole": false,
     } satisfies ProjectKit as ProjectKit,
     /**
      * Config defaults of `project-kit.fileNestingUpdater`
@@ -282,11 +274,19 @@ const projectKitDefaults = {
         "autoUpdateInterval": 4320,
     } satisfies FileNestingUpdater as FileNestingUpdater,
     /**
-     * Config defaults of `project-kit.emeraldwalk`
+     * Config defaults of `project-kit.runonsave`
      */
-    "project-kit.emeraldwalk": {
-        "runonsave": { "shell": undefined, "commands": undefined, "autoClearConsole": false },
-    } satisfies Emeraldwalk as Emeraldwalk,
+    "project-kit.runonsave": {
+        /**
+         * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
+         */
+        "shell": undefined,
+        "commands": [],
+        /**
+         * Automatically clear the console on each save before running commands.
+         */
+        "autoClearConsole": false,
+    } satisfies Runonsave as Runonsave,
 };
 export type ConfigSecionKey = keyof typeof projectKitDefaults;
 /**
@@ -295,7 +295,7 @@ export type ConfigSecionKey = keyof typeof projectKitDefaults;
 export const configs = {
     projectKit: "project-kit",
     fileNestingUpdater: "project-kit.fileNestingUpdater",
-    emeraldwalk: "project-kit.emeraldwalk",
+    runonsave: "project-kit.runonsave",
 } satisfies Record<string, ConfigSecionKey>;
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
@@ -338,18 +338,18 @@ export const useConfigObjectFileNestingUpdater = () => useConfigObject(configs.f
  */
 export const useConfigFileNestingUpdater = () => useConfig(configs.fileNestingUpdater);
 /**
- * ConfigObject of `project-kit.emeraldwalk`
+ * ConfigObject of `project-kit.runonsave`
  * @example
- * const emeraldwalk = useConfigObjectEmeraldwalk()
- * const oldVal:object = emeraldwalk.runonsave //get value
- * emeraldwalk.$update("runonsave", oldVal) //update value
+ * const runonsave = useConfigObjectRunonsave()
+ * const oldVal:string = runonsave.shell //get value
+ * runonsave.$update("shell", oldVal) //update value
  */
-export const useConfigObjectEmeraldwalk = () => useConfigObject(configs.emeraldwalk);
+export const useConfigObjectRunonsave = () => useConfigObject(configs.runonsave);
 /**
- * ToConfigRefs of `project-kit.emeraldwalk`
+ * ToConfigRefs of `project-kit.runonsave`
  * @example
- * const emeraldwalk = useConfigEmeraldwalk()
- * const oldVal:object = emeraldwalk.runonsave.value //get value
- * emeraldwalk.runonsave.update(oldVal) //update value
+ * const runonsave = useConfigRunonsave()
+ * const oldVal:string = runonsave.shell.value //get value
+ * runonsave.shell.update(oldVal) //update value
  */
-export const useConfigEmeraldwalk = () => useConfig(configs.emeraldwalk);
+export const useConfigRunonsave = () => useConfig(configs.runonsave);
