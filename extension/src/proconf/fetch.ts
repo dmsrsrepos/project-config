@@ -3,12 +3,13 @@ import { fetch } from 'ofetch'
 import type { ExtensionContext } from 'vscode'
 import { ConfigurationTarget, window } from 'vscode'
 import { FILE, MSG_PREFIX, URL_PREFIX } from '@/constants'
-import { configObjectFileNestingUpdater as config } from '@/generated-meta'
+import { useConfigObjectFileNestingUpdater } from '@/generated-meta'
 import { logger } from '@/utils'
 import { defineConfigs } from 'reactive-vscode'
 
 export async function fetchLatest(): Promise<Record<string, string>> {
-  const repo = config.upstreamRepo
+  const config = useConfigObjectFileNestingUpdater()
+  const repo = config
   const branch = config.upstreamBranch
 
   const url = `${URL_PREFIX}/${repo}@${branch}/${FILE}`
@@ -25,7 +26,7 @@ export async function fetchLatest(): Promise<Record<string, string>> {
     .filter(line => !line.trim().startsWith('//'))
     .join('\n')
     .slice(0, -1)
-    }}`
+  }}`
 
   const mdConfig = JSON.parse(json) || {}
   return mdConfig['explorer.fileNesting.patterns']

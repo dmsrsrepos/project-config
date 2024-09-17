@@ -2,10 +2,11 @@ import {
   extensionContext as ctxRef,
   defineExtension,
 } from 'reactive-vscode'
-import { configObjectFileNestingUpdater as config, useCommandManualUpdate } from '@/generated-meta'
+import { useConfigObjectFileNestingUpdater, useCommandManualUpdate } from '@/generated-meta'
 import { fetchAndUpdate } from './fetch'
 
 const { activate, deactivate } = defineExtension(() => {
+  const config = useConfigObjectFileNestingUpdater()
   const ctx = ctxRef.value
   if (ctx) {
     useCommandManualUpdate((..._args) => {
