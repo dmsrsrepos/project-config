@@ -1,7 +1,7 @@
+import { useConfigObjectProjectKit } from './generated-meta';
 import { defineExtension, useFsWatcher, watchEffect } from 'reactive-vscode'
-import { window } from 'vscode'
+import { window, workspace } from 'vscode'
 import {
-  useConfigObjectRunonsave,
   useLogger,
   useCommands,
   commands,
@@ -9,22 +9,31 @@ import {
 
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
-  const emeraldwalk = useConfigObjectRunonsave()
+  const projectKit = useConfigObjectProjectKit()
 
   const stop = watchEffect(() => {
-    window.showInformationMessage(`testConfigs.annotations: ${emeraldwalk.shell}`)
-    logger.warn(`testConfigs.annotations: ${emeraldwalk.shell}`)
+    window.showInformationMessage(`testConfigs.annotations: ${projectKit.runonsave}`)
+    logger.warn(`testConfigs.annotations: ${projectKit.runonsave}`)
   })
   // update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
 
   logger.info('activate')
-  const globs = emeraldwalk.shell ?? 'cmd'
+  // const globs = runonsave.shell ?? 'cmd'
 
-  const watcher = useFsWatcher(globs)
-  watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
+  // const watcher = useFsWatcher(globs)
+  // watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
+
+  const section = "project-kit.runonsave"
+  const key = "autoClearConsole"
+  const isTopLevel = !section
+  const workspaceConfig = workspace.getConfiguration(isTopLevel ? undefined : section)
 
   useCommands({
-    [commands.manualUpdate]: (..._args: any[]) => {
+    [commands.manualUpdate]: async (..._args: any[]) => {
+    
+      //  runonsave.$update('autoClearConsole', true)
+      const v = workspaceConfig.get(key) as Boolean
+      await workspaceConfig.update(`${key}`, !v)
       window.showInformationMessage(`handl name:${stop?.toString()}`)
       logger.warn(`handl name:${stop?.toString()}`)
     },

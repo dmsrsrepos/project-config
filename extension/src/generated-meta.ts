@@ -112,41 +112,49 @@ export interface ProjectKit {
      * The minimal interval for auto update, in minutes
      */
     "fileNestingUpdater.autoUpdateInterval": number;
-    /**
-     * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
-     */
-    "runonsave.shell"?: (string | undefined);
-    "runonsave.commands": ({
+    "runonsave": {
         /**
-     * Command to execute on save.
-     * @default `"echo ${file}"`
-     */
-        'cmd': string;
+       * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
+       * @default `undefined`
+       */
+        'shell'?: string;
         /**
-         * Regex for matching files to run commands on
          *
-         * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
-         *
-         * e.g.
-         * "match": "some\\\\directory\\\\.*"
-         * @default `".*"`
+         * @default `[]`
          */
-        'match': string;
+        'commands': {
+            /**
+       * Command to execute on save.
+       * @default `"echo ${file}"`
+       */
+            'cmd': string;
+            /**
+             * Regex for matching files to run commands on
+             *
+             * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
+             *
+             * e.g.
+             * "match": "some\\\\directory\\\\.*"
+             * @default `".*"`
+             */
+            'match': string;
+            /**
+             * Run command asynchronously.
+             * @default `false`
+             */
+            'isAsync': boolean;
+            /**
+             * Regex for matching files *not* to run commands on.
+             * @default `".*"`
+             */
+            'notMatch': string;
+        }[];
         /**
-         * Run command asynchronously.
+         * Automatically clear the console on each save before running commands.
          * @default `false`
          */
-        'isAsync': boolean;
-        /**
-         * Regex for matching files *not* to run commands on.
-         * @default `".*"`
-         */
-        'notMatch': string;
-    }[] | undefined);
-    /**
-     * Automatically clear the console on each save before running commands.
-     */
-    "runonsave.autoClearConsole": boolean;
+        'autoClearConsole': boolean;
+    };
 }
 /**
  * Section Type of `project-kit.fileNestingUpdater`
@@ -173,46 +181,6 @@ export interface FileNestingUpdater {
      */
     "autoUpdateInterval": number;
 }
-/**
- * Section Type of `project-kit.runonsave`
- */
-export interface Runonsave {
-    /**
-     * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
-     */
-    "shell"?: (string | undefined);
-    "commands": ({
-        /**
-     * Command to execute on save.
-     * @default `"echo ${file}"`
-     */
-        'cmd': string;
-        /**
-         * Regex for matching files to run commands on
-         *
-         * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
-         *
-         * e.g.
-         * "match": "some\\\\directory\\\\.*"
-         * @default `".*"`
-         */
-        'match': string;
-        /**
-         * Run command asynchronously.
-         * @default `false`
-         */
-        'isAsync': boolean;
-        /**
-         * Regex for matching files *not* to run commands on.
-         * @default `".*"`
-         */
-        'notMatch': string;
-    }[] | undefined);
-    /**
-     * Automatically clear the console on each save before running commands.
-     */
-    "autoClearConsole": boolean;
-}
 const projectKitDefaults = {
     /**
      * Config defaults of `project-kit`
@@ -238,16 +206,8 @@ const projectKitDefaults = {
          * The minimal interval for auto update, in minutes
          */
         "fileNestingUpdater.autoUpdateInterval": 4320,
-        /**
-         * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
-         */
-        "runonsave.shell": undefined,
-        "runonsave.commands": [],
-        /**
-         * Automatically clear the console on each save before running commands.
-         */
-        "runonsave.autoClearConsole": false,
-    } satisfies ProjectKit as ProjectKit,
+        "runonsave": { "shell": undefined, "commands": [], "autoClearConsole": false },
+    } satisfies ProjectKit,
     /**
      * Config defaults of `project-kit.fileNestingUpdater`
      */
@@ -272,21 +232,7 @@ const projectKitDefaults = {
          * The minimal interval for auto update, in minutes
          */
         "autoUpdateInterval": 4320,
-    } satisfies FileNestingUpdater as FileNestingUpdater,
-    /**
-     * Config defaults of `project-kit.runonsave`
-     */
-    "project-kit.runonsave": {
-        /**
-         * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
-         */
-        "shell": undefined,
-        "commands": [],
-        /**
-         * Automatically clear the console on each save before running commands.
-         */
-        "autoClearConsole": false,
-    } satisfies Runonsave as Runonsave,
+    } satisfies FileNestingUpdater,
 };
 export type ConfigSecionKey = keyof typeof projectKitDefaults;
 /**
@@ -295,7 +241,6 @@ export type ConfigSecionKey = keyof typeof projectKitDefaults;
 export const configs = {
     projectKit: "project-kit",
     fileNestingUpdater: "project-kit.fileNestingUpdater",
-    runonsave: "project-kit.runonsave",
 } satisfies Record<string, ConfigSecionKey>;
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
@@ -337,19 +282,3 @@ export const useConfigObjectFileNestingUpdater = () => useConfigObject(configs.f
  * fileNestingUpdater.autoUpdate.update(oldVal) //update value
  */
 export const useConfigFileNestingUpdater = () => useConfig(configs.fileNestingUpdater);
-/**
- * ConfigObject of `project-kit.runonsave`
- * @example
- * const runonsave = useConfigObjectRunonsave()
- * const oldVal:string = runonsave.shell //get value
- * runonsave.$update("shell", oldVal) //update value
- */
-export const useConfigObjectRunonsave = () => useConfigObject(configs.runonsave);
-/**
- * ToConfigRefs of `project-kit.runonsave`
- * @example
- * const runonsave = useConfigRunonsave()
- * const oldVal:string = runonsave.shell.value //get value
- * runonsave.shell.update(oldVal) //update value
- */
-export const useConfigRunonsave = () => useConfig(configs.runonsave);
