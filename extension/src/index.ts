@@ -1,7 +1,7 @@
 import { defineExtension, useFsWatcher, watchEffect } from 'reactive-vscode'
 import { window } from 'vscode'
 import {
-  useConfigObjectRunonsave,
+  useConfigObjectProjectKit,
   useLogger,
   useCommands,
   commands,
@@ -9,11 +9,11 @@ import {
 
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
-  const emeraldwalk = useConfigObjectRunonsave()
+  const emeraldwalk = useConfigObjectProjectKit()
 
   const stop = watchEffect(() => {
-    window.showInformationMessage(`testConfigs.annotations: ${emeraldwalk.shell}`)
-    logger.warn(`testConfigs.annotations: ${emeraldwalk.shell}`)
+    window.showInformationMessage(`testConfigs.annotations: ${emeraldwalk.runonsave.shell}`)
+    logger.warn(`testConfigs.annotations: ${emeraldwalk.runonsave.shell}`)
   })
   // update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
 

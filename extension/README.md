@@ -61,14 +61,8 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
   //The minimal interval for auto update, in minutes
   "project-kit.fileNestingUpdater.autoUpdateInterval": 4320,
 
-  //Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
-  "project-kit.runonsave.shell": ,
-
   //
-  "project-kit.runonsave.commands": [],
-
-  //Automatically clear the console on each save before running commands.
-  "project-kit.runonsave.autoClearConsole": false,
+  "project-kit.runonsave": { "shell": undefined, "commands": [], "autoClearConsole": false },
 
 }
 ```
