@@ -207,7 +207,7 @@ const projectKitDefaults = {
          */
         "fileNestingUpdater.autoUpdateInterval": 4320,
         "runonsave": { "shell": undefined, "commands": [], "autoClearConsole": false },
-    } satisfies ProjectKit,
+    } satisfies ProjectKit as ProjectKit,
     /**
      * Config defaults of `project-kit.fileNestingUpdater`
      */
@@ -232,7 +232,7 @@ const projectKitDefaults = {
          * The minimal interval for auto update, in minutes
          */
         "autoUpdateInterval": 4320,
-    } satisfies FileNestingUpdater,
+    } satisfies FileNestingUpdater as FileNestingUpdater,
 };
 export type ConfigSecionKey = keyof typeof projectKitDefaults;
 /**
@@ -282,3 +282,4 @@ export const useConfigObjectFileNestingUpdater = () => useConfigObject(configs.f
  * fileNestingUpdater.autoUpdate.update(oldVal) //update value
  */
 export const useConfigFileNestingUpdater = () => useConfig(configs.fileNestingUpdater);
+export type projectKitRunonsave = "shell" | "commands" | "autoClearConsole";

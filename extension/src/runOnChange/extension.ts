@@ -2,13 +2,11 @@ import path from 'node:path'
 import { exec } from 'node:child_process'
 import process from 'node:process'
 import vscode from 'vscode'
-import type {
-  Runonsave,
-} from '@/generated-meta'
+import type { ProjectKit } from '@/generated-meta'
 import {
   useCommands,
   name,
-  useConfigObjectRunonsave,
+  useConfigObjectProjectKit,
   commands,
 } from '@/generated-meta'
 import { useEvent, useDisposable, useOutputChannel } from 'reactive-vscode'
@@ -48,12 +46,12 @@ interface ICommand {
 class RunOnSaveExtension {
   private _outputChannel: vscode.OutputChannel
   private _context: vscode.ExtensionContext
-  private _config: Runonsave
+  private _config: ProjectKit['runonsave']
 
   constructor(context: vscode.ExtensionContext) {
     this._context = context
     this._outputChannel = useOutputChannel(name) // vscode.window.createOutputChannel('Run On Save')
-    this._config = useConfigObjectRunonsave()
+    this._config = useConfigObjectProjectKit().runonsave
   }
 
   /** Recursive call to run commands. */
@@ -132,7 +130,7 @@ class RunOnSaveExtension {
   }
 
   public loadConfig(): void {
-    this._config = useConfigObjectRunonsave()
+    this._config = useConfigObjectProjectKit().runonsave
   }
 
   /**
