@@ -9,6 +9,42 @@ export const version = "1.1.2";
 export const displayName = "Project Kit";
 export const description = "Export current settings to workspace config file ";
 export const extensionId = "cnjimbo.project-kit";
+type Cache<T> = Record<string, {
+    exp: number | null;
+    value: T;
+}>;
+const memoize = <TArgs extends any[], TResult>(cache: Cache<TResult>, func: (...args: TArgs) => TResult, keyFunc: ((...args: TArgs) => string) | null, ttl: number | null) => {
+    return function callWithMemo(...args: any): TResult {
+        const key = keyFunc ? keyFunc(...args) : JSON.stringify({ args });
+        const existing = cache[key];
+        if (existing !== undefined) {
+            if (!existing.exp)
+                return existing.value;
+            if (existing.exp > new Date().getTime()) {
+                return existing.value;
+            }
+        }
+        const result = func(...args);
+        cache[key] = {
+            exp: ttl ? new Date().getTime() + ttl : null,
+            value: result
+        };
+        return result;
+    };
+};
+/**
+ * Creates a memoized function. The returned function
+ * will only execute the source function when no value
+ * has previously been computed. If a ttl (milliseconds)
+ * is given previously computed values will be checked
+ * for expiration before being returned.
+ */
+export const memo = <TArgs extends any[], TResult>(func: (...args: TArgs) => TResult, options: {
+    key?: (...args: TArgs) => string;
+    ttl?: number;
+} = {}) => {
+    return memoize({}, func, options.key ?? null, options.ttl ?? null) as (...args: TArgs) => TResult;
+};
 /**
  * Type union of all commands
  */
@@ -23,12 +59,12 @@ export const commands = {
      */
     manualUpdate: "project-kit.manualUpdate",
     /**
-     * change annotations
+     * Change annotations
      * @commandkey `project-kit.change-annnotations`
      */
     changeAnnnotations: "project-kit.change-annnotations",
     /**
-     * stop watch
+     * Stop watch
      * @commandkey `project-kit.stop-watch`
      */
     stopWatch: "project-kit.stop-watch",
@@ -52,7 +88,7 @@ export const useCommand = (commandFullKey: CommandKey, callback: (...args: any[]
  */
 export const useCommands = (commands: Partial<Record<CommandKey, (...args: any[]) => any>>): void => useReactiveCommands(commands);
 /**
- * name type of Logger and OutputChannel
+ * Name type of Logger and OutputChannel
  */
 export type LoggerNameType = typeof name | typeof displayName | typeof extensionId;
 /**
@@ -69,12 +105,12 @@ export const useOutputChannel = (outputName: LoggerNameType = displayName ?? nam
  */
 export const useCommandManualUpdate = (callback: (...args: any[]) => any) => useCommand(commands.manualUpdate, callback);
 /**
- * change annotations
+ * Change annotations
  * @commandkey Register a command `project-kit.change-annnotations`
  */
 export const useCommandChangeAnnnotations = (callback: (...args: any[]) => any) => useCommand(commands.changeAnnnotations, callback);
 /**
- * stop watch
+ * Stop watch
  * @commandkey Register a command `project-kit.stop-watch`
  */
 export const useCommandStopWatch = (callback: (...args: any[]) => any) => useCommand(commands.stopWatch, callback);
@@ -92,6 +128,26 @@ export const useCommandDisableRunOnSave = (callback: (...args: any[]) => any) =>
  * Section Type of `project-kit`
  */
 export interface ProjectKit {
+    /**
+     * Fetch and update the latest config automatically
+     */
+    "demo.autoUpdate": boolean;
+    /**
+     * The upstream repo you want to update from
+     */
+    "demo.description": string;
+    /**
+     * The branch name of upstream repo
+     */
+    "demo.upstreamBranch": string;
+    /**
+     * Should show up the prompt before doing auto update
+     */
+    "demo.promptOnAutoUpdate": boolean;
+    /**
+     * The minimal interval for auto update, in minutes
+     */
+    "demo.autoUpdateInterval": number;
     /**
      * Fetch and update the latest config automatically
      */
@@ -157,6 +213,31 @@ export interface ProjectKit {
     };
 }
 /**
+ * Section Type of `project-kit.demo`
+ */
+export interface Demo {
+    /**
+     * Fetch and update the latest config automatically
+     */
+    "autoUpdate": boolean;
+    /**
+     * The upstream repo you want to update from
+     */
+    "description": string;
+    /**
+     * The branch name of upstream repo
+     */
+    "upstreamBranch": string;
+    /**
+     * Should show up the prompt before doing auto update
+     */
+    "promptOnAutoUpdate": boolean;
+    /**
+     * The minimal interval for auto update, in minutes
+     */
+    "autoUpdateInterval": number;
+}
+/**
  * Section Type of `project-kit.fileNestingUpdater`
  */
 export interface FileNestingUpdater {
@@ -189,6 +270,26 @@ const projectKitDefaults = {
         /**
          * Fetch and update the latest config automatically
          */
+        "demo.autoUpdate": true,
+        /**
+         * The upstream repo you want to update from
+         */
+        "demo.description": "antfu/vscode-file-nesting-config",
+        /**
+         * The branch name of upstream repo
+         */
+        "demo.upstreamBranch": "main",
+        /**
+         * Should show up the prompt before doing auto update
+         */
+        "demo.promptOnAutoUpdate": true,
+        /**
+         * The minimal interval for auto update, in minutes
+         */
+        "demo.autoUpdateInterval": 4320,
+        /**
+         * Fetch and update the latest config automatically
+         */
         "fileNestingUpdater.autoUpdate": true,
         /**
          * The upstream repo you want to update from
@@ -208,6 +309,31 @@ const projectKitDefaults = {
         "fileNestingUpdater.autoUpdateInterval": 4320,
         "runonsave": { "shell": undefined, "commands": [], "autoClearConsole": false },
     } satisfies ProjectKit as ProjectKit,
+    /**
+     * Config defaults of `project-kit.demo`
+     */
+    "project-kit.demo": {
+        /**
+         * Fetch and update the latest config automatically
+         */
+        "autoUpdate": true,
+        /**
+         * The upstream repo you want to update from
+         */
+        "description": "antfu/vscode-file-nesting-config",
+        /**
+         * The branch name of upstream repo
+         */
+        "upstreamBranch": "main",
+        /**
+         * Should show up the prompt before doing auto update
+         */
+        "promptOnAutoUpdate": true,
+        /**
+         * The minimal interval for auto update, in minutes
+         */
+        "autoUpdateInterval": 4320,
+    } satisfies Demo as Demo,
     /**
      * Config defaults of `project-kit.fileNestingUpdater`
      */
@@ -240,32 +366,49 @@ export type ConfigSecionKey = keyof typeof projectKitDefaults;
  */
 export const configs = {
     projectKit: "project-kit",
+    demo: "project-kit.demo",
     fileNestingUpdater: "project-kit.fileNestingUpdater",
 } satisfies Record<string, ConfigSecionKey>;
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
  */
-export const useConfig = <K extends ConfigSecionKey>(section: K) => defineConfigs<typeof projectKitDefaults[K]>(section, projectKitDefaults[section]);
+export const useConfig = memo(<K extends ConfigSecionKey>(section: K) => defineConfigs<typeof projectKitDefaults[K]>(section, projectKitDefaults[section]));
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
  */
-export const useConfigObject = <K extends ConfigSecionKey>(section: K) => defineConfigObject<typeof projectKitDefaults[K]>(section, projectKitDefaults[section]);
+export const useConfigObject = memo(<K extends ConfigSecionKey>(section: K) => defineConfigObject<typeof projectKitDefaults[K]>(section, projectKitDefaults[section]));
 /**
  * ConfigObject of `project-kit`
  * @example
  * const projectKit = useConfigObjectProjectKit()
- * const oldVal:boolean = projectKit.fileNestingUpdater.autoUpdate //get value
- * projectKit.$update("fileNestingUpdater.autoUpdate", oldVal) //update value
+ * const oldVal:boolean = projectKit.demo.autoUpdate //get value
+ * projectKit.$update("demo.autoUpdate", oldVal) //update value
  */
 export const useConfigObjectProjectKit = () => useConfigObject(configs.projectKit);
 /**
  * ToConfigRefs of `project-kit`
  * @example
  * const projectKit = useConfigProjectKit()
- * const oldVal:boolean = projectKit.fileNestingUpdater.autoUpdate.value //get value
- * projectKit.fileNestingUpdater.autoUpdate.update(oldVal) //update value
+ * const oldVal:boolean = projectKit.demo.autoUpdate.value //get value
+ * projectKit.demo.autoUpdate.update(oldVal) //update value
  */
 export const useConfigProjectKit = () => useConfig(configs.projectKit);
+/**
+ * ConfigObject of `project-kit.demo`
+ * @example
+ * const demo = useConfigObjectDemo()
+ * const oldVal:boolean = demo.autoUpdate //get value
+ * demo.$update("autoUpdate", oldVal) //update value
+ */
+export const useConfigObjectDemo = () => useConfigObject(configs.demo);
+/**
+ * ToConfigRefs of `project-kit.demo`
+ * @example
+ * const demo = useConfigDemo()
+ * const oldVal:boolean = demo.autoUpdate.value //get value
+ * demo.autoUpdate.update(oldVal) //update value
+ */
+export const useConfigDemo = () => useConfig(configs.demo);
 /**
  * ConfigObject of `project-kit.fileNestingUpdater`
  * @example

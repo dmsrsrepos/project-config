@@ -47,23 +47,26 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 ```json
 {
   //Fetch and update the latest config automatically
+  "project-kit.demo.autoUpdate": true,
+  //The upstream repo you want to update from
+  "project-kit.demo.description": "antfu/vscode-file-nesting-config",
+  //The branch name of upstream repo
+  "project-kit.demo.upstreamBranch": "main",
+  //Should show up the prompt before doing auto update
+  "project-kit.demo.promptOnAutoUpdate": true,
+  //The minimal interval for auto update, in minutes
+  "project-kit.demo.autoUpdateInterval": 4320,
+  //Fetch and update the latest config automatically
   "project-kit.fileNestingUpdater.autoUpdate": true,
-
   //The upstream repo you want to update from
   "project-kit.fileNestingUpdater.upstreamRepo": "antfu/vscode-file-nesting-config",
-
   //The branch name of upstream repo
   "project-kit.fileNestingUpdater.upstreamBranch": "main",
-
   //Should show up the prompt before doing auto update
   "project-kit.fileNestingUpdater.promptOnAutoUpdate": true,
-
   //The minimal interval for auto update, in minutes
   "project-kit.fileNestingUpdater.autoUpdateInterval": 4320,
-
-  //
   "project-kit.runonsave": { "shell": undefined, "commands": [], "autoClearConsole": false },
-
 }
 ```
 

@@ -50,6 +50,37 @@
     "configuration": [
       {
         "type": "object",
+        "title": "Demo",
+        "properties": {
+          "project-kit.demo.autoUpdate": {
+            "type": "boolean",
+            "default": true,
+            "description": "Fetch and update the latest config automatically"
+          },
+          "project-kit.demo.description": {
+            "type": "string",
+            "default": "antfu/vscode-file-nesting-config",
+            "description": "The upstream repo you want to update from"
+          },
+          "project-kit.demo.upstreamBranch": {
+            "type": "string",
+            "default": "main",
+            "description": "The branch name of upstream repo"
+          },
+          "project-kit.demo.promptOnAutoUpdate": {
+            "type": "boolean",
+            "default": true,
+            "description": "Should show up the prompt before doing auto update"
+          },
+          "project-kit.demo.autoUpdateInterval": {
+            "type": "number",
+            "default": 4320,
+            "description": "The minimal interval for auto update, in minutes"
+          }
+        }
+      },
+      {
+        "type": "object",
         "title": "Config 1",
         "properties": {
           "project-kit.fileNestingUpdater.autoUpdate": {

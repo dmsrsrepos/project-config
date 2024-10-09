@@ -1,4 +1,4 @@
-import { useConfigObjectProjectKit } from './generated-meta';
+import { useConfigDemo } from './generated-meta';
 import { defineExtension, useFsWatcher, watchEffect } from 'reactive-vscode'
 import { window, workspace } from 'vscode'
 import {
@@ -9,11 +9,11 @@ import {
 
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
-  const projectKit = useConfigObjectProjectKit()
+  const demo = useConfigDemo()
 
   const stop = watchEffect(() => {
-    window.showInformationMessage(`testConfigs.annotations: ${projectKit.runonsave}`)
-    logger.warn(`testConfigs.annotations: ${projectKit.runonsave}`)
+    window.showInformationMessage(`testConfigs.annotations: ${demo.description}`)
+    logger.warn(`testConfigs.annotations: ${demo.description}`)
   })
   // update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
 
