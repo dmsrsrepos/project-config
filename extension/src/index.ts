@@ -1,6 +1,18 @@
-import { useConfigDemo } from './generated-meta';
-import { defineExtension, useFsWatcher, watchEffect } from 'reactive-vscode'
-import { window, workspace } from 'vscode'
+import {
+  useConfigObjectDemo,
+  useCommandUpdateDes
+
+} from './generated-meta';
+import {
+  defineExtension, useFsWatcher, watchEffect,
+  executeCommand,
+  useStatusBarItem,
+  ref
+} from 'reactive-vscode'
+import {
+  workspace, commands as vscommands, window, StatusBarAlignment,
+  AccessibilityInformation
+} from 'vscode'
 import {
   useLogger,
   useCommands,
@@ -9,47 +21,41 @@ import {
 
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
-  const demo = useConfigDemo()
+  logger.info('activate')
+  const demo = useConfigObjectDemo()
 
   const stop = watchEffect(() => {
     window.showInformationMessage(`testConfigs.annotations: ${demo.description}`)
     logger.warn(`testConfigs.annotations: ${demo.description}`)
   })
-  // update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
 
-  logger.info('activate')
-  // const globs = runonsave.shell ?? 'cmd'
+  useCommandUpdateDes(async (..._args: any[]) => {
+    demo.$update('description', `Now-${Date.now()}`)
 
-  // const watcher = useFsWatcher(globs)
-  // watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
+  })
+  useStatusBarItem({
+    id: "demo.statusBarId",
+    command: commands.updateDes,
+    name: "Demo StatusBar Name",
+    text: 'Demo StatusBar'
+  })
+  useStatusBarItem({
+    alignment: StatusBarAlignment.Left,
+    priority: 100,
+    text: () => `$(megaphone) Hello*${demo.description}`,
 
-  const section = "project-kit.runonsave"
-  const key = "autoClearConsole"
-  const isTopLevel = !section
-  const workspaceConfig = workspace.getConfiguration(isTopLevel ? undefined : section)
+  }).show()
+  const counter = ref(0)
+
+  useStatusBarItem({
+    alignment: StatusBarAlignment.Right,
+    priority: 100,
+    text: () => `$(megaphone) Hello*${counter.value}`,
+  }).show()
 
   useCommands({
-    [commands.manualUpdate]: async (..._args: any[]) => {
-    
-      //  runonsave.$update('autoClearConsole', true)
-      const v = workspaceConfig.get(key) as Boolean
-      await workspaceConfig.update(`${key}`, !v)
-      window.showInformationMessage(`handl name:${stop?.toString()}`)
-      logger.warn(`handl name:${stop?.toString()}`)
-    },
-    [commands.disableRunOnSave]: () => {
-      logger.info('Disable Run On Save')
-    },
-    [commands.enableRunOnSave]: () => {
-      logger.info('Enable Run On Save')
-    },
-    [commands.changeAnnnotations]: () => {
-      logger.info('Change Annnotations')
-    },
-    [commands.stopWatch]: () => {
-      logger.info('Stop Watch')
-    },
-
+    [commands.sayHello]: () => counter.value++,
+    [commands.sayGoodbye]: () => counter.value--,
   })
 })
 export { activate, deactivate }

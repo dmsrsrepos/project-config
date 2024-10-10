@@ -26,7 +26,10 @@
       {
         "title": "Update config now",
         "command": "project-kit.manualUpdate",
-        "category": "Project Kit"
+        "category": "Project Kit",
+        "enablement": "s",
+        "icon":"$(zap)",
+        "shortTitle": ""
       },
       {
         "title": "change annotations",
@@ -45,37 +48,49 @@
       {
         "title": "Run On Save: Disable",
         "command": "project-kit.disableRunOnSave"
+      },
+      {
+        "title": "Update demo des",
+        "command": "project-kit.updateDes",
+        "category": "Project Demo"
+      },
+      {
+        "title": "sayHello",
+        "command": "project-kit.sayHello",
+        "category": "Project Demo"
+      },{
+        "title": "sayGoodbye",
+        "command": "project-kit.sayGoodbye",
+        "category": "Project Demo"
       }
     ],
+    "menus": {
+      "statusBar": [
+        {
+          "command": "project-kit.updateDes",
+          "group": "navigation",
+          "when": "editorTextFocus",
+          "alt": "project-kit.updateDes"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "true",
+          "command": "project-kit.updateDes",
+          "alt": "project-kit.updateDes",
+          "group": "navigation"
+        }
+      ]
+    },
     "configuration": [
       {
         "type": "object",
         "title": "Demo",
         "properties": {
-          "project-kit.demo.autoUpdate": {
-            "type": "boolean",
-            "default": true,
-            "description": "Fetch and update the latest config automatically"
-          },
           "project-kit.demo.description": {
             "type": "string",
-            "default": "antfu/vscode-file-nesting-config",
-            "description": "The upstream repo you want to update from"
-          },
-          "project-kit.demo.upstreamBranch": {
-            "type": "string",
-            "default": "main",
-            "description": "The branch name of upstream repo"
-          },
-          "project-kit.demo.promptOnAutoUpdate": {
-            "type": "boolean",
-            "default": true,
-            "description": "Should show up the prompt before doing auto update"
-          },
-          "project-kit.demo.autoUpdateInterval": {
-            "type": "number",
-            "default": 4320,
-            "description": "The minimal interval for auto update, in minutes"
+            "default": "default demo string",
+            "description": "used for demo configuration"
           }
         }
       },

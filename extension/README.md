@@ -39,6 +39,9 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 | `project-kit.stop-watch`          | Project Kit: stop watch         |
 | `project-kit.enableRunOnSave`     | Run On Save: Enable             |
 | `project-kit.disableRunOnSave`    | Run On Save: Disable            |
+| `project-kit.updateDes`           | Project Demo: Update demo des   |
+| `project-kit.sayHello`            | Project Demo: sayHello          |
+| `project-kit.sayGoodbye`          | Project Demo: sayGoodbye        |
 
 <!-- commands -->
 
@@ -46,16 +49,8 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 
 ```json
 {
-  //Fetch and update the latest config automatically
-  "project-kit.demo.autoUpdate": true,
-  //The upstream repo you want to update from
-  "project-kit.demo.description": "antfu/vscode-file-nesting-config",
-  //The branch name of upstream repo
-  "project-kit.demo.upstreamBranch": "main",
-  //Should show up the prompt before doing auto update
-  "project-kit.demo.promptOnAutoUpdate": true,
-  //The minimal interval for auto update, in minutes
-  "project-kit.demo.autoUpdateInterval": 4320,
+  //Used for demo configuration
+  "project-kit.demo.description": "default demo string",
   //Fetch and update the latest config automatically
   "project-kit.fileNestingUpdater.autoUpdate": true,
   //The upstream repo you want to update from
