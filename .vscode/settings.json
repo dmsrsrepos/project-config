@@ -1,6 +1,5 @@
 {
   // Auto fix
- 
   "editor.formatOnSave": false,
   "emeraldwalk.runonsave": {
     "commands": [
@@ -74,5 +73,7 @@
   "pnpmCatalogLens.enabled": true,
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "eslint.format.enable": true,
-
+  "eslint.problems.shortenToSingleLine": true,
+  "eslint.run": "onSave",
+  "arrayIndexInlay.enabled": true,
 }

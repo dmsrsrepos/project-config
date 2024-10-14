@@ -41,7 +41,7 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 | `project-kit.disableRunOnSave`    | Run On Save: Disable            |
 | `project-kit.updateDes`           | Project Demo: Update demo des   |
 | `project-kit.sayHello`            | Project Demo: sayHello          |
-| `project-kit.sayGoodbye`          | Project Demo: sayGoodbye        |
+| `project-kit.sayGoodbye`          | Project Kit: sayGoodbye         |
 
 <!-- commands -->
 

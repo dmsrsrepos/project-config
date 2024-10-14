@@ -28,8 +28,8 @@
         "command": "project-kit.manualUpdate",
         "category": "Project Kit",
         "enablement": "s",
-        "icon":"$(zap)",
-        "shortTitle": ""
+        "icon": "$(zap)",
+        "shortTitle": "shortTitle"
       },
       {
         "title": "change annotations",
@@ -58,10 +58,14 @@
         "title": "sayHello",
         "command": "project-kit.sayHello",
         "category": "Project Demo"
-      },{
+      },
+      {
         "title": "sayGoodbye",
         "command": "project-kit.sayGoodbye",
-        "category": "Project Demo"
+        "category": "Project Kit",
+        "enablement": "s",
+        "icon": "$(zap)",
+        "shortTitle": "demo shortTitle"
       }
     ],
     "menus": {
