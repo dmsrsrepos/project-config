@@ -16,7 +16,7 @@ const { activate, deactivate } = defineExtension(() => {
   logger.info('activate')
   const demo = useConfigObjectDemo()
 
-  const stop = watchEffect(() => {
+  const _stop = watchEffect(() => {
     window.showInformationMessage(`testConfigs.annotations: ${demo.description}`)
     logger.warn(`testConfigs.annotations: ${demo.description}`)
   })
@@ -26,7 +26,7 @@ const { activate, deactivate } = defineExtension(() => {
 
   })
 
-  let button = useStatusBarItemFromCommand(commands.sayHello)
+  const button = useStatusBarItemFromCommand(commands.sayHello)
 
   button.show()
 

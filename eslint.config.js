@@ -31,8 +31,15 @@ export default antfu(
       "no-console": "off",
       "import/order": "off",
       "import/newline-after-import": "off",
-      "sort-imports": "off",
-      "eslint-comments/no-unlimited-disable": "off"
+      "sort-imports": "off",      
+      "eslint-comments/no-unlimited-disable": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "antfu/top-level-function": "warn",
+      "antfu/import-sort": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-unnecessary-condition": "off",
+      "@typescript-eslint/no-unnecessary-type-arguments": "off",
+      "@typescript-eslint/no-unnecessary-type-constraint": "off",
     }
   }
 )
