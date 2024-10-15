@@ -9,7 +9,7 @@ import {
 } from 'vscode'
 import {
   useLogger, useCommands, commands, useStatusBarItemFromCommand
-} from '@/generated-meta' 
+} from '@/generated-meta'
 
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
@@ -27,11 +27,13 @@ const { activate, deactivate } = defineExtension(() => {
   })
 
   let button = useStatusBarItemFromCommand(commands.sayHello)
+
   button.show()
 
   const counter = ref(0)
   useStatusBarItem({
-    alignment: StatusBarAlignment.Right,
+    alignment: StatusBarAlignment.Left,
+    command: commands.sayGoodbye,
     priority: 100,
     text: () => `$(megaphone) Hello*${counter.value}`,
   }).show()
