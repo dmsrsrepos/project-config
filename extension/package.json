@@ -26,7 +26,10 @@
       {
         "title": "Update config now",
         "command": "project-kit.manualUpdate",
-        "category": "Project Kit"
+        "category": "Project Kit",
+        "enablement": "s",
+        "icon": "$(zap)",
+        "shortTitle": "shortTitle"
       },
       {
         "title": "change annotations",
@@ -45,9 +48,56 @@
       {
         "title": "Run On Save: Disable",
         "command": "project-kit.disableRunOnSave"
+      },
+      {
+        "title": "Update demo des",
+        "command": "project-kit.updateDes",
+        "category": "Project Demo"
+      },
+      {
+        "title": "sayHello",
+        "command": "project-kit.sayHello",
+        "category": "Project Demo"
+      },
+      {
+        "title": "sayGoodbye",
+        "command": "project-kit.sayGoodbye",
+        "category": "Project Kit",
+        "enablement": "s",
+        "icon": "$(zap)",
+        "shortTitle": "demo shortTitle"
       }
     ],
+    "menus": {
+      "statusBar": [
+        {
+          "command": "project-kit.updateDes",
+          "group": "navigation",
+          "when": "editorTextFocus",
+          "alt": "project-kit.updateDes"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "true",
+          "command": "project-kit.updateDes",
+          "alt": "project-kit.updateDes",
+          "group": "navigation"
+        }
+      ]
+    },
     "configuration": [
+      {
+        "type": "object",
+        "title": "Demo",
+        "properties": {
+          "project-kit.demo.description": {
+            "type": "string",
+            "default": "default demo string",
+            "description": "used for demo configuration"
+          }
+        }
+      },
       {
         "type": "object",
         "title": "Config 1",

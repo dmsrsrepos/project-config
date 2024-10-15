@@ -1,46 +1,46 @@
-import { defineExtension, useFsWatcher, watchEffect } from 'reactive-vscode'
-import { window } from 'vscode'
 import {
-  useConfigObjectProjectKit,
-  useLogger,
-  useCommands,
-  commands,
+  useConfigObjectDemo, useCommandUpdateDes
+} from './generated-meta';
+import {
+  defineExtension, useFsWatcher, watchEffect, executeCommand, useStatusBarItem, ref
+} from 'reactive-vscode'
+import {
+  workspace, commands as vscommands, window, StatusBarAlignment, AccessibilityInformation
+} from 'vscode'
+import {
+  useLogger, useCommands, commands, useStatusBarItemFromCommand
 } from '@/generated-meta'
 
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
-  const emeraldwalk = useConfigObjectProjectKit()
+  logger.info('activate')
+  const demo = useConfigObjectDemo()
 
   const stop = watchEffect(() => {
-    window.showInformationMessage(`testConfigs.annotations: ${emeraldwalk.runonsave.shell}`)
-    logger.warn(`testConfigs.annotations: ${emeraldwalk.runonsave.shell}`)
+    window.showInformationMessage(`testConfigs.annotations: ${demo.description}`)
+    logger.warn(`testConfigs.annotations: ${demo.description}`)
   })
-  // update value to ConfigurationTarget.Workspace/ConfigurationTarget.Global/ConfigurationTarget.WorkspaceFolder
 
-  logger.info('activate')
-  const globs = emeraldwalk.shell ?? 'cmd'
+  useCommandUpdateDes(async (..._args: any[]) => {
+    demo.$update('description', `Now-${Date.now()}`)
 
-  const watcher = useFsWatcher(globs)
-  watcher.onDidChange(uri => window.showInformationMessage(`File changed: ${uri}`))
+  })
+
+  let button = useStatusBarItemFromCommand(commands.sayHello)
+
+  button.show()
+
+  const counter = ref(0)
+  useStatusBarItem({
+    alignment: StatusBarAlignment.Left,
+    command: commands.sayGoodbye,
+    priority: 100,
+    text: () => `$(megaphone) Hello*${counter.value}`,
+  }).show()
 
   useCommands({
-    [commands.manualUpdate]: (..._args: any[]) => {
-      window.showInformationMessage(`handl name:${stop?.toString()}`)
-      logger.warn(`handl name:${stop?.toString()}`)
-    },
-    [commands.disableRunOnSave]: () => {
-      logger.info('Disable Run On Save')
-    },
-    [commands.enableRunOnSave]: () => {
-      logger.info('Enable Run On Save')
-    },
-    [commands.changeAnnnotations]: () => {
-      logger.info('Change Annnotations')
-    },
-    [commands.stopWatch]: () => {
-      logger.info('Stop Watch')
-    },
-
+    [commands.sayHello]: () => counter.value++,
+    [commands.sayGoodbye]: () => counter.value--,
   })
 })
 export { activate, deactivate }
