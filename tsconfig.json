@@ -16,8 +16,15 @@
                 "extension/src/*"
             ]
         },
+        "typeRoots": [
+            "./node_modules/@types",
+            "./node_modules/reactive-vscode"
+        ],
     },
     "include": [
         "**/*.ts"
+    ],
+    "exclude": [
+        "**/node_modules"
     ]
 }
