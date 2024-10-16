@@ -1,21 +1,20 @@
 {
   "author": "cnjimbo <cnjimbo@dmsrs.org>",
   "devDependencies": {
-    "@antfu/eslint-config": "catalog:",
-    "@antfu/ni": "catalog:",
-    "@types/eslint": "catalog:",
-    "@types/node": "catalog:",
-    "@types/vscode": "catalog:",
-    "eslint": "catalog:",
-    "eslint-factory": "catalog:",
-    "ofetch": "catalog:",
+    "@antfu/eslint-config": "3.7.3",
+    "@antfu/ni": "0.23.0",
+    "@types/eslint": "9.6.1",
+    "@types/node": "22.7.5",
+    "@types/vscode": "1.94.0",
+    "eslint": "9.12.0",
+    "ofetch": "1.4.1",
     "radash": "^12.1.0",
-    "reactive-meta-gen": "file:G:/code-vsextension/reactive-meta-gen",
-    "reactive-vscode": "catalog:",
-    "tsup": "catalog:",
+    "reactive-meta-gen": "file:C:/AppData/code-vsextension/reactive-meta-gen",
+    "reactive-vscode": "0.2.6-beta.1",
+    "tsup": "8.3.0",
     "tsx": "^4.19.1",
     "type-fest": "^4.26.1",
-    "typescript": "catalog:"
+    "typescript": "5.6.3"
   },
   "funding": "https://github.com/sponsors/cnjimbo",
   "license": "MIT",
@@ -33,9 +32,5 @@
   "type": "module",
   "workspaces": [
     "extension"
-  ],
-  "dependencies": {
-    "@profusion/json-schema-to-typescript-definitions": "^0.2.1",
-    "json-schema-to-ts": "^3.1.1"
-  }
+  ]
 }

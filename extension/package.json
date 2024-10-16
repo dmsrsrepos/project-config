@@ -57,15 +57,18 @@
       {
         "title": "sayHello",
         "command": "project-kit.sayHello",
-        "category": "Project Demo"
+        "category": "Demo",
+        "enablement": "s",
+        "icon": "$(zap)",
+        "shortTitle": "Hello shortTitle"
       },
       {
         "title": "sayGoodbye",
         "command": "project-kit.sayGoodbye",
-        "category": "Project Kit",
+        "category": "Demo",
         "enablement": "s",
         "icon": "$(zap)",
-        "shortTitle": "demo shortTitle"
+        "shortTitle": "Bye shortTitle"
       }
     ],
     "menus": {

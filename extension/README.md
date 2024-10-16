@@ -40,8 +40,8 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 | `project-kit.enableRunOnSave`     | Run On Save: Enable             |
 | `project-kit.disableRunOnSave`    | Run On Save: Disable            |
 | `project-kit.updateDes`           | Project Demo: Update demo des   |
-| `project-kit.sayHello`            | Project Demo: sayHello          |
-| `project-kit.sayGoodbye`          | Project Kit: sayGoodbye         |
+| `project-kit.sayHello`            | Demo: sayHello                  |
+| `project-kit.sayGoodbye`          | Demo: sayGoodbye                |
 
 <!-- commands -->
 

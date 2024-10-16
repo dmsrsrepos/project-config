@@ -156,12 +156,12 @@ export const commandsInformation = {
      * SayHello
      * @command `project-kit.sayHello`
      */
-    "project-kit.sayHello": { "commandShorthandName": "sayHello", "title": "sayHello", "command": "project-kit.sayHello", "category": "Project Demo" },
+    "project-kit.sayHello": { "commandShorthandName": "sayHello", "title": "sayHello", "command": "project-kit.sayHello", "category": "Demo", "enablement": "s", "icon": "$(zap)", "shortTitle": "Hello shortTitle" },
     /**
      * SayGoodbye
      * @command `project-kit.sayGoodbye`
      */
-    "project-kit.sayGoodbye": { "commandShorthandName": "sayGoodbye", "title": "sayGoodbye", "command": "project-kit.sayGoodbye", "category": "Project Kit", "enablement": "s", "icon": "$(zap)", "shortTitle": "demo shortTitle" },
+    "project-kit.sayGoodbye": { "commandShorthandName": "sayGoodbye", "title": "sayGoodbye", "command": "project-kit.sayGoodbye", "category": "Demo", "enablement": "s", "icon": "$(zap)", "shortTitle": "Bye shortTitle" },
 } satisfies Record<Command, CommandsInformation> as Record<Command, CommandsInformation>;
 /**
  * Register a command. See `vscode::commands.registerCommand`.

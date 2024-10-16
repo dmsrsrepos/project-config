@@ -76,4 +76,10 @@
   "eslint.problems.shortenToSingleLine": true,
   "eslint.run": "onSave",
   "arrayIndexInlay.enabled": true,
+  "eslint.ignoreUntitled": true,
+  "eslint.useESLintClass": false,
+  "eslint.useFlatConfig": true,
+  "eslint.workingDirectories": [
+    "./"
+  ],
 }

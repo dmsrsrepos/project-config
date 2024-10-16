@@ -1,4 +1,4 @@
-// @ts-check
+
 import antfu from '@antfu/eslint-config'
 
 export default antfu(
@@ -31,7 +31,7 @@ export default antfu(
       "no-console": "off",
       "import/order": "off",
       "import/newline-after-import": "off",
-      "sort-imports": "off",      
+      "sort-imports": "off",
       "eslint-comments/no-unlimited-disable": "off",
       "@typescript-eslint/explicit-function-return-type": "off",
       "antfu/top-level-function": "warn",
