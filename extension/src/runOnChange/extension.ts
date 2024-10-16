@@ -1,15 +1,15 @@
-import path from 'node:path'
-import { exec } from 'node:child_process'
-import process from 'node:process'
-import vscode from 'vscode'
 import type { ProjectKit } from '@/generated-meta'
+import { exec } from 'node:child_process'
+import path from 'node:path'
+import process from 'node:process'
 import {
-  useCommands,
-  name,
-  useConfigObjectProjectKit,
   commands,
+  name,
+  useCommands,
+  useConfigObjectProjectKit,
 } from '@/generated-meta'
-import { useEvent, useDisposable, useOutputChannel } from 'reactive-vscode'
+import { useDisposable, useEvent, useOutputChannel } from 'reactive-vscode'
+import vscode from 'vscode'
 
 const onDidChangeConfiguration = useEvent(vscode.workspace.onDidChangeConfiguration)
 const onDidSaveTextDocument = useEvent(vscode.workspace.onDidSaveTextDocument)

@@ -51,6 +51,7 @@
   ],
   // Enable eslint for all supported languages
   "eslint.validate": [
+
     "html",
     "javascript",
     "javascriptreact",
@@ -77,9 +78,9 @@
   "eslint.run": "onSave",
   "arrayIndexInlay.enabled": true,
   "eslint.ignoreUntitled": true,
-  "eslint.useESLintClass": false,
+  "eslint.useESLintClass": true,
   "eslint.useFlatConfig": true,
-  "eslint.workingDirectories": [
-    "./"
-  ],
+  "eslint.lintTask.enable": true,
+  "eslint.lintTask.options": " . --fix",
+
 }

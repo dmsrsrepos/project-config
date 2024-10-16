@@ -1,15 +1,28 @@
 import {
-  useConfigObjectDemo, useCommandUpdateDes
-} from './generated-meta';
+  commands,
+  useCommands,
+  useLogger,
+  useStatusBarItemFromCommand,
+} from '@/generated-meta'
 import {
-  defineExtension, useFsWatcher, watchEffect, executeCommand, useStatusBarItem, ref
+  defineExtension,
+  executeCommand,
+  ref,
+  useFsWatcher,
+  useStatusBarItem,
+  watchEffect,
 } from 'reactive-vscode'
 import {
-  workspace, commands as vscommands, window, StatusBarAlignment, AccessibilityInformation
+  AccessibilityInformation,
+  StatusBarAlignment,
+  commands as vscommands,
+  window,
+  workspace,
 } from 'vscode'
 import {
-  useLogger, useCommands, commands, useStatusBarItemFromCommand
-} from '@/generated-meta'
+  useCommandUpdateDes,
+  useConfigObjectDemo,
+} from './generated-meta'
 
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
@@ -23,7 +36,6 @@ const { activate, deactivate } = defineExtension(() => {
 
   useCommandUpdateDes(async (..._args: any[]) => {
     demo.$update('description', `Now-${Date.now()}`)
-
   })
 
   const button = useStatusBarItemFromCommand(commands.sayHello)
