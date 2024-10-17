@@ -1,5 +1,5 @@
 const fs = require('node:fs')
-const isdebug = false
+const isdebug = true
 const devPackagePaths = {
   'reactive-meta-gen': [
     `C:\\AppData\\code-vsextension\\reactive-meta-gen`,

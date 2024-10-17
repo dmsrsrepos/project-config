@@ -4,7 +4,7 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-pnpmfileChecksum: ns577i4duxnbqp46yrftbsksu4
+pnpmfileChecksum: zpmvoo2xxl7ystpvhs5df2amim
 
 importers:
 
@@ -35,8 +35,8 @@ importers:
         specifier: ^12.1.0
         version: 12.1.0
       reactive-meta-gen:
-        specifier: 0.3.1-beta.1
-        version: 0.3.1-beta.1
+        specifier: file:C:\AppData\code-vsextension\reactive-meta-gen
+        version: file:../reactive-meta-gen
       reactive-vscode:
         specifier: 0.2.6-beta.1
         version: 0.2.6-beta.1(@types/vscode@1.94.0)
@@ -1646,8 +1646,8 @@ packages:
     resolution: {integrity: sha512-b0Zcf09AhqKS83btmUeYBS8tFK7XL2e3RvLmZcm0sTdF1/UUlHSsjXdCcWNxe7yfmAlPve5ym0DmKGtTzP6kVQ==}
     engines: {node: '>=14.18.0'}
 
-  reactive-meta-gen@0.3.1-beta.1:
-    resolution: {integrity: sha512-f+PG6dq7Q8kIFrtEjU6gBl0jC2TkphQtMh/YdkUOKPqj10o5fpEDGBuwjLmUYFWpkHHXQSwnCHXtpMJGYVujuQ==}
+  reactive-meta-gen@file:../reactive-meta-gen:
+    resolution: {directory: ../reactive-meta-gen, type: directory}
     hasBin: true
 
   reactive-vscode@0.2.6-beta.1:
@@ -3740,7 +3740,7 @@ snapshots:
 
   radash@12.1.0: {}
 
-  reactive-meta-gen@0.3.1-beta.1:
+  reactive-meta-gen@file:../reactive-meta-gen:
     dependencies:
       cac: 6.7.14
       radash: 12.1.0

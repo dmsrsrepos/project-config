@@ -1,35 +1,14 @@
-import {
-  commands,
-  useCommands,
-  useLogger,
-  useStatusBarItemFromCommand,
-} from '@/generated-meta'
-import {
-  defineExtension,
-  executeCommand,
-  ref,
-  useFsWatcher,
-  useStatusBarItem,
-  watchEffect,
-} from 'reactive-vscode'
-import {
-  AccessibilityInformation,
-  StatusBarAlignment,
-  commands as vscommands,
-  window,
-  workspace,
-} from 'vscode'
-import {
-  useCommandUpdateDes,
-  useConfigObjectDemo,
-} from './generated-meta'
+import { commands, useCommands, useLogger, useStatusBarItemFromCommand } from '@/generated-meta'
+import { defineExtension, executeCommand, ref, useFsWatcher, useStatusBarItem, watchEffect } from 'reactive-vscode'
+import { AccessibilityInformation, StatusBarAlignment, commands as vscommands, window, workspace } from 'vscode'
+import { useCommandUpdateDes, useConfigObjectDemo } from './generated-meta'
 
 const { activate, deactivate } = defineExtension(() => {
   const logger = useLogger()
   logger.info('activate')
   const demo = useConfigObjectDemo()
 
-  const _stop = watchEffect(() => {
+  watchEffect(() => {
     window.showInformationMessage(`testConfigs.annotations: ${demo.description}`)
     logger.warn(`testConfigs.annotations: ${demo.description}`)
   })
