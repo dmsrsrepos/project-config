@@ -1,13 +1,8 @@
-import type { ProjectKit } from '@/generated-meta'
+import type { ProjectKit } from '@/generated/meta'
 import { exec } from 'node:child_process'
 import path from 'node:path'
 import process from 'node:process'
-import {
-  commands,
-  name,
-  useCommands,
-  useConfigObjectProjectKit,
-} from '@/generated-meta'
+import * as meta from '@/generated/meta'
 import { useDisposable, useEvent, useOutputChannel } from 'reactive-vscode'
 import vscode from 'vscode'
 
@@ -19,18 +14,18 @@ export function activate(context: vscode.ExtensionContext): void {
 
   onDidChangeConfiguration((_) => {
     useDisposable(extension.showStatusMessage('Run On Save: Reloading config.'))
-    extension.loadConfig()
+ 
   })
 
   onDidSaveTextDocument((document: vscode.TextDocument) => {
     extension.runCommands(document)
   })
 
-  useCommands({
-    [commands.enableRunOnSave]: async () => {
+  meta.useCommands({
+    [meta.commands.enableRunOnSave]: async () => {
       extension.isEnabled = true
     },
-    [commands.disableRunOnSave]: async () => {
+    [meta.commands.disableRunOnSave]: async () => {
       extension.isEnabled = false
     },
   })
@@ -50,8 +45,8 @@ class RunOnSaveExtension {
 
   constructor(context: vscode.ExtensionContext) {
     this._context = context
-    this._outputChannel = useOutputChannel(name) // vscode.window.createOutputChannel('Run On Save')
-    this._config = useConfigObjectProjectKit().runonsave
+    this._outputChannel = useOutputChannel(meta.name) // vscode.window.createOutputChannel('Run On Save')
+    this._config = meta.useConfigObjectProjectKit().runonsave
   }
 
   /** Recursive call to run commands. */
@@ -129,10 +124,7 @@ class RunOnSaveExtension {
     return this._config.commands || []
   }
 
-  public loadConfig(): void {
-    this._config = useConfigObjectProjectKit().runonsave
-  }
-
+   
   /**
    * Show message in output channel
    */

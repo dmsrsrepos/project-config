@@ -27,7 +27,7 @@
     "ext:publish": "nr ext:build && cd extension && vsce publish --no-dependencies",
     "lint": "eslint .",
     "prepare": "pnpm run update",
-    "update": "reactive-meta-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated-meta.ts"
+    "update": "reactive-meta-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated/meta.ts"
   },
   "type": "module",
   "workspaces": [
