@@ -1,6 +1,7 @@
 import * as meta from '@/generated/meta'
-import { defineExtension, executeCommand, ref, useFsWatcher, useStatusBarItem, watchEffect } from 'reactive-vscode'
-import { AccessibilityInformation, StatusBarAlignment, commands as vscommands, window, workspace } from 'vscode'
+import { defineExtension, defineConfigObject, executeCommand, ref, useFsWatcher, useStatusBarItem, watchEffect } from 'reactive-vscode'
+import { ConfigurationTarget, StatusBarAlignment, commands as vscommands, window, workspace } from 'vscode'
+
 
 
 const { activate, deactivate } = defineExtension(() => {
@@ -29,9 +30,20 @@ const { activate, deactivate } = defineExtension(() => {
     text: () => `$(megaphone) Hello*${counter.value}`,
   }).show()
 
+
+
+  const config = defineConfigObject('explorer.fileNesting', {
+    enabled: Boolean,
+    expand: Boolean,
+  })
+
+  watchEffect(() => {
+    window.showInformationMessage(`enabled:${config.enabled};expand:${config.expand}`)
+    logger.warn(`testConfigs.annotations: ${config.enabled}`)
+  })
   meta.useCommands({
-    [meta.commands.sayHello]: () => counter.value++,
-    [meta.commands.sayGoodbye]: () => counter.value--,
+    [meta.commands.sayHello]: () => config.$update('enabled', !config.enabled, ConfigurationTarget.Global),
+    [meta.commands.sayGoodbye]: () => config.$update('expand', !config.expand, ConfigurationTarget.Global),
   })
 })
 export { activate, deactivate }
