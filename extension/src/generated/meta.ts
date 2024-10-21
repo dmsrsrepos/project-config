@@ -435,13 +435,11 @@ export const configs = {
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
  */
-export const useConfig = memo(<Section extends SectionName>(section: Section) =>
-    defineConfigs<typeof defaults[Section]>(section, defaults[section]));
+export const useConfig = memo(<Section extends SectionName>(section: Section) => defineConfigs<typeof defaults[Section]>(section, defaults[section]));
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
  */
-export const useConfigObject = memo(<Section extends SectionName>(section: Section) =>
-    defineConfigObject<typeof defaults[Section]>(section, defaults[section]));
+export const useConfigObject = memo(<Section extends SectionName>(section: Section) => defineConfigObject<typeof defaults[Section]>(section, defaults[section]));
 /**
  * ConfigObject<Demo> of `project-kit.demo`
  */

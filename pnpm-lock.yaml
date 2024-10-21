@@ -35,7 +35,7 @@ importers:
         specifier: ^12.1.0
         version: 12.1.0
       reactive-meta-gen:
-        specifier: file:C:\AppData\code-vsextension\reactive-meta-gen
+        specifier: file:G:\code-vsextension\reactive-meta-gen
         version: file:../reactive-meta-gen
       reactive-vscode:
         specifier: 0.2.6-beta.1
