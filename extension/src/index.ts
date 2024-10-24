@@ -30,10 +30,8 @@ const { activate, deactivate } = defineExtension(() => {
     text: () => `$(megaphone) Hello*${counter.value}`,
   }).show()
 
-
-
   const config = defineConfigObject('explorer.fileNesting', {
-    enabled: Boolean,
+    enabled: true,
     expand: Boolean,
   })
 
