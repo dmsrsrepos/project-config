@@ -3,7 +3,7 @@ import { exec } from 'node:child_process'
 import path from 'node:path'
 import process from 'node:process'
 import vscode from 'vscode'
-import { useDisposable, useEvent } from 'reactive-vscode'
+import * as re from 'reactive-vscode'
 import * as meta from '@/generated/meta'
 
 interface ICommand {
@@ -26,9 +26,12 @@ export class RunOnSaveExtension {
 
     /** Recursive call to run commands. */
     private _runCommands(
-        commands: Array<ICommand>,
-        document: vscode.TextDocument,
+        commands: Array<ICommand>        
     ): void {
+        const document =re.useActiveTextEditor().value?.document
+        if (document === undefined) {
+            return
+        }
         if (commands.length) {
             const cfg = commands.shift()
             if (cfg !== undefined) {
@@ -42,13 +45,13 @@ export class RunOnSaveExtension {
                 child.on('exit', (_e) => {
                     // if sync
                     if (!cfg.isAsync) {
-                        this._runCommands(commands, document)
+                        this._runCommands(commands)
                     }
                 })
 
                 // if async, go ahead and run next command
                 if (cfg.isAsync) {
-                    this._runCommands(commands, document)
+                    this._runCommands(commands)
                 }
             }
         }
