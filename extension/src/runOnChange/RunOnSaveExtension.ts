@@ -15,20 +15,20 @@ interface ICommand {
 
 export class RunOnSaveExtension {
     private _outputChannel: vscode.OutputChannel
-    private _context: vscode.ExtensionContext
+    private _context: re.ShallowRef<vscode.ExtensionContext | null>
     private _config: ProjectKit['runonsave']
 
-    constructor(context: vscode.ExtensionContext) {
-        this._context = context
+    constructor() {
+        this._context = re.extensionContext
         this._outputChannel = meta.useOutputChannel() // vscode.window.createOutputChannel('Run On Save')
         this._config = meta.useConfigObjectProjectKit().runonsave
     }
 
     /** Recursive call to run commands. */
     private _runCommands(
-        commands: Array<ICommand>        
+        commands: Array<ICommand>
     ): void {
-        const document =re.useActiveTextEditor().value?.document
+        const document = re.useActiveTextEditor().value?.document
         if (document === undefined) {
             return
         }
@@ -82,11 +82,11 @@ export class RunOnSaveExtension {
     }
 
     public get isEnabled(): boolean {
-        return !!this._context.globalState.get('isEnabled', true)
+        return !!this._context.value?.globalState.get('isEnabled', true)
     }
 
     public set isEnabled(value: boolean) {
-        this._context.globalState.update('isEnabled', value)
+        this._context.value?.globalState.update('isEnabled', value)
         this.showOutputMessage()
     }
 
@@ -191,6 +191,6 @@ export class RunOnSaveExtension {
             })
         }
 
-        this._runCommands(commands, document)
+        this._runCommands(commands)
     }
 }
