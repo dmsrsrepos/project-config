@@ -41,6 +41,7 @@ export class RunOnSaveExtension {
                 child.stderr?.on('data', data => this._outputChannel.append(data))
                 child.on('error', (e) => {
                     this.showOutputMessage(e.message)
+                    this.showOutputMessage((e as Error).message)
                 })
                 child.on('exit', (_e) => {
                     // if sync
@@ -115,9 +116,9 @@ export class RunOnSaveExtension {
      * Show message in status bar and output channel.
      * Return a disposable to remove status bar message.
      */
-    public showStatusMessage(message: string): vscode.Disposable {
+    public showStatusMessage(message: string) {
         this.showOutputMessage(message)
-        return vscode.window.setStatusBarMessage(message)
+        vscode.window.showInformationMessage(message)
     }
 
     public runCommands(document: vscode.TextDocument): void {
@@ -134,17 +135,28 @@ export class RunOnSaveExtension {
 
         const commandConfigs = this.commands
             .filter((cfg) => {
-                const matchPattern = cfg.match || ''
-                const negatePattern = cfg.notMatch || ''
+                try {
+                    const matchPattern = cfg.match || ''
+                    const negatePattern = cfg.notMatch || ''
 
-                // if no match pattern was provided, or if match pattern succeeds
-                const isMatch = matchPattern.length === 0 || match(matchPattern)
+                    // if no match pattern was provided, or if match pattern succeeds
+                    const isMatch = matchPattern.length === 0 || match(matchPattern)
 
-                // negation has to be explicitly provided
-                const isNegate = negatePattern.length > 0 && match(negatePattern)
+                    // negation has to be explicitly provided
+                    const isNegate = negatePattern.length > 0 && match(negatePattern)
 
-                // negation wins over match
-                return !isNegate && isMatch
+                    // negation wins over match
+                    return !isNegate && isMatch
+                } catch (e) {
+                    if (e instanceof Error) {
+                        this.showOutputMessage(e.message)
+                    }
+                    else {
+                        this.showOutputMessage(e?.toString())
+                    }
+                    return false
+                }
+
             })
 
         if (commandConfigs.length === 0) {
