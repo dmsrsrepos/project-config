@@ -5,6 +5,7 @@ import process from 'node:process'
 import vscode from 'vscode'
 import * as re from 'reactive-vscode'
 import * as meta from '@/generated/meta'
+import * as fg from 'fast-glob'
 
 interface ICommand {
     match?: string
@@ -67,7 +68,7 @@ export class RunOnSaveExtension {
         document: vscode.TextDocument,
     ): { shell: string, cwd?: string } {
         return {
-            shell: this.shell,
+            shell: this._config.shell ?? "",
             cwd: this._getWorkspaceFolderPath(document.uri),
         }
     }
@@ -90,20 +91,6 @@ export class RunOnSaveExtension {
         this._context.value?.globalState.update('isEnabled', value)
         this.showOutputMessage()
     }
-
-    public get shell(): string {
-        return this._config.shell ?? ''
-    }
-
-    public get autoClearConsole(): boolean {
-        return !!this._config.autoClearConsole
-    }
-
-    public get commands(): Array<ICommand> {
-        return this._config.commands || []
-    }
-
-
     /**
      * Show message in output channel
      */
@@ -120,33 +107,42 @@ export class RunOnSaveExtension {
         this.showOutputMessage(message)
         vscode.window.showInformationMessage(message)
     }
+    public isPathMatchGlob(cfg: ICommand, filePath: string) {
+        const matchPattern = cfg.match || ''
+        const negatePattern = cfg.notMatch || ''
+
+        const match = path.matchesGlob(matchPattern, filePath)
+        const match1 = !path.matchesGlob(negatePattern, filePath)
+
+        return match && match1
+
+        // const roots = re.useWorkspaceFolders().value?.filter(v => !!v)
+        // if (!roots)
+        //     return false
+        // const files = roots.flatMap(r => fg.globSync(matchPattern, {
+        //     ignore: [negatePattern],
+        //     absolute: true,
+        //     cwd: r.uri.fsPath,
+        // }))
+        // return files.includes(filePath)
+    }
 
     public runCommands(document: vscode.TextDocument): void {
-        if (this.autoClearConsole) {
+        if (this._config.autoClearConsole) {
             this._outputChannel.clear()
         }
 
-        if (!this.isEnabled || this.commands.length === 0) {
+        if (!this.isEnabled || this._config.commands.length === 0) {
             this.showOutputMessage()
             return
         }
 
-        const match = (pattern: string): boolean => !!pattern && pattern.length > 0 && new RegExp(pattern).test(document.fileName)
+        const match = (cfg: ICommand): boolean => this.isPathMatchGlob(cfg, document.fileName)
 
-        const commandConfigs = this.commands
+        const commandConfigs = this._config.commands
             .filter((cfg) => {
                 try {
-                    const matchPattern = cfg.match || ''
-                    const negatePattern = cfg.notMatch || ''
-
-                    // if no match pattern was provided, or if match pattern succeeds
-                    const isMatch = matchPattern.length === 0 || match(matchPattern)
-
-                    // negation has to be explicitly provided
-                    const isNegate = negatePattern.length > 0 && match(negatePattern)
-
-                    // negation wins over match
-                    return !isNegate && isMatch
+                    return match(cfg)
                 } catch (e) {
                     if (e instanceof Error) {
                         this.showOutputMessage(e.message)

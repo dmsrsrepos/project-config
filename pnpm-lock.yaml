@@ -28,6 +28,9 @@ importers:
       eslint:
         specifier: 9.12.0
         version: 9.12.0
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.2
       ofetch:
         specifier: 1.4.1
         version: 1.4.1
