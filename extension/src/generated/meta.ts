@@ -10,15 +10,15 @@ export const version = "1.1.2";
 export const displayName = "Project Kit";
 export const description = "Export current settings to workspace config file ";
 export const extensionId = "cnjimbo.project-kit";
-type Cache<T> = {
+type Cache<T> = Record<string, {
     exp: number | null;
     value: T;
     dispose: () => void;
-};
-const memoize = <TArgs extends any[], TResult>(cache: Map<string, Cache<TResult>>, func: (...args: TArgs) => TResult, keyFunc: ((...args: TArgs) => string) | null, ttl: number | null) => {
+}>;
+const memoize = <TArgs extends any[], TResult>(cache: Cache<TResult>, func: (...args: TArgs) => TResult, keyFunc: ((...args: TArgs) => string) | null, ttl: number | null) => {
     return function callWithMemo(...args: any): TResult {
         const key = keyFunc ? keyFunc(...args) : JSON.stringify({ args });
-        const existing = cache.get(key);
+        const existing = cache[key];
         if (existing !== undefined) {
             if (!existing.exp)
                 return existing.value;
@@ -27,15 +27,14 @@ const memoize = <TArgs extends any[], TResult>(cache: Map<string, Cache<TResult>
             }
         }
         const result = func(...args);
-        const target: Cache<TResult> = {
+        cache[key] = {
             exp: ttl ? new Date().getTime() + ttl : null,
             value: result,
             dispose: () => {
-                cache.delete(key);
+                delete cache[key];
             }
         };
-        cache.set(key, target);
-        useDisposable(target);
+        useDisposable(cache[key]);
         return result;
     };
 };
@@ -50,7 +49,7 @@ export const memo = <TArgs extends any[], TResult>(func: (...args: TArgs) => TRe
     key?: (...args: TArgs) => string;
     ttl?: number;
 } = {}) => {
-    return memoize(new Map<string, Cache<TResult>>(), func, options.key ?? null, options.ttl ?? null) as (...args: TArgs) => TResult;
+    return memoize({}, func, options.key ?? null, options.ttl ?? null) as (...args: TArgs) => TResult;
 };
 export interface CommandsInformation {
     /**
