@@ -34,9 +34,9 @@ export async function fetchLatest(): Promise<Record<string, string>> {
 
 export async function fetchAndUpdate(ctx: ExtensionContext, prompt = true): Promise<void> {
   const { patterns, enabled, expand } = defineConfigs('explorer.fileNesting', {
-    patterns: Object,
-    enabled: Boolean,
-    expand: Boolean,
+    patterns: {},
+    enabled: true,
+    expand: true,
   })
   const mdPatterns = await fetchLatest()
   let shouldUpdate = true
