@@ -3,22 +3,22 @@
 // @see https://github.com/calmripple/reactive-meta-gen
 // Meta info
 import { defineConfigObject, defineConfigs, useCommand as useReactiveCommand, useCommands as useReactiveCommands, useLogger as useReactiveLogger, useOutputChannel as useReactiveOutputChannel, useStatusBarItem, useDisposable, } from 'reactive-vscode';
-import type { Nullable } from 'reactive-vscode';
+import type { Nullable, UseStatusBarItemOptions } from 'reactive-vscode';
 export const publisher = "cnjimbo";
 export const name = "project-kit";
 export const version = "1.1.2";
 export const displayName = "Project Kit";
 export const description = "Export current settings to workspace config file ";
 export const extensionId = "cnjimbo.project-kit";
-type Cache<T> = Record<string, {
+type Cache<T> = {
     exp: number | null;
     value: T;
     dispose: () => void;
-}>;
-const memoize = <TArgs extends any[], TResult>(cache: Cache<TResult>, func: (...args: TArgs) => TResult, keyFunc: ((...args: TArgs) => string) | null, ttl: number | null) => {
+};
+const memoize = <TArgs extends any[], TResult>(cache: Map<string, Cache<TResult>>, func: (...args: TArgs) => TResult, keyFunc: ((...args: TArgs) => string) | null, ttl: number | null) => {
     return function callWithMemo(...args: any): TResult {
         const key = keyFunc ? keyFunc(...args) : JSON.stringify({ args });
-        const existing = cache[key];
+        const existing = cache.get(key);
         if (existing !== undefined) {
             if (!existing.exp)
                 return existing.value;
@@ -27,14 +27,15 @@ const memoize = <TArgs extends any[], TResult>(cache: Cache<TResult>, func: (...
             }
         }
         const result = func(...args);
-        cache[key] = {
+        const target: Cache<TResult> = {
             exp: ttl ? new Date().getTime() + ttl : null,
             value: result,
             dispose: () => {
-                delete cache[key];
+                cache.delete(key);
             }
         };
-        useDisposable(cache[key]);
+        cache.set(key, target);
+        useDisposable(target);
         return result;
     };
 };
@@ -49,7 +50,7 @@ export const memo = <TArgs extends any[], TResult>(func: (...args: TArgs) => TRe
     key?: (...args: TArgs) => string;
     ttl?: number;
 } = {}) => {
-    return memoize({}, func, options.key ?? null, options.ttl ?? null) as (...args: TArgs) => TResult;
+    return memoize(new Map<string, Cache<TResult>>(), func, options.key ?? null, options.ttl ?? null) as (...args: TArgs) => TResult;
 };
 export interface CommandsInformation {
     /**
@@ -188,8 +189,8 @@ export const putLeft = (target: Nullable<string>, curr: string) => target ? ''.c
 /**
  * Create a statusBarItem with a commmand id
  */
-export const useStatusBarItemFromCommand = memo((commandKey: Command) => {
-    const cmd = commandsInformation[commandKey];
+export const useStatusBarItemFromCommand = memo((command: Command) => {
+    const cmd = commandsInformation[command];
     return useStatusBarItem({
         id: cmd.commandShorthandName,
         command: cmd.command,
@@ -198,6 +199,19 @@ export const useStatusBarItemFromCommand = memo((commandKey: Command) => {
         tooltip: putLeft(cmd.category, ":").concat(cmd.title ?? cmd.shortTitle ?? cmd.commandShorthandName)
     });
 });
+/**
+ * Create a option of statusBarItem with a commmand id
+ */
+export const statusBarItemOption = (command: Command): UseStatusBarItemOptions => {
+    const cmd = commandsInformation[command];
+    return {
+        id: cmd.commandShorthandName,
+        command: cmd.command,
+        name: cmd.command,
+        text: putLeft(cmd.icon, cmd.shortTitle ?? cmd.title ?? cmd.commandShorthandName),
+        tooltip: putLeft(cmd.category, ":").concat(cmd.title ?? cmd.shortTitle ?? cmd.commandShorthandName)
+    };
+};
 /**
  * Update config now
  * @command Register a command `project-kit.manualUpdate`
@@ -276,6 +290,9 @@ export interface FileNestingUpdater {
  * Section Type of `project-kit`
  */
 export interface ProjectKit {
+    /**
+     *
+     */
     "runonsave": {
         /**
        * Shell to execute the command with (gets passed to child_process.exec as an options arg. e.g. child_process(cmd, { shell }).
@@ -283,7 +300,6 @@ export interface ProjectKit {
        */
         'shell'?: string;
         /**
-         *
          * @default `[]`
          */
         'commands': {
@@ -294,9 +310,7 @@ export interface ProjectKit {
             'cmd': string;
             /**
              * Regex for matching files to run commands on
-             *
              * NOTE: This is a regex and not a file path spce, so backslashes have to be escaped. They also have to be escaped in json strings, so you may have to double escape them in certain cases such as targetting contents of folders.
-             *
              * e.g.
              * "match": "some\\\\directory\\\\.*"
              * @default `".*"`
@@ -320,7 +334,7 @@ export interface ProjectKit {
         'autoClearConsole': boolean;
     };
 }
-const projectKitDefaults = {
+const defaults = {
     /**
      * Config defaults of `project-kit.demo`
      */
@@ -359,10 +373,16 @@ const projectKitDefaults = {
      * Config defaults of `project-kit`
      */
     "project-kit": {
+        /**
+         *
+         */
         "runonsave": { "shell": undefined, "commands": [], "autoClearConsole": false },
     } satisfies ProjectKit as ProjectKit,
 };
-export type ConfigurationSection = keyof typeof projectKitDefaults;
+/**
+ * List of section names.
+ */
+export type SectionName = keyof typeof defaults;
 /**
  * Shorthand of config section name.
  */
@@ -370,36 +390,55 @@ export const configs = {
     demo: "project-kit.demo",
     fileNestingUpdater: "project-kit.fileNestingUpdater",
     projectKit: "project-kit",
-} satisfies Record<string, ConfigurationSection>;
+} satisfies Record<string, SectionName>;
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
  */
-export const useConfig = memo(<Section extends ConfigurationSection>(section: Section) => defineConfigs<typeof projectKitDefaults[Section]>(section, projectKitDefaults[section]));
+export const useConfig = memo(<Section extends SectionName>(section: Section) => defineConfigs<typeof defaults[Section]>(section, defaults[section]));
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
  */
-export const useConfigObject = memo(<Section extends ConfigurationSection>(section: Section) => defineConfigObject<typeof projectKitDefaults[Section]>(section, projectKitDefaults[section]));
+export const useConfigObject = memo(<Section extends SectionName>(section: Section) => defineConfigObject<typeof defaults[Section]>(section, defaults[section]));
 /**
- * ConfigObject of `project-kit.demo`
+ * ConfigObject<Demo> of `project-kit.demo`
  */
 export const useConfigObjectDemo = () => useConfigObject(configs.demo);
 /**
- * ToConfigRefs of `project-kit.demo`
+ * ToConfigRefs<Demo> of `project-kit.demo`
  */
 export const useConfigDemo = () => useConfig(configs.demo);
 /**
- * ConfigObject of `project-kit.fileNestingUpdater`
+ * ConfigObject<FileNestingUpdater> of `project-kit.fileNestingUpdater`
  */
 export const useConfigObjectFileNestingUpdater = () => useConfigObject(configs.fileNestingUpdater);
 /**
- * ToConfigRefs of `project-kit.fileNestingUpdater`
+ * ToConfigRefs<FileNestingUpdater> of `project-kit.fileNestingUpdater`
  */
 export const useConfigFileNestingUpdater = () => useConfig(configs.fileNestingUpdater);
 /**
- * ConfigObject of `project-kit`
+ * ConfigObject<ProjectKit> of `project-kit`
  */
 export const useConfigObjectProjectKit = () => useConfigObject(configs.projectKit);
 /**
- * ToConfigRefs of `project-kit`
+ * ToConfigRefs<ProjectKit> of `project-kit`
  */
 export const useConfigProjectKit = () => useConfig(configs.projectKit);
+/**
+// Import reference
+import { ConfigurationTarget } from 'vscode'
+import * as meta from './generated/meta'
+ */
+/**
+//ConfigObject<ProjectKit> of `project-kit`
+//@example projectKit
+const projectKit = meta.useConfigObjectProjectKit()
+const oldVal:object = projectKit.runonsave //get value
+projectKit.$update("runonsave", oldVal, ConfigurationTarget.Global) //update value
+ */
+/**
+//ToConfigRefs<ProjectKit> of `project-kit`
+//@example projectKit
+const projectKit = meta.useConfigProjectKit()
+const oldVal:object = projectKit.runonsave.value //get value
+projectKit.runonsave.update(oldVal, ConfigurationTarget.Global) //update value
+ */ 
