@@ -5,7 +5,8 @@
         "lib": [
             "ES2022"
         ],
-        "module": "Preserve",
+        "module": "es2022",
+        "forceConsistentCasingInFileNames": true,
         "moduleResolution": "Bundler",
         "resolveJsonModule": true,
         "strict": true,
