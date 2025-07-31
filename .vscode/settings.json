@@ -4,7 +4,7 @@
   "emeraldwalk.runonsave": {
     "commands": [
       {
-        "cmd": "npm run update",
+        "cmd": "npm run gen:meta",
         "isAsync": true,
         "match": "package.json"
       }

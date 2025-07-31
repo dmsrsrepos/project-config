@@ -1,12 +1,12 @@
 {
   "author": "cnjimbo <cnjimbo@dmsrs.org>",
   "devDependencies": {
-    "@antfu/eslint-config": "4.17.0",
+    "@antfu/eslint-config": "5.0.0",
     "@antfu/ni": "25.0.0",
     "@types/eslint": "9.6.1",
-    "@types/node": "24.0.15",
+    "@types/node": "24.1.0",
     "@types/vscode": "1.102.0",
-    "eslint": "9.31.0",
+    "eslint": "9.32.0",
     "fast-glob": "^3.3.3",
     "ofetch": "1.4.1",
     "radash": "^12.1.1",
@@ -27,11 +27,14 @@
     "ext:pack": "nr ext:build && cd extension && vsce package --no-dependencies",
     "ext:publish": "nr ext:build && cd extension && vsce publish --no-dependencies",
     "lint": "eslint .",
-    "prepare": "pnpm run update",
-    "update": "reactive-meta-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated/meta.ts"
+    "prepare": "pnpm run gen:meta",
+    "gen:meta": "reactive-meta-gen ./extension/package.json --readme ./extension/README.md --output extension/src/generated/meta.ts"
   },
   "type": "module",
   "workspaces": [
     "extension"
-  ]
+  ],
+  "dependencies": {
+    "json5": "^2.2.3"
+  }
 }
