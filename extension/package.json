@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "project-kit",
+  "name": "project-config",
   "main": "./dist/index.cjs",
   "icon": "res/logo.png",
   "version": "1.1.2",
@@ -12,7 +12,7 @@
   },
   "publisher": "cnjimbo",
   "repository": {
-    "url": "https://github.com/open-dmsrs/project-kit",
+    "url": "https://github.com/open-dmsrs/project-config",
     "type": "git",
     "directory": "extension"
   },
@@ -26,7 +26,7 @@
     "commands": [
       {
         "title": "Update config now",
-        "command": "project-kit.manualUpdate",
+        "command": "project-config.manualUpdate",
         "category": "Project Kit",
         "enablement": "s",
         "icon": "$(zap)",
@@ -34,30 +34,30 @@
       },
       {
         "title": "change annotations",
-        "command": "project-kit.change-annnotations",
+        "command": "project-config.change-annnotations",
         "category": "Project Kit"
       },
       {
         "title": "stop watch",
-        "command": "project-kit.stop-watch",
+        "command": "project-config.stop-watch",
         "category": "Project Kit"
       },
       {
         "title": "Run On Save: Enable",
-        "command": "project-kit.enableRunOnSave"
+        "command": "project-config.enableRunOnSave"
       },
       {
         "title": "Run On Save: Disable",
-        "command": "project-kit.disableRunOnSave"
+        "command": "project-config.disableRunOnSave"
       },
       {
         "title": "Update demo des",
-        "command": "project-kit.updateDes",
+        "command": "project-config.updateDes",
         "category": "Project Demo"
       },
       {
         "title": "sayHello",
-        "command": "project-kit.sayHello",
+        "command": "project-config.sayHello",
         "category": "Demo",
         "enablement": "s",
         "icon": "$(zap)",
@@ -65,7 +65,7 @@
       },
       {
         "title": "sayGoodbye",
-        "command": "project-kit.sayGoodbye",
+        "command": "project-config.sayGoodbye",
         "category": "Demo",
         "enablement": "s",
         "icon": "$(zap)",
@@ -75,17 +75,17 @@
     "menus": {
       "statusBar": [
         {
-          "command": "project-kit.updateDes",
+          "command": "project-config.updateDes",
           "group": "navigation",
           "when": "editorTextFocus",
-          "alt": "project-kit.updateDes"
+          "alt": "project-config.updateDes"
         }
       ],
       "editor/title": [
         {
           "when": "true",
-          "command": "project-kit.updateDes",
-          "alt": "project-kit.updateDes",
+          "command": "project-config.updateDes",
+          "alt": "project-config.updateDes",
           "group": "navigation"
         }
       ]
@@ -95,7 +95,7 @@
         "type": "object",
         "title": "Demo",
         "properties": {
-          "project-kit.demo.description": {
+          "project-config.demo.description": {
             "type": "string",
             "default": "default demo string",
             "description": "used for demo configuration"
@@ -106,27 +106,27 @@
         "type": "object",
         "title": "Config 1",
         "properties": {
-          "project-kit.fileNestingUpdater.autoUpdate": {
+          "project-config.fileNestingUpdater.autoUpdate": {
             "type": "boolean",
             "default": true,
             "description": "Fetch and update the latest config automatically"
           },
-          "project-kit.fileNestingUpdater.upstreamRepo": {
+          "project-config.fileNestingUpdater.upstreamRepo": {
             "type": "string",
             "default": "antfu/vscode-file-nesting-config",
             "description": "The upstream repo you want to update from"
           },
-          "project-kit.fileNestingUpdater.upstreamBranch": {
+          "project-config.fileNestingUpdater.upstreamBranch": {
             "type": "string",
             "default": "main",
             "description": "The branch name of upstream repo"
           },
-          "project-kit.fileNestingUpdater.promptOnAutoUpdate": {
+          "project-config.fileNestingUpdater.promptOnAutoUpdate": {
             "type": "boolean",
             "default": true,
             "description": "Should show up the prompt before doing auto update"
           },
-          "project-kit.fileNestingUpdater.autoUpdateInterval": {
+          "project-config.fileNestingUpdater.autoUpdateInterval": {
             "type": "number",
             "default": 4320,
             "description": "The minimal interval for auto update, in minutes"
@@ -137,7 +137,7 @@
         "type": "object",
         "title": "Run On Save command configuration.",
         "properties": {
-          "project-kit.runonsave": {
+          "project-config.runonsave": {
             "type": "object",
             "properties": {
               "shell": {

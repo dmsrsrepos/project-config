@@ -5,11 +5,11 @@
 import { defineConfigObject, defineConfigs, useCommand as useReactiveCommand, useCommands as useReactiveCommands, useLogger as useReactiveLogger, useOutputChannel as useReactiveOutputChannel, useStatusBarItem, useDisposable, } from 'reactive-vscode';
 import type { Nullable, UseStatusBarItemOptions } from 'reactive-vscode';
 export const publisher = "cnjimbo";
-export const name = "project-kit";
+export const name = "project-config";
 export const version = "1.1.2";
 export const displayName = "Project Kit";
 export const description = "Export current settings to workspace config file ";
-export const extensionId = "cnjimbo.project-kit";
+export const extensionId = "cnjimbo.project-config";
 type Cache<T> = {
     exp: number | null;
     value: T;
@@ -73,96 +73,96 @@ export interface CommandsInformation {
 /**
  * Type union of all commands
  */
-export type Command = "project-kit.manualUpdate" | "project-kit.change-annnotations" | "project-kit.stop-watch" | "project-kit.enableRunOnSave" | "project-kit.disableRunOnSave" | "project-kit.updateDes" | "project-kit.sayHello" | "project-kit.sayGoodbye";
+export type Command = "project-config.manualUpdate" | "project-config.change-annnotations" | "project-config.stop-watch" | "project-config.enableRunOnSave" | "project-config.disableRunOnSave" | "project-config.updateDes" | "project-config.sayHello" | "project-config.sayGoodbye";
 /**
- * Commands map registed by `cnjimbo.project-kit`
+ * Commands map registed by `cnjimbo.project-config`
  */
 export const commands = {
     /**
      * Update config now
-     * @command `project-kit.manualUpdate`
+     * @command `project-config.manualUpdate`
      */
-    manualUpdate: "project-kit.manualUpdate",
+    manualUpdate: "project-config.manualUpdate",
     /**
      * Change annotations
-     * @command `project-kit.change-annnotations`
+     * @command `project-config.change-annnotations`
      */
-    changeAnnnotations: "project-kit.change-annnotations",
+    changeAnnnotations: "project-config.change-annnotations",
     /**
      * Stop watch
-     * @command `project-kit.stop-watch`
+     * @command `project-config.stop-watch`
      */
-    stopWatch: "project-kit.stop-watch",
+    stopWatch: "project-config.stop-watch",
     /**
      * Run On Save: Enable
-     * @command `project-kit.enableRunOnSave`
+     * @command `project-config.enableRunOnSave`
      */
-    enableRunOnSave: "project-kit.enableRunOnSave",
+    enableRunOnSave: "project-config.enableRunOnSave",
     /**
      * Run On Save: Disable
-     * @command `project-kit.disableRunOnSave`
+     * @command `project-config.disableRunOnSave`
      */
-    disableRunOnSave: "project-kit.disableRunOnSave",
+    disableRunOnSave: "project-config.disableRunOnSave",
     /**
      * Update demo des
-     * @command `project-kit.updateDes`
+     * @command `project-config.updateDes`
      */
-    updateDes: "project-kit.updateDes",
+    updateDes: "project-config.updateDes",
     /**
      * SayHello
-     * @command `project-kit.sayHello`
+     * @command `project-config.sayHello`
      */
-    sayHello: "project-kit.sayHello",
+    sayHello: "project-config.sayHello",
     /**
      * SayGoodbye
-     * @command `project-kit.sayGoodbye`
+     * @command `project-config.sayGoodbye`
      */
-    sayGoodbye: "project-kit.sayGoodbye",
+    sayGoodbye: "project-config.sayGoodbye",
 } satisfies Record<string, Command> as Record<string, Command>;
 /**
- * Commands map registed by `cnjimbo.project-kit`
+ * Commands map registed by `cnjimbo.project-config`
  */
 export const commandsInformation = {
     /**
      * Update config now
-     * @command `project-kit.manualUpdate`
+     * @command `project-config.manualUpdate`
      */
-    "project-kit.manualUpdate": { "commandShorthandName": "manualUpdate", "title": "Update config now", "command": "project-kit.manualUpdate", "category": "Project Kit", "enablement": "s", "icon": "$(zap)", "shortTitle": "shortTitle" },
+    "project-config.manualUpdate": { "commandShorthandName": "manualUpdate", "title": "Update config now", "command": "project-config.manualUpdate", "category": "Project Kit", "enablement": "s", "icon": "$(zap)", "shortTitle": "shortTitle" },
     /**
      * Change annotations
-     * @command `project-kit.change-annnotations`
+     * @command `project-config.change-annnotations`
      */
-    "project-kit.change-annnotations": { "commandShorthandName": "changeAnnnotations", "title": "change annotations", "command": "project-kit.change-annnotations", "category": "Project Kit" },
+    "project-config.change-annnotations": { "commandShorthandName": "changeAnnnotations", "title": "change annotations", "command": "project-config.change-annnotations", "category": "Project Kit" },
     /**
      * Stop watch
-     * @command `project-kit.stop-watch`
+     * @command `project-config.stop-watch`
      */
-    "project-kit.stop-watch": { "commandShorthandName": "stopWatch", "title": "stop watch", "command": "project-kit.stop-watch", "category": "Project Kit" },
+    "project-config.stop-watch": { "commandShorthandName": "stopWatch", "title": "stop watch", "command": "project-config.stop-watch", "category": "Project Kit" },
     /**
      * Run On Save: Enable
-     * @command `project-kit.enableRunOnSave`
+     * @command `project-config.enableRunOnSave`
      */
-    "project-kit.enableRunOnSave": { "commandShorthandName": "enableRunOnSave", "title": "Run On Save: Enable", "command": "project-kit.enableRunOnSave" },
+    "project-config.enableRunOnSave": { "commandShorthandName": "enableRunOnSave", "title": "Run On Save: Enable", "command": "project-config.enableRunOnSave" },
     /**
      * Run On Save: Disable
-     * @command `project-kit.disableRunOnSave`
+     * @command `project-config.disableRunOnSave`
      */
-    "project-kit.disableRunOnSave": { "commandShorthandName": "disableRunOnSave", "title": "Run On Save: Disable", "command": "project-kit.disableRunOnSave" },
+    "project-config.disableRunOnSave": { "commandShorthandName": "disableRunOnSave", "title": "Run On Save: Disable", "command": "project-config.disableRunOnSave" },
     /**
      * Update demo des
-     * @command `project-kit.updateDes`
+     * @command `project-config.updateDes`
      */
-    "project-kit.updateDes": { "commandShorthandName": "updateDes", "title": "Update demo des", "command": "project-kit.updateDes", "category": "Project Demo" },
+    "project-config.updateDes": { "commandShorthandName": "updateDes", "title": "Update demo des", "command": "project-config.updateDes", "category": "Project Demo" },
     /**
      * SayHello
-     * @command `project-kit.sayHello`
+     * @command `project-config.sayHello`
      */
-    "project-kit.sayHello": { "commandShorthandName": "sayHello", "title": "sayHello", "command": "project-kit.sayHello", "category": "Demo", "enablement": "s", "icon": "$(zap)", "shortTitle": "Hello shortTitle" },
+    "project-config.sayHello": { "commandShorthandName": "sayHello", "title": "sayHello", "command": "project-config.sayHello", "category": "Demo", "enablement": "s", "icon": "$(zap)", "shortTitle": "Hello shortTitle" },
     /**
      * SayGoodbye
-     * @command `project-kit.sayGoodbye`
+     * @command `project-config.sayGoodbye`
      */
-    "project-kit.sayGoodbye": { "commandShorthandName": "sayGoodbye", "title": "sayGoodbye", "command": "project-kit.sayGoodbye", "category": "Demo", "enablement": "s", "icon": "$(zap)", "shortTitle": "Bye shortTitle" },
+    "project-config.sayGoodbye": { "commandShorthandName": "sayGoodbye", "title": "sayGoodbye", "command": "project-config.sayGoodbye", "category": "Demo", "enablement": "s", "icon": "$(zap)", "shortTitle": "Bye shortTitle" },
 } satisfies Record<Command, CommandsInformation> as Record<Command, CommandsInformation>;
 /**
  * Register a command. See `vscode::commands.registerCommand`.
@@ -214,46 +214,46 @@ export const statusBarItemOption = (command: Command): UseStatusBarItemOptions =
 };
 /**
  * Update config now
- * @command Register a command `project-kit.manualUpdate`
+ * @command Register a command `project-config.manualUpdate`
  */
 export const useCommandManualUpdate = (callback: (...args: any[]) => any) => useCommand(commands.manualUpdate, callback);
 /**
  * Change annotations
- * @command Register a command `project-kit.change-annnotations`
+ * @command Register a command `project-config.change-annnotations`
  */
 export const useCommandChangeAnnnotations = (callback: (...args: any[]) => any) => useCommand(commands.changeAnnnotations, callback);
 /**
  * Stop watch
- * @command Register a command `project-kit.stop-watch`
+ * @command Register a command `project-config.stop-watch`
  */
 export const useCommandStopWatch = (callback: (...args: any[]) => any) => useCommand(commands.stopWatch, callback);
 /**
  * Run On Save: Enable
- * @command Register a command `project-kit.enableRunOnSave`
+ * @command Register a command `project-config.enableRunOnSave`
  */
 export const useCommandEnableRunOnSave = (callback: (...args: any[]) => any) => useCommand(commands.enableRunOnSave, callback);
 /**
  * Run On Save: Disable
- * @command Register a command `project-kit.disableRunOnSave`
+ * @command Register a command `project-config.disableRunOnSave`
  */
 export const useCommandDisableRunOnSave = (callback: (...args: any[]) => any) => useCommand(commands.disableRunOnSave, callback);
 /**
  * Update demo des
- * @command Register a command `project-kit.updateDes`
+ * @command Register a command `project-config.updateDes`
  */
 export const useCommandUpdateDes = (callback: (...args: any[]) => any) => useCommand(commands.updateDes, callback);
 /**
  * SayHello
- * @command Register a command `project-kit.sayHello`
+ * @command Register a command `project-config.sayHello`
  */
 export const useCommandSayHello = (callback: (...args: any[]) => any) => useCommand(commands.sayHello, callback);
 /**
  * SayGoodbye
- * @command Register a command `project-kit.sayGoodbye`
+ * @command Register a command `project-config.sayGoodbye`
  */
 export const useCommandSayGoodbye = (callback: (...args: any[]) => any) => useCommand(commands.sayGoodbye, callback);
 /**
- * Section Type of `project-kit.demo`
+ * Section Type of `project-config.demo`
  */
 export interface Demo {
     /**
@@ -262,7 +262,7 @@ export interface Demo {
     "description": string;
 }
 /**
- * Section Type of `project-kit.fileNestingUpdater`
+ * Section Type of `project-config.fileNestingUpdater`
  */
 export interface FileNestingUpdater {
     /**
@@ -287,9 +287,9 @@ export interface FileNestingUpdater {
     "autoUpdateInterval": number;
 }
 /**
- * Section Type of `project-kit`
+ * Section Type of `project-config`
  */
-export interface ProjectKit {
+export interface ProjectConfig {
     /**
      *
      */
@@ -336,18 +336,18 @@ export interface ProjectKit {
 }
 const defaults = {
     /**
-     * Config defaults of `project-kit.demo`
+     * Config defaults of `project-config.demo`
      */
-    "project-kit.demo": {
+    "project-config.demo": {
         /**
          * Used for demo configuration
          */
         "description": "default demo string",
     } satisfies Demo as Demo,
     /**
-     * Config defaults of `project-kit.fileNestingUpdater`
+     * Config defaults of `project-config.fileNestingUpdater`
      */
-    "project-kit.fileNestingUpdater": {
+    "project-config.fileNestingUpdater": {
         /**
          * Fetch and update the latest config automatically
          */
@@ -370,14 +370,14 @@ const defaults = {
         "autoUpdateInterval": 4320,
     } satisfies FileNestingUpdater as FileNestingUpdater,
     /**
-     * Config defaults of `project-kit`
+     * Config defaults of `project-config`
      */
-    "project-kit": {
+    "project-config": {
         /**
          *
          */
         "runonsave": { "shell": undefined, "commands": [], "autoClearConsole": false },
-    } satisfies ProjectKit as ProjectKit,
+    } satisfies ProjectConfig as ProjectConfig,
 };
 /**
  * List of section names.
@@ -387,9 +387,9 @@ export type SectionName = keyof typeof defaults;
  * Shorthand of config section name.
  */
 export const configs = {
-    demo: "project-kit.demo",
-    fileNestingUpdater: "project-kit.fileNestingUpdater",
-    projectKit: "project-kit",
+    demo: "project-config.demo",
+    fileNestingUpdater: "project-config.fileNestingUpdater",
+    projectConfig: "project-config",
 } satisfies Record<string, SectionName>;
 /**
  * Define configurations of an extension. See `vscode::workspace.getConfiguration`.
@@ -400,45 +400,45 @@ export const useConfig = memo(<Section extends SectionName>(section: Section) =>
  */
 export const useConfigObject = memo(<Section extends SectionName>(section: Section) => defineConfigObject<typeof defaults[Section]>(section, defaults[section]));
 /**
- * ConfigObject<Demo> of `project-kit.demo`
+ * ConfigObject<Demo> of `project-config.demo`
  */
 export const useConfigObjectDemo = () => useConfigObject(configs.demo);
 /**
- * ToConfigRefs<Demo> of `project-kit.demo`
+ * ToConfigRefs<Demo> of `project-config.demo`
  */
 export const useConfigDemo = () => useConfig(configs.demo);
 /**
- * ConfigObject<FileNestingUpdater> of `project-kit.fileNestingUpdater`
+ * ConfigObject<FileNestingUpdater> of `project-config.fileNestingUpdater`
  */
 export const useConfigObjectFileNestingUpdater = () => useConfigObject(configs.fileNestingUpdater);
 /**
- * ToConfigRefs<FileNestingUpdater> of `project-kit.fileNestingUpdater`
+ * ToConfigRefs<FileNestingUpdater> of `project-config.fileNestingUpdater`
  */
 export const useConfigFileNestingUpdater = () => useConfig(configs.fileNestingUpdater);
 /**
- * ConfigObject<ProjectKit> of `project-kit`
+ * ConfigObject<ProjectConfig> of `project-config`
  */
-export const useConfigObjectProjectKit = () => useConfigObject(configs.projectKit);
+export const useConfigObjectProjectConfig = () => useConfigObject(configs.projectConfig);
 /**
- * ToConfigRefs<ProjectKit> of `project-kit`
+ * ToConfigRefs<ProjectConfig> of `project-config`
  */
-export const useConfigProjectKit = () => useConfig(configs.projectKit);
+export const useConfigProjectConfig = () => useConfig(configs.projectConfig);
 /**
 // Import reference
 import { ConfigurationTarget } from 'vscode'
 import * as meta from './generated/meta'
  */
 /**
-//ConfigObject<ProjectKit> of `project-kit`
-//@example projectKit
-const projectKit = meta.useConfigObjectProjectKit()
-const oldVal:object = projectKit.runonsave //get value
-projectKit.$update("runonsave", oldVal, ConfigurationTarget.Global) //update value
+//ConfigObject<ProjectConfig> of `project-config`
+//@example projectConfig
+const projectConfig = meta.useConfigObjectProjectConfig()
+const oldVal:object = projectConfig.runonsave //get value
+projectConfig.$update("runonsave", oldVal, ConfigurationTarget.Global) //update value
  */
 /**
-//ToConfigRefs<ProjectKit> of `project-kit`
-//@example projectKit
-const projectKit = meta.useConfigProjectKit()
-const oldVal:object = projectKit.runonsave.value //get value
-projectKit.runonsave.update(oldVal, ConfigurationTarget.Global) //update value
+//ToConfigRefs<ProjectConfig> of `project-config`
+//@example projectConfig
+const projectConfig = meta.useConfigProjectConfig()
+const oldVal:object = projectConfig.runonsave.value //get value
+projectConfig.runonsave.update(oldVal, ConfigurationTarget.Global) //update value
  */ 
