@@ -7,7 +7,7 @@ import type { Nullable, UseStatusBarItemOptions } from 'reactive-vscode';
 export const publisher = "cnjimbo";
 export const name = "project-config";
 export const version = "1.1.2";
-export const displayName = "Project Kit";
+export const displayName = "Project Config";
 export const description = "Export current settings to workspace config file ";
 export const extensionId = "cnjimbo.project-config";
 type Cache<T> = {
@@ -127,17 +127,17 @@ export const commandsInformation = {
      * Update config now
      * @command `project-config.manualUpdate`
      */
-    "project-config.manualUpdate": { "commandShorthandName": "manualUpdate", "title": "Update config now", "command": "project-config.manualUpdate", "category": "Project Kit", "enablement": "s", "icon": "$(zap)", "shortTitle": "shortTitle" },
+    "project-config.manualUpdate": { "commandShorthandName": "manualUpdate", "title": "Update config now", "command": "project-config.manualUpdate", "category": "Project Config", "enablement": "s", "icon": "$(zap)", "shortTitle": "shortTitle" },
     /**
      * Change annotations
      * @command `project-config.change-annnotations`
      */
-    "project-config.change-annnotations": { "commandShorthandName": "changeAnnnotations", "title": "change annotations", "command": "project-config.change-annnotations", "category": "Project Kit" },
+    "project-config.change-annnotations": { "commandShorthandName": "changeAnnnotations", "title": "change annotations", "command": "project-config.change-annnotations", "category": "Project Config" },
     /**
      * Stop watch
      * @command `project-config.stop-watch`
      */
-    "project-config.stop-watch": { "commandShorthandName": "stopWatch", "title": "stop watch", "command": "project-config.stop-watch", "category": "Project Kit" },
+    "project-config.stop-watch": { "commandShorthandName": "stopWatch", "title": "stop watch", "command": "project-config.stop-watch", "category": "Project Config" },
     /**
      * Run On Save: Enable
      * @command `project-config.enableRunOnSave`

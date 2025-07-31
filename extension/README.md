@@ -1,13 +1,12 @@
-![License](https://img.shields.io/badge/license-MIT-yellow) #静态badge图标
-![github license](https://img.shields.io/github/license/:user/:repo) #动态连接github仓库的图标
-
+<!-- #动态连接github仓库的图标 -->
+![github license](https://img.shields.io/github/license/dmsrsrepos/project-config) 
 <br>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/antfu/project-config-config/main/extension/res/logo.png" style="width:100px;" />
+<img src="https://raw.githubusercontent.com/dmsrsrepos/project-config/main/extension/res/logo.png" style="width:100px;" />
 </p>
 
-<h1 align="center">Project Kit</h1>
+<h1 align="center">Project Config</h1>
 
 <p align="center">
 Auto updater for <a href="https://github.com/open-dmsrs/project-config" target="_blank"><code>project-config-config</code></a>.<br>
@@ -32,16 +31,16 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 
 <!-- commands -->
 
-| Command                              | Title                           |
-| ------------------------------------ | ------------------------------- |
-| `project-config.manualUpdate`        | Project Kit: Update config now  |
-| `project-config.change-annnotations` | Project Kit: change annotations |
-| `project-config.stop-watch`          | Project Kit: stop watch         |
-| `project-config.enableRunOnSave`     | Run On Save: Enable             |
-| `project-config.disableRunOnSave`    | Run On Save: Disable            |
-| `project-config.updateDes`           | Project Demo: Update demo des   |
-| `project-config.sayHello`            | Demo: sayHello                  |
-| `project-config.sayGoodbye`          | Demo: sayGoodbye                |
+| Command                              | Title                              |
+| ------------------------------------ | ---------------------------------- |
+| `project-config.manualUpdate`        | Project Config: Update config now  |
+| `project-config.change-annnotations` | Project Config: change annotations |
+| `project-config.stop-watch`          | Project Config: stop watch         |
+| `project-config.enableRunOnSave`     | Run On Save: Enable                |
+| `project-config.disableRunOnSave`    | Run On Save: Disable               |
+| `project-config.updateDes`           | Project Demo: Update demo des      |
+| `project-config.sayHello`            | Demo: sayHello                     |
+| `project-config.sayGoodbye`          | Demo: sayGoodbye                   |
 
 <!-- commands -->
 
@@ -66,7 +65,7 @@ A config to make your file tree cleaner with the <a href="https://code.visualstu
 ```
 
 <!-- configsJson -->
-It will check for update every 12 hours by default. You can also do it manually by executing command `Project Kit: Update config now`.
+It will check for update every 12 hours by default. You can also do it manually by executing command `Project Config: Update config now`.
 
 ## License
 
