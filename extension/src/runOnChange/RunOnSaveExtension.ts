@@ -1,4 +1,4 @@
-import type { ProjectKit } from '@/generated/meta'
+import type { ProjectConfig } from '@/generated/meta'
 import { exec } from 'node:child_process'
 import path from 'node:path'
 import process from 'node:process'
@@ -17,12 +17,12 @@ interface ICommand {
 export class RunOnSaveExtension {
     private _outputChannel: vscode.OutputChannel
     private _context: re.ShallowRef<vscode.ExtensionContext | null>
-    private _config: ProjectKit['runonsave']
+    private _config: ProjectConfig['runonsave']
 
     constructor() {
         this._context = re.extensionContext
         this._outputChannel = meta.useOutputChannel() // vscode.window.createOutputChannel('Run On Save')
-        this._config = meta.useConfigObjectProjectKit().runonsave
+        this._config = meta.useConfigObjectProjectConfig().runonsave
     }
 
     /** Recursive call to run commands. */
